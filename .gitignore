@@ -1,0 +1,33 @@
+*.exe
+*.dll
+*.so
+*.lib
+*.a
+*.obj
+*.o
+
+# Visual Studio
+.vs/
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+*.suo
+*.user
+
+# Makefiles (Linux)
+Makefile
+*.make
+
+# Premake generated
+*.workspace
+
+# IDE specific
+.vscode/
+.idea/
+*.cbp
+
+.vscode
+.vs
+build/
+
