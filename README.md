@@ -35,7 +35,7 @@ Any platform with the **standard C library** — basically **EVERYTHING**!
 
 int main(){
     FLPrint("HelloWorld!"); // Graphite color
-    FLPrintln("HelloWorld!"); // Graphite color with newline
+    FLPrintln(" HelloWorld!"); // Graphite color with newline
     return 0;
 }
 ```
