@@ -16,12 +16,12 @@ FrameLog is a lightweight library for outputting logs to the console in **C**.
 
 ## Dependencies
 
-Standard C library
+**Standard C library**(libc)
 
 ## License
 
 **FrameLog** is licensed under the MIT License.
-Copyright (c) 2025 Gleb Petrikov
+[See LICENSE for details](LICENSE)
 
 ## Supported Platforms
 
@@ -31,7 +31,9 @@ Any platform with the **standard C library** — basically **EVERYWHERE**!
 **FrameLog** is in alpha stage
 
 ## Example
-
+[Colors](source/FrameLog/Colors.h)
+[Prints.c](source/FrameLog/Prints.c)
+[Prints.h](source/FrameLog/Prints.h)
 1. Add the path to FrameLog sources in your build system:  
    `path/to/FrameLog/source/`
 
@@ -76,10 +78,12 @@ int main()
 - Basic log levels
 
 ### Beta
+**in the coming month(as of 2025, October 21)**
 - Buffered output
 - Additional log levels
 
 ### Release
+**in the coming months (3-4)(as of 2025, October 21)**
 - Custom format patterns
 - Output pattern scanner
 - Additional buffer capabilities
