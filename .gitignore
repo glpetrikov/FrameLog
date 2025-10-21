@@ -1,3 +1,4 @@
+# Binaries
 *.exe
 *.dll
 *.so
@@ -15,19 +16,29 @@
 *.suo
 *.user
 
-# Makefiles (Linux)
+# Makefiles
 Makefile
 *.make
 
-# Premake generated
+# Premake
 *.workspace
 
-# IDE specific
+# IDEs
 .vscode/
 .idea/
 *.cbp
 
-.vscode
-.vs
+# Build directories
 build/
+bin/
+obj/
+out/
 
+# Temporary files
+*.tmp
+*.log
+*.swp
+*~
+
+# macOS
+.DS_Store
