@@ -13,3 +13,4 @@
 #define FL_GREEN "\033[32m"
 #define FL_YELLOW "\033[33m"
 #define FL_BLUE "\033[34m"
+#define FL_BRIGHT_BLUE "\033[94m"

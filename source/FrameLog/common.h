@@ -5,3 +5,4 @@
 #include <stdio.h>
 #include <time.h>
 #include "Colors.h"
+#include <stdbool.h> // bool, true, false
