@@ -3,7 +3,7 @@
 #include "common.h"
 #include "buffer.h"
 
-static void FLPrintColored(const char *color, const char *message, bool newline)
+void FLPrintColored(const char *color, const char *message, bool newline)
 {
     printf("%s%s%s%s", color, message, FL_RESET, newline ? "\n" : "");
 }

@@ -21,7 +21,7 @@ Standard C library
 ## License
 
 **FrameLog** is licensed under the MIT License.
-Copyright (c) 2025 Gleb Petrikov
+[License](LICENSE)
 
 ## Supported Platforms
 
@@ -31,6 +31,11 @@ Any platform with the **standard C library** — basically **EVERYWHERE**!
 **FrameLog** is in alpha stage
 
 ## Example
+[Colors](source/FrameLog/Colors.h)
+
+[Prints.c](source/FrameLog/Prints.c)
+
+[Prints.h](source/FrameLog/Prints.h)
 
 1. Add the path to FrameLog sources in your build system:  
    `path/to/FrameLog/source/`
@@ -38,6 +43,8 @@ Any platform with the **standard C library** — basically **EVERYWHERE**!
 2. Include FrameLog in your code and use it:
 ``` c
 // C and C++, no difference.
+// FrameLog - MIT License (c) 2025 Gleb Petrikov
+
 #include <stdio.h>
 #include <FrameLog.h>
 
@@ -75,11 +82,13 @@ int main()
 - Color support
 - Basic log levels
 
-### Beta
+### Beta 
+in the coming month(as of 2025Y.10M.21D)
 - Buffered output
 - Additional log levels
 
 ### Release
+in the coming months (4-5)(as of 2025Y.10M.21D)
 - Custom format patterns
 - Output pattern scanner
 - Additional buffer capabilities

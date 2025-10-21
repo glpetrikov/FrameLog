@@ -4,6 +4,8 @@
 
 #include "common.h"
 #include "buffer.h"
+
+void FLPrintColored(const char *color, const char *message, bool newline);
 // =============================================================
 // Standart Prints
 void FLPrint(const char *Message);
