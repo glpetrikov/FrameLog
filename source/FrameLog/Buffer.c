@@ -3,21 +3,19 @@
 #include "Buffer.h"
 #include <string.h>
 
-char *Buffer;
+char *Buffer = NULL;
 int BufferSize = 100;
 void FLInitBuffer()
 {
     if (Buffer == NULL)
     {
         Buffer = malloc(BufferSize * sizeof(char));
-    }
-    if (Buffer != NULL)
-    {
+        if (Buffer == NULL)
+        {
+            FLErrorln("Failed to allocate FrameLog buffer");
+            return;
+        }
         Buffer[0] = '\0';
-    }
-    else
-    {
-        FLErrorln("Failed to initialize FrameLog buffer");
     }
 }
 void FLAddInBuffer(const char *Message)
@@ -31,18 +29,18 @@ void FLAddInBuffer(const char *Message)
     else
     {
         FLInitBuffer();
+        if (Buffer == NULL)
+        {
+            return;
+        }
         CurrentLength = strlen(Buffer);
     }
 
-    if (CurrentLength + MessageLength + 1 > BufferSize)
+    while (CurrentLength + MessageLength + 1 > BufferSize)
     {
         FLExpandBuffer(BufferSize * 2);
-        strcat(Buffer, Message);
     }
-    else
-    {
-        strcat(Buffer, Message);
-    }
+    strcat(Buffer, Message);
 }
 void FLExpandBuffer(size_t NewSize)
 {
@@ -57,8 +55,13 @@ void FLExpandBuffer(size_t NewSize)
         FLErrorln("Failed to expand FrameLog buffer");
     }
 }
-void FLFreeBuffer()
+void FLFlushBuffer()
 {
-    free(Buffer);
-    Buffer = NULL;
+    if (Buffer != NULL)
+    {
+        printf("%s", Buffer);
+        free(Buffer);
+        Buffer = NULL;
+        FLInitBuffer();
+    }
 }
