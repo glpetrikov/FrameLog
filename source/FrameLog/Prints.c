@@ -8,6 +8,11 @@ void FLPrintColored(const char *color, const char *message, bool newline)
     printf("%s%s%s%s", color, message, FL_RESET, newline ? "\n" : "");
 }
 // =============================================================
+void FLNewLine()
+{
+    printf("\n");
+}
+// =============================================================
 // Standart Prints
 void FLPrint(const char *Message)
 {

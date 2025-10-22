@@ -8,12 +8,15 @@ int main()
     // high-level API
     FLPrint("Hello, World!");
     FLPrintln("");
-    FLPrintln("");
+    FLNewLine();
     FLTraceln("Hello, FrameLog!");
     FLInfoln("This is an info message.");
     FLWarnln("This is a warning message.");
     FLErrorln("This is an error message.");
     FLTrace("This is a trace message.\n");
+
+    // New line example
+    FLNewLine();
 
     // low-level API
     FLPrintColored(FL_GREEN, "Colored output using FrameLog!", true);

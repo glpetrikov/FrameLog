@@ -7,6 +7,8 @@
 
 void FLPrintColored(const char *color, const char *message, bool newline);
 // =============================================================
+void FLNewLine();
+// =============================================================
 // Standart Prints
 void FLPrint(const char *Message);
 void FLPrintln(const char *Message);

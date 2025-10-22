@@ -8,7 +8,7 @@ FrameLog is a lightweight library for outputting logs to the console in **C**.
 
 ## Features 
 
-1. **Simple text and log output to the console**.
+1. **Simple** text and log output to the console.
 
 2. **Color support** (e.g., Graphite).
 
@@ -16,7 +16,9 @@ FrameLog is a lightweight library for outputting logs to the console in **C**.
 
 ## Dependencies
 
-Standard C library(libc)
+Standard C library(libc).
+
+Compatible with C13 and later.
 
 ## License
 
@@ -31,11 +33,14 @@ Any platform with the **standard C library** — basically **EVERYWHERE**!
 **FrameLog** is in alpha stage
 
 ## Example
+### Source files:
 [Colors](source/FrameLog/Colors.h)
 
 [Prints.c](source/FrameLog/Prints.c)
 
 [Prints.h](source/FrameLog/Prints.h)
+
+### example code:
 
 1. Add the path to FrameLog sources in your build system:  
    `path/to/FrameLog/source/`
@@ -43,7 +48,6 @@ Any platform with the **standard C library** — basically **EVERYWHERE**!
 2. Include FrameLog in your code and use it:
 ``` c
 // C and C++, no difference.
-// FrameLog - MIT License (c) 2025 Gleb Petrikov
 
 #include <stdio.h>
 #include <FrameLog.h>
@@ -53,12 +57,15 @@ int main()
     // high-level API
     FLPrint("Hello, World!");
     FLPrintln("");
-    FLPrintln("");
+    FLNewLine();
     FLTraceln("Hello, FrameLog!");
     FLInfoln("This is an info message.");
     FLWarnln("This is a warning message.");
     FLErrorln("This is an error message.");
     FLTrace("This is a trace message.\n");
+
+    // New line example
+    FLNewLine();
 
     // low-level API
     FLPrintColored(FL_GREEN, "Colored output using FrameLog!", true);
@@ -81,6 +88,8 @@ int main()
 - Basic output functions
 - Color support
 - Basic log levels
+- Base Custom format patterns
+- Base Output pattern scanner
 
 ### Beta
 **in the coming month(as of 2025, October 21)**
@@ -89,7 +98,7 @@ int main()
 
 ### Release
 **in the coming months (3-4)(as of 2025, October 21)**
-- Custom format patterns
-- Output pattern scanner
+- full-fledged Custom format patterns
+- full-fledged Output pattern scanner
 - Additional buffer capabilities
 - File Log
