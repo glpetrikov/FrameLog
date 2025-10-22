@@ -5,6 +5,8 @@
 
 char *Buffer = NULL;
 int BufferSize = 100;
+size_t BufferLength = 0;
+
 void FLInitBuffer()
 {
     if (Buffer == NULL)
@@ -15,32 +17,25 @@ void FLInitBuffer()
             FLErrorln("Failed to allocate FrameLog buffer");
             return;
         }
-        Buffer[0] = '\0';
     }
+    BufferLength = 0;
+    Buffer[0] = '\0';
 }
 void FLAddInBuffer(const char *Message)
 {
-    size_t CurrentLength;
     size_t MessageLength = strlen(Message);
-    if (Buffer != NULL)
-    {
-        CurrentLength = strlen(Buffer);
-    }
-    else
+    if (Buffer == NULL)
     {
         FLInitBuffer();
-        if (Buffer == NULL)
-        {
-            return;
-        }
-        CurrentLength = strlen(Buffer);
     }
 
-    while (CurrentLength + MessageLength + 1 > BufferSize)
+    while (BufferLength + MessageLength + 1 > BufferSize)
     {
         FLExpandBuffer(BufferSize * 2);
     }
-    strcat(Buffer, Message);
+    memcpy(Buffer + BufferLength, Message, MessageLength);
+    BufferLength += MessageLength;
+    Buffer[BufferLength] = '\0';
 }
 void FLExpandBuffer(size_t NewSize)
 {

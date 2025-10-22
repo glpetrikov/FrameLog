@@ -1,2 +1,2 @@
 *.h linguist-language=C
-premake5.lua linguist-language=Premake5
+premake5.lua linguist-language=Lua
