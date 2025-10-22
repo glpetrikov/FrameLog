@@ -5,12 +5,18 @@
 
 void FLPrintColored(const char *color, const char *message, bool newline)
 {
-    printf("%s%s%s%s", color, message, FL_RESET, newline ? "\n" : "");
+    FLAddInBuffer(color);
+    FLAddInBuffer(message);
+    FLAddInBuffer(FL_RESET);
+    if (newline)
+    {
+        FLAddInBuffer("\n");
+    }
 }
 // =============================================================
 void FLNewLine()
 {
-    printf("\n");
+    FLAddInBuffer("\n");
 }
 // =============================================================
 // Standart Prints

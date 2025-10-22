@@ -8,7 +8,7 @@ project "FrameLog"
     kind "ConsoleApp"
     language "C"
 
-    targetdir "build/bin/%{cfg.buildcfg}"
+    targetdir "build/%{cfg.buildcfg}"
     objdir "build/obj/%{cfg.buildcfg}"
 
     files { "**.c", "**.h" }
