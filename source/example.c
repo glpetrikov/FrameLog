@@ -17,13 +17,22 @@ int main()
 
     // New line
     FLNewLine();
-    FLFlushBuffer();
     // Flush the buffer to output
+    FLFlushBuffer();
+
+    // Test FrameLog Errors (intentional NULL tests for robustness)
+    FLPrint(NULL);
+    FLPrintln(NULL);
+    FLTraceln(NULL);
+    FLInfoln(NULL);
+    FLWarnln(NULL);
+    FLErrorln(NULL);
+    FLTrace(NULL);
 
     //===============================================================
     // low-level API
     //===============================================================
-    FLPrintColored(FL_GREEN, "Colored output using FrameLog!", true);
+    FLPrintColored(NULL, FL_GREEN, "Colored output using FrameLog!", true);
     // 1. Color
     // 2. Message
     // 3. New line or not

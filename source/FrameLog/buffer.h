@@ -7,6 +7,7 @@
 
 void FLInitBuffer();
 void FLAddInBuffer(const char *Message);
-void FLExpandBuffer(size_t NewSize);
+bool FLExpandBuffer(size_t RequiredSpace);
 void FLFreeBuffer();
 void FLFlushBuffer();
+bool FLIncreaseBufferSize(size_t NewSize);

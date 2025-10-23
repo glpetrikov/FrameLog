@@ -2,8 +2,12 @@
 
 FrameLog is a lightweight library for outputting logs to the console in **C**.
 
+![Platforms](https://img.shields.io/badge/platforms-cross--platform-lightgrey.svg)
+
 ![Language](https://img.shields.io/badge/language-C-blue.svg)
+
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
+
 ![Status](https://img.shields.io/badge/status-alpha-orange.svg)
 
 ## Features 
@@ -32,6 +36,40 @@ Any platform with the **standard C library** — basically **EVERYWHERE**!
 ## Status
 **FrameLog** is in alpha stage
 
+## Run
+
+1. Add the path to FrameLog sources in your build system:  
+   `path/to/FrameLog/source/`
+
+2. Add a flag to the build system
+
+### Warning! Without this flag, there will be NO messages about FrameLog errors in any configuration!!
+
+- Debug FL_ENABLE_ERROR_LOGS=0      FrameLog Error Message = true
+- Release FL_ENABLE_ERROR_LOGS=1    FrameLog Error Message = false
+
+3. Build
+- gcc
+``` bash
+gcc -o example example.c -Ipath/to/FrameLog/source/ -DFL_ENABLE_ERROR_LOGS=0
+
+For example:
+gcc -o example example.c -IC/Tools/FrameLog/source/ -DFL_ENABLE_ERROR_LOGS=0
+```
+- premake
+``` bash
+mkdir build
+premake5 <your System Build>
+cd build
+
+For example: 
+mkdir build
+premake5 gmake
+cd build
+mingw32-make
+```
+
+
 ## Example
 ### Source files:
 [Colors](source/FrameLog/Colors.h)
@@ -44,8 +82,13 @@ Any platform with the **standard C library** — basically **EVERYWHERE**!
 
 1. Add the path to FrameLog sources in your build system:  
    `path/to/FrameLog/source/`
+2. Add a flag to the build system
 
-2. Include FrameLog in your code and use it:
+#### Warning! Without this flag, there will be NO messages about FrameLog errors in any configuration!!
+- Debug FL_ENABLE_ERROR_LOGS=0      FrameLog Error Message = true
+- Release FL_ENABLE_ERROR_LOGS=1    FrameLog Error Message = false
+
+3. Include FrameLog in your code and use it:
 ``` c
 // C and C++, no difference.
 
@@ -66,8 +109,18 @@ int main()
 
     // New line
     FLNewLine();
-    FLFlushBuffer();
     // Flush the buffer to output
+    FLFlushBuffer();
+
+
+    // Test FrameLog Errors
+    FLPrint(NULL);
+    FLPrintln(NULL);
+    FLTraceln(NULL);
+    FLInfoln(NULL);
+    FLWarnln(NULL);
+    FLErrorln(NULL);
+    FLTrace(NULL);
 
     //===============================================================
     // low-level API
@@ -81,7 +134,7 @@ int main()
     // Add message to buffer
     FLAddInBuffer(FL_BLACK);
     FLAddInBuffer("here's a custom black one and it hit the buffer!\n");
-    FLAddInBuffer(FL_RESET); //without it, everything will be in the selected color, which is unpleasant
+    FLAddInBuffer(FL_RESET); // without it, everything will be in the selected color, which is unpleasant
 
     FLFlushBuffer();
     // Flush the buffer to output
@@ -101,13 +154,14 @@ int main()
 - Basic output functions
 - Color support
 - Basic log levels
-- Base Custom format patterns
-- Base Output pattern scanner
 
 ### Beta
 **in the coming month(as of 2025, October 21)**
 - Buffered output
 - Additional log levels
+- Base Custom format patterns
+- Base Output pattern scanner
+- Minimal File Log
 
 ### Release
 **in the coming months (3-4)(as of 2025, October 21)**
