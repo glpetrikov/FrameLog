@@ -29,3 +29,11 @@ FL_RED = "\033[31m"
 FL_GREEN = "\033[32m"
 FL_YELLOW = "\033[33m"
 FL_BLUE = "\033[34m"
+
+### BackGround Colors
+FL_BLACKB = "\033[40m"
+FL_REDB = "\033[41m"
+FL_GREENB = "\033[42m"
+FL_YELLOWB = "\033[43m"
+FL_BLUEB = "\033[44m"
+FL_WHITEB = "\033[47m"

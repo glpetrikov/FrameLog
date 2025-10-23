@@ -151,13 +151,13 @@ int main()
 ## Roadmap
 
 ### Alpha (Current)
+- Buffered output
 - Basic output functions
 - Color support
 - Basic log levels
 
 ### Beta
 **in the coming month(as of 2025, October 21)**
-- Buffered output
 - Additional log levels
 - Base Custom format patterns
 - Base Output pattern scanner
