@@ -14,7 +14,7 @@ int main()
     FLWarnln("This is a warning message.");
     FLErrorln("This is an error message.");
     FLTrace("This is a trace message.\n");
-    printf("%s%zu\n", "Buffer Size: ", sizeof(Buffer));
+    FLBufferSize();
 
     // New line
     FLNewLine();
@@ -30,15 +30,16 @@ int main()
     FLErrorln(NULL);
     FLTrace(NULL);
     FLPrintln("long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long… in short, a very long message");
-    printf("%s%zu\n", "Buffer Size: ", sizeof(Buffer));
+    FLBufferSize();
 
     //===============================================================
     // low-level API
     //===============================================================
-    FLPrintColored(NULL, FL_GREEN, "Colored output using FrameLog!", true);
-    // 1. Color
-    // 2. Message
-    // 3. New line or not
+    FLPrintColored("Colored output using FrameLog!", FL_GREEN, NULL, true);
+    // 1. Message
+    // 2.
+    // 3. Color
+    // 4. New line or not
 
     FLAddInBuffer("This is a custom buffered message.\n");
     // Add message to buffer
@@ -47,11 +48,11 @@ int main()
     FLAddInBuffer(FL_RESET); // without it, everything will be in the selected color, which is unpleasant
 
     FLAddInBuffer(NULL); // Test
-    printf("%s%zu\n", "Buffer Size: ", sizeof(Buffer));
+    FLBufferSize();
 
     FLFlushBuffer();
     // Flush the buffer to output
 
-    printf("%s%s%s\n", FL_GREEN, "Colored output using FrameLog!", FL_RESET);
+    printf("%s%s%s\n", FL_GREEN, "Colored output using FrameLog and libc!", FL_RESET);
     return 0;
 }

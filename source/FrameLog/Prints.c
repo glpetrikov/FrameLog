@@ -3,24 +3,36 @@
 #include "common.h"
 #include "buffer.h"
 
-void FLPrintColored(const char *BackGroundColor, const char *color, const char *message, bool newline)
+void FLPrintColored(const char *Message, const char *Color, const char *BackgroundColor, bool Newline)
 {
-    if (color == NULL || message == NULL)
+    if (Message == NULL)
     {
-        if (FL_ENABLE_ERROR_LOGS == 1)
+        if (FL_ENABLE_LOGS == 1)
         {
-            printf("%s%s%s%s\n", FL_RESET, FL_RED, "FrameLog Print Error: color or message is NULL", FL_RESET);
+            printf("%s%s%s%s\n", FL_RESET, FL_RED, "FrameLog Print Error: message is NULL", FL_RESET);
         }
         return;
     }
-    if (BackGroundColor != NULL)
+
+    // Colors
+    if (BackgroundColor != NULL)
     {
-        FLAddInBuffer(BackGroundColor);
+        FLAddInBuffer(BackgroundColor);
     }
-    FLAddInBuffer(color);
-    FLAddInBuffer(message);
-    FLAddInBuffer(FL_RESET);
-    if (newline)
+    if (Color != NULL)
+    {
+        FLAddInBuffer(Color);
+    }
+
+    // Message
+    FLAddInBuffer(Message);
+
+    // Reset and NewLine
+    if (Color != NULL && BackgroundColor != NULL)
+    {
+        FLAddInBuffer(FL_RESET);
+    }
+    if (Newline)
     {
         FLAddInBuffer("\n");
     }
@@ -34,49 +46,49 @@ void FLNewLine()
 // Standart Prints
 void FLPrint(const char *Message)
 {
-    FLPrintColored(NULL, FL_BRIGHT_BLUE, Message, false);
+    FLPrintColored(Message, FL_BRIGHT_BLUE, NULL, false);
 }
 void FLPrintln(const char *Message)
 {
-    FLPrintColored(NULL, FL_BRIGHT_BLUE, Message, true);
+    FLPrintColored(Message, FL_BRIGHT_BLUE, NULL, true);
 }
 // =============================================================
 // Trace Prints
 void FLTrace(const char *Message)
 {
-    FLPrintColored(NULL, FL_GRAPHITE, Message, false);
+    FLPrintColored(Message, FL_GRAPHITE, NULL, false);
 }
 void FLTraceln(const char *Message)
 {
-    FLPrintColored(NULL, FL_GRAPHITE, Message, true);
+    FLPrintColored(Message, FL_GRAPHITE, NULL, true);
 }
 // =============================================================
 // Info Prints
 void FLInfo(const char *Message)
 {
-    FLPrintColored(NULL, FL_GREEN, Message, false);
+    FLPrintColored(Message, FL_GREEN, NULL, false);
 }
 void FLInfoln(const char *Message)
 {
-    FLPrintColored(NULL, FL_GREEN, Message, true);
+    FLPrintColored(Message, FL_GREEN, NULL, true);
 }
 // =============================================================
 // Warn Prints
 void FLWarn(const char *Message)
 {
-    FLPrintColored(NULL, FL_YELLOW, Message, false);
+    FLPrintColored(Message, FL_YELLOW, NULL, false);
 }
 void FLWarnln(const char *Message)
 {
-    FLPrintColored(NULL, FL_YELLOW, Message, true);
+    FLPrintColored(Message, FL_YELLOW, NULL, true);
 }
 // =============================================================
 // Errors Prints
 void FLError(const char *Message)
 {
-    FLPrintColored(NULL, FL_RED, Message, false);
+    FLPrintColored(Message, FL_RED, NULL, false);
 }
 void FLErrorln(const char *Message)
 {
-    FLPrintColored(NULL, FL_RED, Message, true);
+    FLPrintColored(Message, FL_RED, NULL, true);
 }

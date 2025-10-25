@@ -69,7 +69,7 @@ project "FrameLog"
         --
 
     filter "configurations:Debug"
-        defines { "DEBUG", "FL_ENABLE_ERROR_LOGS=1" }
+        defines { "DEBUG", "FL_ENABLE_LOGS=1" }
         symbols "On"
         buildoptions {
             "-O0",
@@ -77,7 +77,7 @@ project "FrameLog"
         }
 
     filter "configurations:Release"
-        defines { "NDEBUG", "FL_ENABLE_ERROR_LOGS=0" }
+        defines { "NDEBUG", "FL_ENABLE_LOGS=0" }
         optimize "Speed"
         symbols "Off"
         buildoptions {
