@@ -4,7 +4,7 @@
 #include <string.h>
 
 char *Buffer = NULL;
-int BufferSize = 100;
+size_t BufferSize = 100;
 size_t BufferLength = 0;
 
 //============================================================
@@ -12,6 +12,11 @@ size_t BufferLength = 0;
 //============================================================
 void FLAddInBuffer(const char *Message)
 {
+    if (Message == NULL)
+    {
+        printf("%s%s%s%s\n", FL_RESET, FL_RED, "FrameLog Buffer Error: Message = NULL", FL_RESET);
+        return;
+    }
     size_t MessageLength = strlen(Message);
     if (Buffer == NULL)
     {
@@ -98,6 +103,7 @@ void FLInitBuffer()
 //
 bool FLIncreaseBufferSize(size_t NewSize)
 {
+    char *SaveBuffer = Buffer;
     char *Temp = realloc(Buffer, NewSize * sizeof(char));
     if (Temp != NULL)
     {
@@ -107,6 +113,7 @@ bool FLIncreaseBufferSize(size_t NewSize)
     }
     else
     {
+        Buffer = SaveBuffer;
         printf("%s%s%s%s\n", FL_RESET, FL_RED, "FrameLog Buffer Error: unsuccessful buffer relocation", FL_RESET);
         return false;
     }

@@ -14,6 +14,7 @@ int main()
     FLWarnln("This is a warning message.");
     FLErrorln("This is an error message.");
     FLTrace("This is a trace message.\n");
+    printf("%s%zu\n", "Buffer Size: ", sizeof(Buffer));
 
     // New line
     FLNewLine();
@@ -28,6 +29,8 @@ int main()
     FLWarnln(NULL);
     FLErrorln(NULL);
     FLTrace(NULL);
+    FLPrintln("long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long… in short, a very long message");
+    printf("%s%zu\n", "Buffer Size: ", sizeof(Buffer));
 
     //===============================================================
     // low-level API
@@ -42,6 +45,9 @@ int main()
     FLAddInBuffer(FL_BLACK);
     FLAddInBuffer("here's a custom black one and it hit the buffer!\n");
     FLAddInBuffer(FL_RESET); // without it, everything will be in the selected color, which is unpleasant
+
+    FLAddInBuffer(NULL); // Test
+    printf("%s%zu\n", "Buffer Size: ", sizeof(Buffer));
 
     FLFlushBuffer();
     // Flush the buffer to output
