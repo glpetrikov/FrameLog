@@ -2,7 +2,8 @@
 
 FrameLog is a lightweight library for outputting logs to the console in **C**.
 
-![Version](https://img.shields.io/badge/version-0.1.1-alpha-blue)
+## Version
+### 0.1.1
 
 ![Platforms](https://img.shields.io/badge/platforms-cross--platform-lightgrey.svg)
 
