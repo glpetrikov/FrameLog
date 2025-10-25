@@ -53,6 +53,14 @@ int main()
     FLFlushBuffer();
     // Flush the buffer to output
 
+    FLPrint("...");
+    FLFlushBuffer();
+
+    FLClearBuffer();
+    // Clear Buffer, The alternative is reset, but it deletes everything from the buffer and does not output
+    // Error "FrameLog Buffer Error: Attempt to clear an empty/uninitialized buffer"
+    // means that the buffer was freed or flush 2 or more times
+
     printf("%s%s%s\n", FL_GREEN, "Colored output using FrameLog and libc!", FL_RESET);
     return 0;
 }

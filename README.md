@@ -43,10 +43,10 @@ Any platform with the **standard C library** — basically **EVERYWHERE**!
 
 2. Add a flag to the build system
 
-### Warning! Without this flag, there will be NO messages about FrameLog errors in any configuration!!
+### Warning! Without this flag, there will be messages about FrameLog errors in any configuration!!
 
-- Debug FL_ENABLE_ERROR_LOGS=0      FrameLog Error Message = true
-- Release FL_ENABLE_ERROR_LOGS=1    FrameLog Error Message = false
+- Debug FL_ENABLE_LOGS=0      Internal FrameLog Message = true
+- Release FL_ENABLE_LOGS=1    Internal FrameLog Message = false
 
 3. Build
 - gcc
@@ -85,8 +85,8 @@ mingw32-make
 2. Add a flag to the build system
 
 #### Warning! Without this flag, there will be NO messages about FrameLog errors in any configuration!!
-- Debug FL_ENABLE_ERROR_LOGS=0      FrameLog Error Message = true
-- Release FL_ENABLE_ERROR_LOGS=1    FrameLog Error Message = false
+- Debug FL_ENABLE_LOGS=0      Internal FrameLog Message = true
+- Release FL_ENABLE_LOGS=1    Internal FrameLog Message = false
 
 3. Include FrameLog in your code and use it:
 ``` c
@@ -106,14 +106,14 @@ int main()
     FLWarnln("This is a warning message.");
     FLErrorln("This is an error message.");
     FLTrace("This is a trace message.\n");
+    FLBufferSize();
 
     // New line
     FLNewLine();
     // Flush the buffer to output
     FLFlushBuffer();
 
-
-    // Test FrameLog Errors
+    // Test FrameLog Errors (intentional NULL tests for robustness)
     FLPrint(NULL);
     FLPrintln(NULL);
     FLTraceln(NULL);
@@ -121,14 +121,17 @@ int main()
     FLWarnln(NULL);
     FLErrorln(NULL);
     FLTrace(NULL);
+    FLPrintln("long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long… in short, a very long message");
+    FLBufferSize();
 
     //===============================================================
     // low-level API
     //===============================================================
-    FLPrintColored(FL_GREEN, "Colored output using FrameLog!", true);
-    // 1. Color
-    // 2. Message
-    // 3. New line or not
+    FLPrintColored("Colored output using FrameLog!", FL_GREEN, NULL, true);
+    // 1. Message
+    // 2.
+    // 3. Color
+    // 4. New line or not
 
     FLAddInBuffer("This is a custom buffered message.\n");
     // Add message to buffer
@@ -136,10 +139,21 @@ int main()
     FLAddInBuffer("here's a custom black one and it hit the buffer!\n");
     FLAddInBuffer(FL_RESET); // without it, everything will be in the selected color, which is unpleasant
 
+    FLAddInBuffer(NULL); // Test
+    FLBufferSize();
+
     FLFlushBuffer();
     // Flush the buffer to output
 
-    printf("%s%s%s\n", FL_GREEN, "Colored output using FrameLog!", FL_RESET);
+    FLPrint("...");
+    FLFlushBuffer();
+
+    FLClearBuffer();
+    // Clear Buffer, The alternative is reset, but it deletes everything from the buffer and does not output
+    // Error "FrameLog Buffer Error: Attempt to clear an empty/uninitialized buffer"
+    // means that the buffer was freed or flush 2 or more times
+
+    printf("%s%s%s\n", FL_GREEN, "Colored output using FrameLog and libc!", FL_RESET);
     return 0;
 }
 ```
