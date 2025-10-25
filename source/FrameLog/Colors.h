@@ -3,6 +3,19 @@
 // Reset
 #define FL_RESET "\033[0m"
 
+// Text Styles
+#define FL_BLINK "\033[5m"
+#define FL_REVERSE "\033[7m"
+
+#define FL_BOLD "\033[1m"
+#define FL_DIM "\033[2m"
+#define FL_ITALIC "\033[3m"
+#define FL_UNDERLINE "\033[4m"
+
+// True Color Support (24-bit)
+#define FL_RGB(r, g, b) "\033[38;2;" #r ";" #g ";" #b "m"
+#define FL_RGB_BG(r, g, b) "\033[48;2;" #r ";" #g ";" #b "m"
+
 // Gray-scale Colors
 #define FL_BLACK "\033[30m"
 #define FL_GRAPHITE "\033[90m"

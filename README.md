@@ -2,6 +2,8 @@
 
 FrameLog is a lightweight library for outputting logs to the console in **C**.
 
+![Version](https://img.shields.io/badge/version-0.1.1-alpha-blue)
+
 ![Platforms](https://img.shields.io/badge/platforms-cross--platform-lightgrey.svg)
 
 ![Language](https://img.shields.io/badge/language-C-blue.svg)
@@ -9,6 +11,14 @@ FrameLog is a lightweight library for outputting logs to the console in **C**.
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
 ![Status](https://img.shields.io/badge/status-alpha-orange.svg)
+
+
+
+![Build Status](https://github.com/glpetrikov/FrameLog/workflows/CI/badge.svg)
+
+![GitHub release](https://img.shields.io/github/v/release/glpetrikov/FrameLog)
+
+![GitHub issues](https://img.shields.io/github/issues/glpetrikov/FrameLog)
 
 ## Features 
 
@@ -22,7 +32,7 @@ FrameLog is a lightweight library for outputting logs to the console in **C**.
 
 Standard C library(libc).
 
-Compatible with C13 and later.
+Compatible with C99 and later.
 
 ## License
 
@@ -45,16 +55,16 @@ Any platform with the **standard C library** — basically **EVERYWHERE**!
 
 ### Warning! Without this flag, there will be messages about FrameLog errors in any configuration!!
 
-- Debug FL_ENABLE_LOGS=0      Internal FrameLog Message = true
-- Release FL_ENABLE_LOGS=1    Internal FrameLog Message = false
+- Debug FL_ENABLE_LOGS=1      messages from FrameLog = true
+- Release FL_ENABLE_LOGS=0    messages from FrameLog = false
 
 3. Build
 - gcc
 ``` bash
-gcc -o example example.c -Ipath/to/FrameLog/source/ -DFL_ENABLE_ERROR_LOGS=0
+gcc -o example example.c -Ipath/to/FrameLog/source/ -DFL_ENABLE_LOGS=0
 
 For example:
-gcc -o example example.c -IC/Tools/FrameLog/source/ -DFL_ENABLE_ERROR_LOGS=0
+gcc -o example example.c -IC/Tools/FrameLog/source/ -DFL_ENABLE_LOGS=0
 ```
 - premake
 ``` bash
