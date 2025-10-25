@@ -14,7 +14,10 @@ void FLAddInBuffer(const char *Message)
 {
     if (Message == NULL)
     {
-        printf("%s%s%s%s\n", FL_RESET, FL_RED, "FrameLog Buffer Error: Message = NULL", FL_RESET);
+        if (FL_ENABLE_ERROR_LOGS == 1)
+        {
+            printf("%s%s%s%s\n", FL_RESET, FL_RED, "FrameLog Buffer Error: Message = NULL", FL_RESET);
+        }
         return;
     }
     size_t MessageLength = strlen(Message);
