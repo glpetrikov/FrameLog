@@ -84,7 +84,7 @@ mingw32-make
    `path/to/FrameLog/source/`
 2. Add a flag to the build system
 
-#### Warning! Without this flag, there will be NO messages about FrameLog errors in any configuration!!
+#### Warning! Without this flag, there will be messages about FrameLog errors in any configuration!!
 - Debug FL_ENABLE_LOGS=0      Internal FrameLog Message = true
 - Release FL_ENABLE_LOGS=1    Internal FrameLog Message = false
 

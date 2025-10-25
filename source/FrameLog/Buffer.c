@@ -139,7 +139,7 @@ int FLInitBuffer()
             {
                 printf("%s%s%s%s\n", FL_RESET, FL_RED, "FrameLog Buffer Error: unsuccessful initialization", FL_RESET);
             }
-            return -1;
+            return 0;
         }
     }
 
@@ -149,6 +149,7 @@ int FLInitBuffer()
         {
             printf("%s%s%s%s\n", FL_RESET, FL_YELLOW, "FrameLog Buffer Warning: Buffer has already been initialized", FL_RESET);
         }
+        return -1;
     }
     else
     {

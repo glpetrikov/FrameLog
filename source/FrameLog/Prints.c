@@ -3,7 +3,7 @@
 #include "common.h"
 #include "buffer.h"
 
-void FLPrintColored(const char *Message, const char *Color, const char *BackgroundColor, bool Newline)
+int FLPrintColored(const char *Message, const char *Color, const char *BackgroundColor, bool Newline)
 {
     if (Message == NULL)
     {
@@ -11,7 +11,7 @@ void FLPrintColored(const char *Message, const char *Color, const char *Backgrou
         {
             printf("%s%s%s%s\n", FL_RESET, FL_RED, "FrameLog Print Error: message is NULL", FL_RESET);
         }
-        return;
+        return -1;
     }
 
     // Colors

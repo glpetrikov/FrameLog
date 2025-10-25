@@ -5,7 +5,7 @@
 #include "common.h"
 #include "buffer.h"
 
-void FLPrintColored(const char *message, const char *color, const char *BackgroundColor, bool newline);
+int FLPrintColored(const char *message, const char *color, const char *BackgroundColor, bool newline);
 // =============================================================
 void FLNewLine();
 // =============================================================
