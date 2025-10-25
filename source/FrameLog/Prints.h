@@ -3,7 +3,7 @@
 #pragma once
 
 #include "common.h"
-#include "buffer.h"
+#include "Buffer.h"
 
 int FLPrintColored(const char *message, const char *color, const char *BackgroundColor, bool newline);
 // =============================================================

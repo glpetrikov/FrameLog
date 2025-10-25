@@ -1,7 +1,7 @@
 // FrameLog - MIT License (c) 2025 Gleb Petrikov
 
 #include "common.h"
-#include "buffer.h"
+#include "Buffer.h"
 
 int FLPrintColored(const char *Message, const char *Color, const char *BackgroundColor, bool Newline)
 {
