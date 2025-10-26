@@ -5,7 +5,6 @@
 
 int main()
 {
-
     // high-level API
     FLPrint("Hello, World!");
     FLPrintln("");
@@ -22,14 +21,6 @@ int main()
     // Flush the buffer to output
     FLFlushBuffer();
 
-    // Test FrameLog Errors (intentional NULL tests for robustness)
-    FLPrint(NULL);
-    FLPrintln(NULL);
-    FLTraceln(NULL);
-    FLInfoln(NULL);
-    FLWarnln(NULL);
-    FLErrorln(NULL);
-    FLTrace(NULL);
     FLPrintln("long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long… in short, a very long message");
     FLBufferSize();
 
@@ -57,11 +48,31 @@ int main()
     FLPrint("...");
     FLFlushBuffer();
 
+    printf("%s%s%s\n", FL_GREEN, "Colored output using FrameLog and libc!", FL_RESET);
+    return 0;
+}
+/*
+#include <FrameLog.h>
+
+int main(){
+    //============================================================
+    // Tests
+    //============================================================
+
+    // Test FrameLog Errors (intentional NULL tests for robustness)
+    FLPrint(NULL);
+    FLPrintln(NULL);
+    FLTraceln(NULL);
+    FLInfoln(NULL);
+    FLWarnln(NULL);
+    FLErrorln(NULL);
+    FLTrace(NULL);
+
+    FLFlushBuffer();
     FLClearBuffer();
     // Clear Buffer, The alternative is reset, but it deletes everything from the buffer and does not output
     // Error "FrameLog Buffer Error: Attempt to clear an empty/uninitialized buffer"
     // means that the buffer was freed or flush 2 or more times
-
-    printf("%s%s%s\n", FL_GREEN, "Colored output using FrameLog and libc!", FL_RESET);
     return 0;
 }
+*/

@@ -1,4 +1,6 @@
+//============================================================
 // FrameLog - MIT License (c) 2025 Gleb Petrikov
+//============================================================
 
 #include "common.h"
 #include "Buffer.h"
@@ -36,14 +38,11 @@ int FLPrintColored(const char *Message, const char *Color, const char *Backgroun
     {
         FLAddInBuffer("\n");
     }
-}
-// =============================================================
-void FLNewLine()
-{
-    FLAddInBuffer("\n");
+    return 0;
 }
 // =============================================================
 // Standart Prints
+// =============================================================
 void FLPrint(const char *Message)
 {
     FLPrintColored(Message, FL_BRIGHT_BLUE, NULL, false);
@@ -54,6 +53,7 @@ void FLPrintln(const char *Message)
 }
 // =============================================================
 // Trace Prints
+// =============================================================
 void FLTrace(const char *Message)
 {
     FLPrintColored(Message, FL_GRAPHITE, NULL, false);
@@ -64,6 +64,7 @@ void FLTraceln(const char *Message)
 }
 // =============================================================
 // Info Prints
+// =============================================================
 void FLInfo(const char *Message)
 {
     FLPrintColored(Message, FL_GREEN, NULL, false);
@@ -74,6 +75,7 @@ void FLInfoln(const char *Message)
 }
 // =============================================================
 // Warn Prints
+// =============================================================
 void FLWarn(const char *Message)
 {
     FLPrintColored(Message, FL_YELLOW, NULL, false);
@@ -84,6 +86,7 @@ void FLWarnln(const char *Message)
 }
 // =============================================================
 // Errors Prints
+// =============================================================
 void FLError(const char *Message)
 {
     FLPrintColored(Message, FL_RED, NULL, false);
@@ -91,4 +94,11 @@ void FLError(const char *Message)
 void FLErrorln(const char *Message)
 {
     FLPrintColored(Message, FL_RED, NULL, true);
+}
+// =============================================================
+// Tools
+// =============================================================
+void FLNewLine()
+{
+    FLAddInBuffer("\n");
 }

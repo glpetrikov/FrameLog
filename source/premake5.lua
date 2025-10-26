@@ -1,3 +1,7 @@
+--============================================================
+-- FrameLog - MIT License (c) 2025 Gleb Petrikov
+--============================================================
+
 workspace "FrameLog"
    architecture "x64"
    configurations { "Debug", "Release" }
@@ -26,7 +30,7 @@ project "FrameLog"
         --
 
     filter "action:vs*"
-        buildoptions { "/W4" }
+        buildoptions { "/W4", "/std=c99" }
 
         --
         -- Clang / GCC
@@ -38,6 +42,7 @@ project "FrameLog"
             "-D_FORTIFY_SOURCE=2",
             "-fno-strict-aliasing",
             "-fno-omit-frame-pointer",
+            "-std=c99",
         }
 
         --
