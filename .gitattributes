@@ -1,2 +1,7 @@
+#============================================================
+# FrameLog - MIT License (c) 2025 Gleb Petrikov
+#============================================================
+
+
 *.h linguist-language=C
 premake5.lua linguist-language=Lua

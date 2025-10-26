@@ -2,23 +2,16 @@
 
 FrameLog is a lightweight library for outputting logs to the console in **C**.
 
-## Version
-### 0.1.1
+## Version 0.1.2
 
 ![Platforms](https://img.shields.io/badge/platforms-cross--platform-lightgrey.svg)
-
 ![Language](https://img.shields.io/badge/language-C-blue.svg)
-
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
-
 ![Status](https://img.shields.io/badge/status-alpha-orange.svg)
 
 
-
 ![Build Status](https://github.com/glpetrikov/FrameLog/workflows/CI/badge.svg)
-
 ![GitHub release](https://img.shields.io/github/v/release/glpetrikov/FrameLog)
-
 ![GitHub issues](https://img.shields.io/github/issues/glpetrikov/FrameLog)
 
 ## Features 
@@ -30,19 +23,45 @@ FrameLog is a lightweight library for outputting logs to the console in **C**.
 3. **Minimal dependencies—only** the **standard C library**.
 
 ## Dependencies
-
-Standard C library(libc).
-
-Compatible with C99 and later.
+- Standard C library (`libc`)  
+- Compatible with **C99** and later 
 
 ## License
-
-**FrameLog** is licensed under the MIT License.
-[See LICENSE for details](LICENSE)
+FrameLog is distributed under the **MIT License**.  
+See [LICENSE](LICENSE) for details.
 
 ## Supported Platforms
 
 Any platform with the **standard C library** — basically **EVERYWHERE**!
+
+## Performance & Size
+
+FrameLog is **extremely lightweight**:
+```
+Binary Size (with example):
+┌─────────────┬──────────────┬────────────┐
+│ Library     │ Size         │ Comparison │
+├─────────────┼──────────────┼────────────┤
+│ FrameLog    │ 31 KB        │ 1x         │
+│ log.c       │ ~50 KB       │ 1.6x       │
+│ zlog        │ ~2 MB        │ 65x        │
+│ spdlog      │ 41 MB(source)│ 1,322x     │
+│ Boost.Log   │ 60+ MB       │ 2,000x+    │
+└─────────────┴──────────────┴────────────┘
+```
+
+**Why so small?**
+- Pure C (no C++ templates)
+- Minimal dependencies (only libc)
+- No STL overhead
+- Efficient buffer management
+
+**Perfect for:**
+- Embedded systems (Arduino, ESP32, STM32)
+- Docker containers (minimal images)
+- Fast compilation times
+- Quick program startup
+- for projects where you just need a logger
 
 ## Status
 **FrameLog** is in alpha stage
@@ -56,28 +75,35 @@ Any platform with the **standard C library** — basically **EVERYWHERE**!
 
 ### Warning! Without this flag, there will be messages about FrameLog errors in any configuration!!
 
-- Debug FL_ENABLE_LOGS=1      messages from FrameLog = true
-- Release FL_ENABLE_LOGS=0    messages from FrameLog = false
+#### Enable internal FrameLog debug messages (for developers)
+-DFL_ENABLE_LOGS=1
+#### Disable internal logs for release builds
+-DFL_ENABLE_LOGS=0
 
-3. Build
+3. Build with GCC and premake:
 - gcc
 ``` bash
-gcc -o example example.c -Ipath/to/FrameLog/source/ -DFL_ENABLE_LOGS=0
+# Debug
+gcc -o example example.c -Ipath/to/FrameLog/source/ -DFL_ENABLE_LOGS=1
 
-For example:
+# Release
 gcc -o example example.c -IC/Tools/FrameLog/source/ -DFL_ENABLE_LOGS=0
 ```
-- premake
+- premake - GCC
 ``` bash
 mkdir build
-premake5 <your System Build>
+premake5 <your System Build> example: gmake, vs2019, vs2022, xcode4
 cd build
 
 For example: 
 mkdir build
 premake5 gmake
 cd build
+# On Windows
 mingw32-make
+
+# On Linux/macOS
+make config=debug
 ```
 
 
@@ -95,9 +121,11 @@ mingw32-make
    `path/to/FrameLog/source/`
 2. Add a flag to the build system
 
-#### Warning! Without this flag, there will be messages about FrameLog errors in any configuration!!
-- Debug FL_ENABLE_LOGS=0      Internal FrameLog Message = true
-- Release FL_ENABLE_LOGS=1    Internal FrameLog Message = false
+### Warning! Without this flag, there will be messages about FrameLog errors in any configuration!!
+#### Enable internal FrameLog debug messages (for developers)
+-DFL_ENABLE_LOGS=1
+#### Disable internal logs for release builds
+-DFL_ENABLE_LOGS=0
 
 3. Include FrameLog in your code and use it:
 ``` c
@@ -124,14 +152,6 @@ int main()
     // Flush the buffer to output
     FLFlushBuffer();
 
-    // Test FrameLog Errors (intentional NULL tests for robustness)
-    FLPrint(NULL);
-    FLPrintln(NULL);
-    FLTraceln(NULL);
-    FLInfoln(NULL);
-    FLWarnln(NULL);
-    FLErrorln(NULL);
-    FLTrace(NULL);
     FLPrintln("long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long… in short, a very long message");
     FLBufferSize();
 
@@ -159,13 +179,28 @@ int main()
     FLPrint("...");
     FLFlushBuffer();
 
-    FLClearBuffer();
-    // Clear Buffer, The alternative is reset, but it deletes everything from the buffer and does not output
-    // Error "FrameLog Buffer Error: Attempt to clear an empty/uninitialized buffer"
-    // means that the buffer was freed or flush 2 or more times
-
     printf("%s%s%s\n", FL_GREEN, "Colored output using FrameLog and libc!", FL_RESET);
     return 0;
+}
+```
+``` cpp
+#include <FrameLog.h>
+
+int main(){
+       // Test FrameLog Errors (intentional NULL tests for robustness)
+      FLPrint(NULL);
+      FLPrintln(NULL);
+      FLTraceln(NULL);
+      FLInfoln(NULL);
+      FLWarnln(NULL);
+      FLErrorln(NULL);
+      FLTrace(NULL);
+
+      FLFlushBuffer();
+      FLClearBuffer();
+      // Clear Buffer, The alternative is reset, but it deletes everything from the buffer and does not output
+      // Error "FrameLog Buffer Error: Attempt to clear an empty/uninitialized buffer"
+      // means that the buffer was freed or flush 2 or more times
 }
 ```
 
