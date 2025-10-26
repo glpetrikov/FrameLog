@@ -11,6 +11,7 @@ workspace "FrameLog"
 project "FrameLog"
     kind "ConsoleApp"
     language "C"
+    cdialect "C99"
 
     targetdir "build/%{cfg.buildcfg}"
     objdir "build/obj/%{cfg.buildcfg}"

@@ -5,3 +5,4 @@
 #include "FrameLog/Prints.h"
 #include "FrameLog/buffer.h"
 #include "FrameLog/common.h"
+#include "FrameLog/Colors.h"

@@ -10,6 +10,22 @@
 #include "Colors.h"
 #include <stdbool.h> // bool, true, false
 
+typedef enum FLToken
+{
+    Time,
+    Year4,
+    Year2,
+    Month,
+    Day,
+    Hour24,
+    Hour12,
+    Minute,
+    Seconds,
+    MilliSeconds,
+    Message,
+    End
+} FLToken;
+
 //============================================================
 // Defines
 //============================================================
