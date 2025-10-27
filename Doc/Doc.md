@@ -13,6 +13,9 @@
 9. #s = 01                      Second
 10. #Ms                         MilliSeconds
 
+## why API?
+Before each call to the FrameLog function, you need to write FL_API; it is needed to connect DLL/So
+
 
 ## Colors
 

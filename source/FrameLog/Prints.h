@@ -7,32 +7,32 @@
 #include "common.h"
 #include "Buffer.h"
 
-int FLPrintColored(const char *message, const char *color, const char *BackgroundColor, bool newline);
+FL_API int FLPrintColored(const char *message, const char *color, const char *BackgroundColor, bool newline);
 // =============================================================
-// Standart Prints\
+// Standart Prints
 // =============================================================
-void FLPrint(const char *Message);
-void FLPrintln(const char *Message);
+FL_API void FLPrint(const char *Message);
+FL_API void FLPrintln(const char *Message);
 // =============================================================
 // Trace Prints
 // =============================================================
-void FLTrace(const char *Message);
-void FLTraceln(const char *Message);
+FL_API void FLTrace(const char *Message);
+FL_API void FLTraceln(const char *Message);
 // =============================================================
 // Info Prints
 // =============================================================
-void FLInfo(const char *Message);
-void FLInfoln(const char *Message);
+FL_API void FLInfo(const char *Message);
+FL_API void FLInfoln(const char *Message);
 // =============================================================
 // Warn Prints
 // =============================================================
-void FLWarn(const char *Message);
-void FLWarnln(const char *Message);
+FL_API void FLWarn(const char *Message);
+FL_API void FLWarnln(const char *Message);
 // =============================================================
 // Errors Prints
 // =============================================================
-void FLError(const char *Message);
-void FLErrorln(const char *Message);
+FL_API void FLError(const char *Message);
+FL_API void FLErrorln(const char *Message);
 // =============================================================
 // Fatal Prints
 // =============================================================
@@ -41,4 +41,4 @@ void FLErrorln(const char *Message);
 // =============================================================
 // Tools
 // =============================================================
-void FLNewLine();
+FL_API void FLNewLine();

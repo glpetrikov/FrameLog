@@ -4,21 +4,21 @@
 
 #pragma once
 
-#include "common.h"
-#include "Prints.h"
+#include <stdlib.h>
+#include "Platform.h"
 
 extern char *Buffer;
 extern size_t BufferSize;
 extern size_t BufferLength;
 
-int FLAddInBuffer(const char *Message);
+FL_API int FLAddInBuffer(const char *Message);
 // Size
-int FLBufferSize();
+FL_API int FLBufferSize();
 // Flush
-int FLFlushBuffer();
-int FLClearBuffer();
+FL_API int FLFlushBuffer();
+FL_API int FLClearBuffer();
 // Expands
-int FLExpandBuffer(size_t RequiredSpace);
-int FLIncreaseBufferSize(size_t NewSize);
+FL_API int FLExpandBuffer(size_t RequiredSpace);
+FL_API int FLIncreaseBufferSize(size_t NewSize);
 // Init
-int FLInitBuffer();
+FL_API int FLInitBuffer();

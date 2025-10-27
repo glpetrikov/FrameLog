@@ -3,6 +3,8 @@
 //============================================================
 #include "Buffer.h"
 #include <string.h>
+#include "common.h"
+#include "Colors.h"
 
 char *Buffer = NULL;
 size_t BufferSize = 100;

@@ -9,8 +9,9 @@
 #include <time.h>
 #include "Colors.h"
 #include <stdbool.h> // bool, true, false
+#include "Platform.h"
 
-typedef enum FLToken
+FL_API typedef enum FLToken
 {
     Time,
     Year4,

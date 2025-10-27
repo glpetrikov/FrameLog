@@ -135,47 +135,47 @@ make config=debug
 int main()
 {
     // high-level API
-    FLPrint("Hello, World!");
-    FLPrintln("");
-    FLNewLine();
-    FLTraceln("Hello, FrameLog!");
-    FLInfoln("This is an info message.");
-    FLWarnln("This is a warning message.");
-    FLErrorln("This is an error message.");
-    FLTrace("This is a trace message.\n");
-    FLBufferSize();
+    FL_API FLPrint("Hello, World!");
+    FL_API FLPrintln("");
+    FL_API FLNewLine();
+    FL_API FLTraceln("Hello, FrameLog!");
+    FL_API FLInfoln("This is an info message.");
+    FL_API FLWarnln("This is a warning message.");
+    FL_API FLErrorln("This is an error message.");
+    FL_API FLTrace("This is a trace message.\n");
+    FL_API FLBufferSize();
 
     // New line
-    FLNewLine();
+    FL_API FLNewLine();
     // Flush the buffer to output
-    FLFlushBuffer();
+    FL_API FLFlushBuffer();
 
-    FLPrintln("long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long… in short, a very long message");
-    FLBufferSize();
+    FL_API FLPrintln("long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long… in short, a very long message");
+    FL_API FLBufferSize();
 
     //===============================================================
     // low-level API
     //===============================================================
-    FLPrintColored("Colored output using FrameLog!", FL_GREEN, NULL, true);
+    FL_API FLPrintColored("Colored output using FrameLog!", FL_GREEN, NULL, true);
     // 1. Message
     // 2.
     // 3. Color
     // 4. New line or not
 
-    FLAddInBuffer("This is a custom buffered message.\n");
+    FL_API FLAddInBuffer("This is a custom buffered message.\n");
     // Add message to buffer
-    FLAddInBuffer(FL_BLACK);
-    FLAddInBuffer("here's a custom black one and it hit the buffer!\n");
-    FLAddInBuffer(FL_RESET); // without it, everything will be in the selected color, which is unpleasant
+    FL_API FLAddInBuffer(FL_BLACK);
+    FL_API FLAddInBuffer("here's a custom black one and it hit the buffer!\n");
+    FL_API FLAddInBuffer(FL_RESET); // without it, everything will be in the selected color, which is unpleasant
 
-    FLAddInBuffer(NULL); // Test
-    FLBufferSize();
+    FL_API FLAddInBuffer(NULL); // Test
+    FL_API FLBufferSize();
 
-    FLFlushBuffer();
+    FL_API FLFlushBuffer();
     // Flush the buffer to output
 
-    FLPrint("...");
-    FLFlushBuffer();
+    FL_API FLPrint("...");
+    FL_API FLFlushBuffer();
 
     printf("%s%s%s\n", FL_GREEN, "Colored output using FrameLog and libc!", FL_RESET);
     return 0;
@@ -186,16 +186,16 @@ int main()
 
 int main(){
        // Test FrameLog Errors (intentional NULL tests for robustness)
-      FLPrint(NULL);
-      FLPrintln(NULL);
-      FLTraceln(NULL);
-      FLInfoln(NULL);
-      FLWarnln(NULL);
-      FLErrorln(NULL);
-      FLTrace(NULL);
+      FL_API FLPrint(NULL);
+      FL_API FLPrintln(NULL);
+      FL_API FLTraceln(NULL);
+      FL_API FLInfoln(NULL);
+      FL_API FLWarnln(NULL);
+      FL_API FLErrorln(NULL);
+      FL_API FLTrace(NULL);
 
-      FLFlushBuffer();
-      FLClearBuffer();
+      FL_API FLFlushBuffer();
+      FL_API FLClearBuffer();
       // Clear Buffer, The alternative is reset, but it deletes everything from the buffer and does not output
       // Error "FrameLog Buffer Error: Attempt to clear an empty/uninitialized buffer"
       // means that the buffer was freed or flush 2 or more times
