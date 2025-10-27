@@ -2,7 +2,7 @@
 
 FrameLog is a lightweight library for outputting logs to the console in **C**.
 
-## Version 0.1.3
+## Version 1.1.3-alpha
 
 ![Platforms](https://img.shields.io/badge/platforms-cross--platform-lightgrey.svg)
 ![Language](https://img.shields.io/badge/language-C-blue.svg)
@@ -46,6 +46,7 @@ Binary Size (with example):
 │ spdlog      │ 41 MB(source)│ 1,322x     │
 │ Boost.Log   │ 60+ MB       │ 2,000x+    │
 └─────────────┴──────────────┴────────────┘
+Binary sizes measured with example build (Release, x64, GCC)
 ```
 
 **Why so small?**
