@@ -2,7 +2,7 @@
 
 All notable changes to FrameLog will be documented in this file.
 
-## [0.1.3-alpha] - 2025-10-25
+## [0.1.4-alpha] - 2025-10-25
 
 ### Added
 - FL_API 

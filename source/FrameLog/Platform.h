@@ -11,8 +11,13 @@
     #define FL_APPLE
 #elif defined(__linux__)
     #define FL_LINUX
-#elif defined(ARDUINO) || defined(__AVR__) || defined(__STM32F1__) || defined(__ESP32__)
+#elif defined(ARDUINO) || defined(__AVR__) || defined(__STM32F1__) || \
+    defined(ESP32) || defined(ESP_PLATFORM) || defined(__XTENSA__)
     #define FL_EMBEDDED
+#elif defined(__unix__) || defined(__unix)
+    #define FL_UNIX
+#elif defined(__ANDROID__)
+    #define FL_ANDROID
 #else
     #define FL_UNKNOWN
 #endif

@@ -2,7 +2,7 @@
 
 FrameLog is a lightweight library for outputting logs to the console in **C**.
 
-## Version 1.1.3-alpha
+## Version 0.1.4-alpha
 
 ![Platforms](https://img.shields.io/badge/platforms-cross--platform-lightgrey.svg)
 ![Language](https://img.shields.io/badge/language-C-blue.svg)
@@ -32,19 +32,23 @@ See [LICENSE](LICENSE) for details.
 
 Any platform with the **standard C library** — basically **EVERYWHERE**!
 
+Verified cross-platform:
+- Linux (GCC / Clang)
+- Windows (MinGW / MSVC)(tested since version 0.1.3)
+
 ## Performance & Size
 
 FrameLog is **extremely lightweight**:
 ```
-Binary Size (with example):
+Binary Size (with example) and SO files are marked 'SO':
 ┌─────────────┬──────────────┬────────────┐
 │ Library     │ Size         │ Comparison │
 ├─────────────┼──────────────┼────────────┤
-│ FrameLog    │ 31 KB        │ 1x         │
-│ log.c       │ ~50 KB       │ 1.6x       │
-│ zlog        │ ~2 MB        │ 65x        │
-│ spdlog      │ 41 MB(source)│ 1,322x     │
-│ Boost.Log   │ 60+ MB       │ 2,000x+    │
+│ FrameLog    │ 14.6 KiB(SO) │ 1x         │
+│ log.c       │ ~50 KB       │ 3.4x       │
+│ zlog        │ ~2 MB        │ 140x       │
+│ spdlog      │ 41 MB(source)│ 2,877x     │
+│ Boost.Log   │ 60+ MB       │ 4,210x+    │
 └─────────────┴──────────────┴────────────┘
 Binary sizes measured with example build (Release, x64, GCC)
 ```
@@ -65,46 +69,75 @@ Binary sizes measured with example build (Release, x64, GCC)
 ## Status
 **FrameLog** is in alpha stage
 
-## Run
-
-1. Add the path to FrameLog sources in your build system:  
-   `path/to/FrameLog/source/`
-
-2. Add a flag to the build system
-
-### Warning! Without this flag, there will be messages about FrameLog errors in any configuration!!
-
-#### Enable internal FrameLog debug messages (for developers)
--DFL_ENABLE_LOGS=1
-#### Disable internal logs for release builds
--DFL_ENABLE_LOGS=0
-
-3. Build with GCC and premake:
-- gcc
-``` bash
-# Debug
-gcc -o example example.c -Ipath/to/FrameLog/source/ -DFL_ENABLE_LOGS=1
-
-# Release
-gcc -o example example.c -IC/Tools/FrameLog/source/ -DFL_ENABLE_LOGS=0
-```
-- premake - GCC
-``` bash
-mkdir build
-premake5 <your System Build> example: gmake, vs2019, vs2022, xcode4
-cd build
-
-For example: 
-mkdir build
-premake5 gmake
-cd build
-# On Windows
-mingw32-make
-
-# On Linux/macOS
-make config=debug
+## Quick Start
+```bash
+git clone https://github.com/glpetrikov/FrameLog
+cd FrameLog && premake5 gmake2 && cd build && make config=release
+cd Release && ./sandbox
 ```
 
+## Building
+
+> [!WARNING]  
+> **CRITICAL:** You MUST define `-DFL_ENABLE_LOGS` flag when compiling!  
+> Without it, FrameLog will output internal debug messages in all configurations.
+>
+> - **Debug builds:** `-DFL_ENABLE_LOGS=1` (shows internal logs)  
+> - **Release builds:** `-DFL_ENABLE_LOGS=0` (suppresses internal logs)
+
+### Windows
+
+#### GCC
+``` bash
+cd examples
+
+# Debug (replace C/path/to/FrameLog with your installation path)
+gcc -o example example.c -IC/path/to/FrameLog/source/ -DFL_ENABLE_LOGS=1
+
+# Release (replace C/path/to/FrameLog with your installation path)
+gcc -o example example.c -IC/path/to/FrameLog/source/ -DFL_ENABLE_LOGS=0
+
+./example.exe
+```
+
+#### premake(recommended)
+``` bash
+premake5 gmake2
+cd build/
+mingw32-make config=debug && mingw32-make config=release
+cd Debug/
+./sandbox.exe
+cd ..
+cd Release/
+./sandbox.exe
+```
+
+### Linux
+
+#### GCC
+``` bash
+cd examples
+
+# Debug (replace /path/to/FrameLog with your installation path)
+gcc -o example example.c -I/path/to/FrameLog/source/ -DFL_ENABLE_LOGS=1
+
+# Release (replace /path/to/FrameLog with your installation path)
+gcc -o example example.c -I/path/to/FrameLog/source/ -DFL_ENABLE_LOGS=0
+
+./example
+```
+
+#### premake(recommended)
+``` bash
+premake5 gmake2
+cd build/
+make config=debug && make config=release
+cd Debug/
+./sandbox
+cd ..
+cd Release/
+./sandbox
+```
 
 ## Example
 ### Source files:
@@ -116,94 +149,25 @@ make config=debug
 
 ### example code:
 
-1. Add the path to FrameLog sources in your build system:  
-   `path/to/FrameLog/source/`
-2. Add a flag to the build system
-
-### Warning! Without this flag, there will be messages about FrameLog errors in any configuration!!
-#### Enable internal FrameLog debug messages (for developers)
--DFL_ENABLE_LOGS=1
-#### Disable internal logs for release builds
--DFL_ENABLE_LOGS=0
-
-3. Include FrameLog in your code and use it:
+1. Include FrameLog in your code and use it:
 ``` c
 // C and C++, no difference.
-
-#include <stdio.h>
-#include <FrameLog.h>
-
-int main()
-{
-    // high-level API
-    FL_API FLPrint("Hello, World!");
-    FL_API FLPrintln("");
-    FL_API FLNewLine();
-    FL_API FLTraceln("Hello, FrameLog!");
-    FL_API FLInfoln("This is an info message.");
-    FL_API FLWarnln("This is a warning message.");
-    FL_API FLErrorln("This is an error message.");
-    FL_API FLTrace("This is a trace message.\n");
-    FL_API FLBufferSize();
-
-    // New line
-    FL_API FLNewLine();
-    // Flush the buffer to output
-    FL_API FLFlushBuffer();
-
-    FL_API FLPrintln("long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long… in short, a very long message");
-    FL_API FLBufferSize();
-
-    //===============================================================
-    // low-level API
-    //===============================================================
-    FL_API FLPrintColored("Colored output using FrameLog!", FL_GREEN, NULL, true);
-    // 1. Message
-    // 2.
-    // 3. Color
-    // 4. New line or not
-
-    FL_API FLAddInBuffer("This is a custom buffered message.\n");
-    // Add message to buffer
-    FL_API FLAddInBuffer(FL_BLACK);
-    FL_API FLAddInBuffer("here's a custom black one and it hit the buffer!\n");
-    FL_API FLAddInBuffer(FL_RESET); // without it, everything will be in the selected color, which is unpleasant
-
-    FL_API FLAddInBuffer(NULL); // Test
-    FL_API FLBufferSize();
-
-    FL_API FLFlushBuffer();
-    // Flush the buffer to output
-
-    FL_API FLPrint("...");
-    FL_API FLFlushBuffer();
-
-    printf("%s%s%s\n", FL_GREEN, "Colored output using FrameLog and libc!", FL_RESET);
-    return 0;
-}
-```
-``` cpp
 #include <FrameLog.h>
 
 int main(){
-       // Test FrameLog Errors (intentional NULL tests for robustness)
-      FL_API FLPrint(NULL);
-      FL_API FLPrintln(NULL);
-      FL_API FLTraceln(NULL);
-      FL_API FLInfoln(NULL);
-      FL_API FLWarnln(NULL);
-      FL_API FLErrorln(NULL);
-      FL_API FLTrace(NULL);
+    FLPrintln("Hello, World!");
 
-      FL_API FLFlushBuffer();
-      FL_API FLClearBuffer();
-      // Clear Buffer, The alternative is reset, but it deletes everything from the buffer and does not output
-      // Error "FrameLog Buffer Error: Attempt to clear an empty/uninitialized buffer"
-      // means that the buffer was freed or flush 2 or more times
+    for(int i = 0; i < 10; i++){
+        FLTraceln("output in loop!");
+    }
+    FLFlushBuffer();
 }
 ```
+More examples can be found in the examples folder.
+2. build
+See the "Building" section above.
 
-## Developers
+## Authors
 
 **Gleb Petrikov**
 
@@ -215,15 +179,13 @@ int main(){
 - Color support
 - Basic log levels
 
-### Beta
-**in the coming month(as of 2025, October 21)**
+### Beta (Target: Q1 2026)
 - Additional log levels
 - Base Custom format patterns
 - Base Output pattern scanner
 - Minimal File Log
 
-### Release
-**in the coming months (3-4)(as of 2025, October 21)**
+### Release (Target: Q2-Q3 2026) 
 - full-fledged Custom format patterns
 - full-fledged Output pattern scanner
 - Additional buffer capabilities

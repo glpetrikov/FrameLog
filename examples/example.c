@@ -1,56 +1,57 @@
 // FrameLog - MIT License (c) 2025 Gleb Petrikov
-
+/*
 #include <stdio.h>
 #include <FrameLog.h>
 
 int main()
 {
     // high-level API
-    FL_API FLPrint("Hello, World!");
-    FL_API FLPrintln("");
-    FL_API FLNewLine();
-    FL_API FLTraceln("Hello, FrameLog!");
-    FL_API FLInfoln("This is an info message.");
-    FL_API FLWarnln("This is a warning message.");
-    FL_API FLErrorln("This is an error message.");
-    FL_API FLTrace("This is a trace message.\n");
-    FL_API FLBufferSize();
+    FLPrint("Hello, World!");
+    FLPrintln("");
+    FLNewLine();
+    FLTraceln("Hello, FrameLog!");
+    FLInfoln("This is an info message.");
+    FLWarnln("This is a warning message.");
+    FLErrorln("This is an error message.");
+    FLTrace("This is a trace message.\n");
+    FLBufferSize();
 
     // New line
-    FL_API FLNewLine();
+    FLNewLine();
     // Flush the buffer to output
-    FL_API FLFlushBuffer();
+    FLFlushBuffer();
 
-    FL_API FLPrintln("long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long… in short, a very long message");
-    FL_API FLBufferSize();
+    FLPrintln("long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long… in short, a very long message");
+    FLBufferSize();
 
     //===============================================================
     // low-level API
     //===============================================================
-    FL_API FLPrintColored("Colored output using FrameLog!", FL_GREEN, NULL, true);
+    FLPrintColored("Colored output using FrameLog!", FL_GREEN, NULL, true);
     // 1. Message
     // 2.
     // 3. Color
     // 4. New line or not
 
-    FL_API FLAddInBuffer("This is a custom buffered message.\n");
+    FLAddInBuffer("This is a custom buffered message.\n");
     // Add message to buffer
-    FL_API FLAddInBuffer(FL_BLACK);
-    FL_API FLAddInBuffer("here's a custom black one and it hit the buffer!\n");
-    FL_API FLAddInBuffer(FL_RESET); // without it, everything will be in the selected color, which is unpleasant
+    FLAddInBuffer(FL_BLACK);
+    FLAddInBuffer("here's a custom black one and it hit the buffer!\n");
+    FLAddInBuffer(FL_RESET); // without it, everything will be in the selected color, which is unpleasant
 
-    FL_API FLAddInBuffer(NULL); // Test
-    FL_API FLBufferSize();
+    FLAddInBuffer(NULL); // Test
+    FLBufferSize();
 
-    FL_API FLFlushBuffer();
+    FLFlushBuffer();
     // Flush the buffer to output
 
-    FL_API FLPrint("...");
-    FL_API FLFlushBuffer();
+    FLPrint("...");
+    FLFlushBuffer();
 
     printf("%s%s%s\n", FL_GREEN, "Colored output using FrameLog and libc!", FL_RESET);
     return 0;
 }
+*/
 /*
 #include <FrameLog.h>
 
