@@ -8,10 +8,7 @@ All notable changes to FrameLog will be documented in this file.
 - FL_API 
 - compilation to DLL/SO
 
-
-
 ### Fixed
-
 
 ## [Unreleased]
 ### Planned for Beta
