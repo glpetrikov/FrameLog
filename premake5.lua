@@ -26,16 +26,30 @@ project "FrameLog"
     floatingpoint "Strict"
     conformancemode "On"
 
-        --
-        -- MSVC
-        --
+--==========================================
+-- Operation System
+--==========================================
+
+    -- Windows
+    filter { "system:windows", "kind:SharedLib" }
+        targetextension ".dll"
+        linkoptions { "-Wl,--out-implib,lib%{prj.name}.a" }
+
+
+--==========================================
+-- Compilers
+--==========================================
+
+
+-- === MSVC ======
+
 
     filter "action:vs*"
         buildoptions { "/W4", "/std=c99" }
 
-        --
-        -- Clang / GCC
-        --
+
+-- === Clang / GCC ======
+
 
     filter { "toolset:gcc or toolset:clang" }
         buildoptions {
@@ -46,16 +60,16 @@ project "FrameLog"
             "-std=c99",
         }
 
-        --
-        -- GCC
-        --
+
+-- === GCC ======
+
 
     filter "toolset:gcc"
         buildoptions { "-Wall" }
 
-        --
-        -- CLang
-        --
+
+-- === CLang ======
+
 
     filter "toolset:clang"
          buildoptions {
@@ -70,9 +84,9 @@ project "FrameLog"
         }
         linkoptions { "-fuse-ld=lld" }
 
-        --
-        -- Configs
-        --
+--==========================================
+-- Configs
+--==========================================
 
     filter "configurations:Debug"
         defines { "DEBUG", "FL_ENABLE_LOGS=1", "FRAMELOG_BUILD" }
@@ -92,6 +106,10 @@ project "FrameLog"
         }
 
     filter {}
+
+--==========================================
+-- Sandbox
+--==========================================
 
 project "sandbox"
     kind "ConsoleApp"
@@ -113,16 +131,30 @@ project "sandbox"
     floatingpoint "Strict"
     conformancemode "On"
 
-        --
-        -- MSVC
-        --
+--==========================================
+-- Operation System
+--==========================================
+
+    -- Windows
+    filter { "system:windows", "kind:SharedLib" }
+        targetextension ".dll"
+        linkoptions { "-Wl,--out-implib,lib%{prj.name}.a" }
+
+
+--==========================================
+-- Compilers
+--==========================================
+
+
+-- === MSVC ======
+
 
     filter "action:vs*"
         buildoptions { "/W4", "/std=c99" }
 
-        --
-        -- Clang / GCC
-        --
+
+-- === Clang / GCC ======
+
 
     filter { "toolset:gcc or toolset:clang" }
         buildoptions {
@@ -133,16 +165,16 @@ project "sandbox"
             "-std=c99",
         }
 
-        --
-        -- GCC
-        --
+
+-- === GCC ======
+
 
     filter "toolset:gcc"
         buildoptions { "-Wall" }
 
-        --
-        -- CLang
-        --
+
+-- === CLang ======
+
 
     filter "toolset:clang"
          buildoptions {
@@ -157,12 +189,12 @@ project "sandbox"
         }
         linkoptions { "-fuse-ld=lld" }
 
-        --
-        -- Configs
-        --
+--==========================================
+-- Configs
+--==========================================
 
     filter "configurations:Debug"
-        defines { "DEBUG", "FL_ENABLE_LOGS=1" }
+        defines { "DEBUG", "FL_ENABLE_LOGS=1", "FRAMELOG_BUILD" }
         symbols "On"
         buildoptions {
             "-O0",
@@ -170,7 +202,7 @@ project "sandbox"
         }
 
     filter "configurations:Release"
-        defines { "NDEBUG", "FL_ENABLE_LOGS=0" }
+        defines { "NDEBUG", "FL_ENABLE_LOGS=0", "FRAMELOG_BUILD" }
         optimize "Speed"
         symbols "Off"
         buildoptions {
