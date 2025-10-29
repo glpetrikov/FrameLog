@@ -36,8 +36,16 @@ FL_API void FLErrorln(const char *Message);
 // =============================================================
 // Fatal Prints
 // =============================================================
-// void FLFatal(const char *Message);
-// void FLFatalln(const char *Message);
+FL_API void FLFatal(const char *Message);
+FL_API void FLFatalln(const char *Message);
+// =============================================================
+// Readers
+// =============================================================
+FL_API const char* FLReadString(const char *Message);
+FL_API double FLReadDouble(const char *Message);
+FL_API int FLReadInt(const char *Message);
+FL_API char FLReadChar(const char *Message);
+FL_API float FLReadFloat(const char *Message);
 // =============================================================
 // Tools
 // =============================================================

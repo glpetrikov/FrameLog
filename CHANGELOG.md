@@ -2,11 +2,22 @@
 
 All notable changes to FrameLog will be documented in this file.
 
-## [0.1.4-alpha] - 2025-10-25
+## [0.2.0-beta] - 2025-10-25
 
 ### Added
-- FL_API 
-- compilation to DLL/SO
+- FLRead
+```c
+int value = FLReadInt("Message");
+float value = FLReadFloat("Message");
+double value = FLReadDouble("Message");
+char symbol = FLReadChar("Message");
+const char* string = FLReadString("Message");
+```
+- FLFatal
+```c
+FLFatal("Message");
+FLFatalln("Message");
+```
 
 ### Fixed
 

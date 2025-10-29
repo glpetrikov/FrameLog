@@ -10,6 +10,7 @@
 #include "Colors.h"
 #include <stdbool.h> // bool, true, false
 #include "Platform.h"
+#include <string.h>
 
 typedef enum FLToken
 {

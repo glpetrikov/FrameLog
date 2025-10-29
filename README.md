@@ -2,12 +2,12 @@
 
 FrameLog is a lightweight library for outputting logs to the console in **C**.
 
-## Version 0.1.4-alpha
+## Version 0.2.0-beta
 
 ![Platforms](https://img.shields.io/badge/platforms-cross--platform-lightgrey.svg)
 ![Language](https://img.shields.io/badge/language-C-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Status](https://img.shields.io/badge/status-alpha-orange.svg)
+![Status](https://img.shields.io/badge/status-beta-orange.svg)
 
 
 ![GitHub issues](https://img.shields.io/github/issues/glpetrikov/FrameLog)
@@ -41,15 +41,14 @@ Verified cross-platform:
 FrameLog is **extremely lightweight**:
 ```
 Binary Size (with example) and SO files are marked 'SO':
-┌─────────────┬──────────────┬────────────┐
-│ Library     │ Size         │ Comparison │
-├─────────────┼──────────────┼────────────┤
-│ FrameLog    │ 14.6 KiB(SO) │ 1x         │
-│ log.c       │ ~50 KB       │ 3.4x       │
-│ zlog        │ ~2 MB        │ 140x       │
-│ spdlog      │ 41 MB(source)│ 2,877x     │
-│ Boost.Log   │ 60+ MB       │ 4,210x+    │
-└─────────────┴──────────────┴────────────┘
+| Library     | Size           | Comparison |
+|------------:|:--------------|:-----------|
+| FrameLog    | 44.5 KiB (SO) | 1x         |
+| log.c       | ~50 KiB       | 1.1x       |
+| zlog        | ~2 MiB        | 45x        |
+| spdlog      | 41 MiB (src)  | 920x       |
+| Boost.Log   | 60+ MiB       | 1,350x+    |
+
 Binary sizes measured with example build (Release, x64, GCC)
 ```
 
@@ -67,7 +66,7 @@ Binary sizes measured with example build (Release, x64, GCC)
 - for projects where you just need a logger
 
 ## Status
-**FrameLog** is in alpha stage
+**FrameLog** is currently in **Beta** stage
 
 ## Quick Start
 ```bash
@@ -173,13 +172,13 @@ See the "Building" section above.
 
 ## Roadmap
 
-### Alpha (Current)
+### Alpha (Completed)
 - Buffered output
 - Basic output functions
 - Color support
 - Basic log levels
 
-### Beta (Target: Q1 2026)
+### Beta (Current)
 - Additional log levels
 - Base Custom format patterns
 - Base Output pattern scanner
