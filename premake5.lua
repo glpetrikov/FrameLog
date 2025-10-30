@@ -10,13 +10,13 @@ workspace "FrameLog"
 
 project "FrameLog"
     kind "SharedLib"
-    language "C"
-    cdialect "C99"
+    language "C++"
+    cppdialect "C++20"
 
     targetdir "build/%{cfg.buildcfg}"
     objdir "build/obj/%{cfg.buildcfg}"
 
-    files { "source/**.c", "source/**.h" }
+    files { "source/**.cpp", "source/**.h" }
 
     includedirs { "source/", "source/FrameLog/" }
 
@@ -45,7 +45,7 @@ project "FrameLog"
 
 
     filter "action:vs*"
-        buildoptions { "/W4", "/std=c99" }
+        buildoptions { "/W4", "-std=c++23" }
 
 
 -- === Clang / GCC ======
@@ -57,7 +57,7 @@ project "FrameLog"
             "-D_FORTIFY_SOURCE=2",
             "-fno-strict-aliasing",
             "-fno-omit-frame-pointer",
-            "-std=c99",
+            "-std=c++23",
         }
 
 
@@ -113,13 +113,13 @@ project "FrameLog"
 
 project "sandbox"
     kind "ConsoleApp"
-    language "C"
-    cdialect "C99"
+    language "C++"
+    cppdialect "C++20"
 
     targetdir "build/%{cfg.buildcfg}"
     objdir "build/obj/%{cfg.buildcfg}"
 
-    files { "examples/**.c", "examples/**.h" }
+    files { "examples/**.cpp", "examples/**.h" }
 
     links { "FrameLog" }
     libdirs { "build/%{cfg.buildcfg}" }
@@ -150,7 +150,7 @@ project "sandbox"
 
 
     filter "action:vs*"
-        buildoptions { "/W4", "/std=c99" }
+        buildoptions { "/W4", "-std=c++23" }
 
 
 -- === Clang / GCC ======
@@ -162,7 +162,7 @@ project "sandbox"
             "-D_FORTIFY_SOURCE=2",
             "-fno-strict-aliasing",
             "-fno-omit-frame-pointer",
-            "-std=c99",
+            "-std=c++23",
         }
 
 
@@ -194,7 +194,7 @@ project "sandbox"
 --==========================================
 
     filter "configurations:Debug"
-        defines { "DEBUG", "FL_ENABLE_LOGS=1", "FRAMELOG_BUILD" }
+        defines { "DEBUG", "FRAMELOG_BUILD" }
         symbols "On"
         buildoptions {
             "-O0",
@@ -202,12 +202,17 @@ project "sandbox"
         }
 
     filter "configurations:Release"
-        defines { "NDEBUG", "FL_ENABLE_LOGS=0", "FRAMELOG_BUILD" }
+        defines { "NDEBUG", "FRAMELOG_BUILD" }
         optimize "Speed"
         symbols "Off"
         buildoptions {
             "-march=native",
             "-O3",
+            "-fno-rtti",
+            "-fno-exceptions",
+            "-fvisibility=hidden",
+            "-flto",               
+            "-s",
         }
 
     filter {}

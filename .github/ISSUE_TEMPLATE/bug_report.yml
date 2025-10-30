@@ -1,0 +1,41 @@
+name: "Bug Report"
+about: Report a bug in FrameLog
+title: "[Bug]: "
+labels: ["bug"]
+assignees: ""
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug!
+
+  - type: input
+    attributes:
+      label: Version
+      placeholder: 1.0.0-beta
+
+  - type: textarea
+    attributes:
+      label: Description
+      description: What happened?
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Steps to Reproduce
+      placeholder: |
+        1. `Logger log;`
+        2. `log.Add("")`
+        3. See error
+    validations:
+      required: true
+
+  - type: checkboxes
+    attributes:
+      label: Affected platforms
+      options:
+        - label: Windows
+        - label: Linux
+        - label: macOS

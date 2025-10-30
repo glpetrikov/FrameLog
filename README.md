@@ -1,11 +1,11 @@
 # FrameLog
 
-FrameLog is a lightweight library for outputting logs to the console in **C**.
+FrameLog is a lightweight library for outputting logs to the console in **C++**.
 
-## Version 0.2.0-beta
+## Version 1.0.0-beta
 
 ![Platforms](https://img.shields.io/badge/platforms-cross--platform-lightgrey.svg)
-![Language](https://img.shields.io/badge/language-C-blue.svg)
+![Language](https://img.shields.io/badge/language-C%2B%2B-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Status](https://img.shields.io/badge/status-beta-orange.svg)
 
@@ -14,15 +14,17 @@ FrameLog is a lightweight library for outputting logs to the console in **C**.
 
 ## Features 
 
-1. **Simple** text and log output to the console.
-
-2. **Color support** (e.g., Graphite).
-
-3. **Minimal dependencies—only** the **standard C library**.
+- **Lightweight** - Only 26.6 KiB when compiled in Release mode (smallest C++ logger with colors!)
+- **Buffered output** - Efficient string accumulation before flush
+- **Stream API** - `logger.Custom << "Message " << value << "\n";`
+- **Color support** - ANSI colors + RGB (24-bit true color)
+- **Simple API** - Trace, Print, Info, Warn, Error, Fatal levels
+- **Cross-platform** - Linux, Windows, macOS
+- **Minimal dependencies** - Only standard C++ library
 
 ## Dependencies
-- Standard C library (`libc`)  
-- Compatible with **C99** and later 
+- Standard C++ library (`std`)  
+- Compatible with **C++17** and later (C++20 recommended)
 
 ## License
 FrameLog is distributed under the **MIT License**.  
@@ -30,36 +32,39 @@ See [LICENSE](LICENSE) for details.
 
 ## Supported Platforms
 
-Any platform with the **standard C library** — basically **EVERYWHERE**!
-
-Verified cross-platform:
-- Linux (GCC / Clang)
-- Windows (MinGW / MSVC)(tested since version 0.1.3)
+Any platform with the **standard C++ library**
 
 ## Performance & Size
 
-FrameLog is **extremely lightweight**:
-```
-Binary Size (with example) and SO files are marked 'SO':
-| Library     | Size           | Comparison |
-|------------:|:--------------|:-----------|
-| FrameLog    | 44.5 KiB (SO) | 1x         |
-| log.c       | ~50 KiB       | 1.1x       |
-| zlog        | ~2 MiB        | 45x        |
-| spdlog      | 41 MiB (src)  | 920x       |
-| Boost.Log   | 60+ MiB       | 1,350x+    |
+FrameLog is **lightweight**:
+Binary Size Comparison:
 
-Binary sizes measured with example build (Release, x64, GCC)
-```
+| Library     | Size           | vs FrameLog   | Language | Notes                    |
+|-------------|----------------|---------------|----------|--------------------------|
+| FrameLog    | 26.6 KiB (SO)  | 1×            | C++      | Buffered, colors, stream |
+| log.c       | ~50 KiB        | 1.9× bigger   | C        | Minimal                  |
+| easylogging++| ~150 KiB      | 5.6× bigger   | C++      | Header-only              |
+| plog        | ~200 KiB       | 7.5× bigger   | C++      | Header-only              |
+| g3log       | ~500 KiB       | 18.8× bigger  | C++      | Async, crash-safe        |
+| NanoLog     | ~800 KiB       | 30× bigger    | C++      | Ultra-fast               |
+| quill       | ~1.2 MiB       | 45× bigger    | C++      | Low-latency              |
+| zlog        | ~2 MiB         | 75× bigger    | C        | Config files             |
+| log4cplus   | ~3 MiB         | 113× bigger   | C++      | Java log4j port          |
+| log4cpp     | ~4 MiB         | 150× bigger   | C++      | Apache project           |
+| glog        | ~5 MiB         | 188× bigger   | C++      | Google logging           |
+| spdlog      | 41 MiB (src)   | 1,541× bigger | C++      | Fast, fmt-based          |
+| Boost.Log   | 60+ MiB        | 2,256× bigger | C++      | Full-featured            |
+
+*Measured: Release builds, x64, premake5, gcc15, make*
+*Source sizes shown for header-only libraries (marked "src")*
+
 
 **Why so small?**
-- Pure C (no C++ templates)
-- Minimal dependencies (only libc)
-- No STL overhead
+- no C++ templates
+- Minimal dependencies (only std)
 - Efficient buffer management
 
 **Perfect for:**
-- Embedded systems (Arduino, ESP32, STM32)
 - Docker containers (minimal images)
 - Fast compilation times
 - Quick program startup
@@ -78,11 +83,7 @@ cd Release && ./sandbox
 ## Building
 
 > [!WARNING]  
-> **CRITICAL:** You MUST define `-DFL_ENABLE_LOGS` flag when compiling!  
-> Without it, FrameLog will output internal debug messages in all configurations.
->
-> - **Debug builds:** `-DFL_ENABLE_LOGS=1` (shows internal logs)  
-> - **Release builds:** `-DFL_ENABLE_LOGS=0` (suppresses internal logs)
+> If there are bugs in FrameLog API calls, they will be displayed in ANY configuration
 
 ### Windows
 
@@ -91,17 +92,18 @@ cd Release && ./sandbox
 cd examples
 
 # Debug (replace C/path/to/FrameLog with your installation path)
-gcc -o example example.c -IC/path/to/FrameLog/source/ -DFL_ENABLE_LOGS=1
+g++ -o example SimpleExample.cpp -IC/path/to/FrameLog/source/ -DFL_ENABLE_LOGS=1
 
 # Release (replace C/path/to/FrameLog with your installation path)
-gcc -o example example.c -IC/path/to/FrameLog/source/ -DFL_ENABLE_LOGS=0
+g++ -o example SimpleExample.cpp -IC/path/to/FrameLog/source/ -DFL_ENABLE_LOGS=0
 
 ./example.exe
 ```
 
 #### premake(recommended)
 ``` bash
-premake5 gmake2
+premake5 vs2022    # Visual Studio 2022
+premake5 gmake2    # make
 cd build/
 mingw32-make config=debug && mingw32-make config=release
 cd Debug/
@@ -118,10 +120,10 @@ cd Release/
 cd examples
 
 # Debug (replace /path/to/FrameLog with your installation path)
-gcc -o example example.c -I/path/to/FrameLog/source/ -DFL_ENABLE_LOGS=1
+g++ -o example SimpleExample.cpp -I/path/to/FrameLog/source/ -DFL_ENABLE_LOGS=1
 
 # Release (replace /path/to/FrameLog with your installation path)
-gcc -o example example.c -I/path/to/FrameLog/source/ -DFL_ENABLE_LOGS=0
+g++ -o example SimpleExample.cpp -I/path/to/FrameLog/source/ -DFL_ENABLE_LOGS=0
 
 ./example
 ```
@@ -140,26 +142,28 @@ cd Release/
 
 ## Example
 ### Source files:
-[Colors](source/FrameLog/Colors.h)
+[Colors](source/FrameLog/Colors.hpp)
 
-[Prints.c](source/FrameLog/Prints.c)
+[Logger.cpp](source/FrameLog/Logger.cpp)
 
-[Prints.h](source/FrameLog/Prints.h)
+[Logger.hpp](source/FrameLog/Logger.hpp)
 
 ### example code:
 
 1. Include FrameLog in your code and use it:
-``` c
-// C and C++, no difference.
-#include <FrameLog.h>
+``` cpp
+#include <FrameLog.hpp>
+using namespace FrameLog;
+#include <iostream>
 
-int main(){
-    FLPrintln("Hello, World!");
-
-    for(int i = 0; i < 10; i++){
-        FLTraceln("output in loop!");
-    }
-    FLFlushBuffer();
+int main()
+{
+    Logger logger = NewLogger();
+    logger.Tracel("Hello, World!");
+    logger.Custom << "Hello World! " << 7534 << "\n";
+    std::string rgb = Colors::RGB(100, 100, 100);
+    logger.Custom << rgb << "Custom Color! " << "\n";
+    logger.Flush();
 }
 ```
 More examples can be found in the examples folder.

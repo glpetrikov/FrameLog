@@ -1,12 +1,3 @@
----
-name: Bug Report
-about: Report a bug in FrameLog
-title: "[BUG] "
-labels: bug
-assignees: ''
-
----
-
 # Bug Report
 
 **Describe the bug**
