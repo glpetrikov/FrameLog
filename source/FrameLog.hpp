@@ -7,4 +7,4 @@
 #include "FrameLog/Common.hpp"
 #include "FrameLog/Colors.hpp"
 #include "FrameLog/Platform.hpp"
-
+#include "FrameLog/FileLogger.hpp"

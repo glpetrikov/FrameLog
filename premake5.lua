@@ -16,7 +16,7 @@ project "FrameLog"
     targetdir "build/%{cfg.buildcfg}"
     objdir "build/obj/%{cfg.buildcfg}"
 
-    files { "source/**.cpp", "source/**.h" }
+    files { "source/**.cpp", "source/**.h", "source/**.hpp" }
 
     includedirs { "source/", "source/FrameLog/" }
 
@@ -108,10 +108,14 @@ project "FrameLog"
     filter {}
 
 --==========================================
--- Sandbox
+-- Examples
 --==========================================
 
-project "sandbox"
+--==========================================
+-- SimpleExample
+--==========================================
+
+project "SimpleExample"
     kind "ConsoleApp"
     language "C++"
     cppdialect "C++20"
@@ -119,75 +123,66 @@ project "sandbox"
     targetdir "build/%{cfg.buildcfg}"
     objdir "build/obj/%{cfg.buildcfg}"
 
-    files { "examples/**.cpp", "examples/**.h" }
+    files { "examples/SimpleExample.cpp" }
 
     links { "FrameLog" }
     libdirs { "build/%{cfg.buildcfg}" }
     includedirs { "source", "source/FrameLog" }
 
-    
     warnings "Extra"
     symbols "On"
     floatingpoint "Strict"
     conformancemode "On"
 
 --==========================================
--- Operation System
+-- Configs
 --==========================================
 
-    -- Windows
-    filter { "system:windows", "kind:SharedLib" }
-        targetextension ".dll"
-        linkoptions { "-Wl,--out-implib,lib%{prj.name}.a" }
-
-
---==========================================
--- Compilers
---==========================================
-
-
--- === MSVC ======
-
-
-    filter "action:vs*"
-        buildoptions { "/W4", "-std=c++23" }
-
-
--- === Clang / GCC ======
-
-
-    filter { "toolset:gcc or toolset:clang" }
+    filter "configurations:Debug"
+        defines { "DEBUG", "FRAMELOG_BUILD" }
+        symbols "On"
         buildoptions {
-            "-fstack-protector-strong",
-            "-D_FORTIFY_SOURCE=2",
-            "-fno-strict-aliasing",
-            "-fno-omit-frame-pointer",
-            "-std=c++23",
+            "-O0",
+            "-g3",
         }
 
-
--- === GCC ======
-
-
-    filter "toolset:gcc"
-        buildoptions { "-Wall" }
-
-
--- === CLang ======
-
-
-    filter "toolset:clang"
-         buildoptions {
-            "-Wall",
-            "-Wextra",
-            "-Wpedantic",
-            "-Wshadow",
-            "-Wconversion",
-            "-Wunreachable-code",
-            "-Werror=format-security",
-            "-fcolor-diagnostics",
+    filter "configurations:Release"
+        defines { "NDEBUG", "FRAMELOG_BUILD" }
+        optimize "Speed"
+        symbols "Off"
+        buildoptions {
+            "-march=native",
+            "-O3",
+            "-fno-rtti",
+            "-fno-exceptions",
+            "-fvisibility=hidden",
+            "-flto",               
+            "-s",
         }
-        linkoptions { "-fuse-ld=lld" }
+
+    filter {}
+
+--==========================================
+-- File
+--==========================================
+project "FileExample"
+    kind "ConsoleApp"
+    language "C++"
+    cppdialect "C++20"
+
+    targetdir "build/%{cfg.buildcfg}"
+    objdir "build/obj/%{cfg.buildcfg}"
+
+    files { "examples/FileExample.cpp" }
+
+    links { "FrameLog" }
+    libdirs { "build/%{cfg.buildcfg}" }
+    includedirs { "source", "source/FrameLog" }
+
+    warnings "Extra"
+    symbols "On"
+    floatingpoint "Strict"
+    conformancemode "On"
 
 --==========================================
 -- Configs

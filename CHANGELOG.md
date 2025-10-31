@@ -2,38 +2,15 @@
 
 All notable changes to FrameLog will be documented in this file.
 
-## [1.0.0-beta] - 2025-10-25
+## [1.1.0-beta] - 2025-10-25
 
 ### Added
-Logger:
-- Print
-- Printl
-- Trace
-- Tracel
-- Info
-- Infol
-- Warn
-- warnl
-- Error
-- Errorl
-- Fatal
-- Fatall
-- Add //in Buffer
-- Flush
-- Free
+- class Writer
 
-Buffer:
-- Free
-- Flush
-- Add
+- function WriteLine
+- function Write
 
-- Colors:
-- RGB
-- RGB_BG
-
-- IsColor
-
-- 3 enums
+- 2 struct TypeRead, TypeWrite
 ### Fixed
 
 ### Delete
@@ -42,4 +19,4 @@ Buffer:
 ### Planned for Beta
 - Base Custom format patterns
 - Base Output pattern scanner
-- Minimal File Log
+- File Log

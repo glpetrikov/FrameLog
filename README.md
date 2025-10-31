@@ -2,7 +2,7 @@
 
 FrameLog is a lightweight library for outputting logs to the console in **C++**.
 
-## Version 1.0.0-beta
+## Version 1.1.0-beta
 
 ![Platforms](https://img.shields.io/badge/platforms-cross--platform-lightgrey.svg)
 ![Language](https://img.shields.io/badge/language-C%2B%2B-blue.svg)
@@ -14,7 +14,7 @@ FrameLog is a lightweight library for outputting logs to the console in **C++**.
 
 ## Features 
 
-- **Lightweight** - Only 26.6 KiB when compiled in Release mode (smallest C++ logger with colors!)
+- **Lightweight** - Only 34.7 KiB when compiled in Release mode (smallest C++ logger with colors!)
 - **Buffered output** - Efficient string accumulation before flush
 - **Stream API** - `logger.Custom << "Message " << value << "\n";`
 - **Color support** - ANSI colors + RGB (24-bit true color)
@@ -39,21 +39,22 @@ Any platform with the **standard C++ library**
 FrameLog is **lightweight**:
 Binary Size Comparison:
 
-| Library     | Size           | vs FrameLog   | Language | Notes                    |
-|-------------|----------------|---------------|----------|--------------------------|
-| FrameLog    | 26.6 KiB (SO)  | 1×            | C++      | Buffered, colors, stream |
-| log.c       | ~50 KiB        | 1.9× bigger   | C        | Minimal                  |
-| easylogging++| ~150 KiB      | 5.6× bigger   | C++      | Header-only              |
-| plog        | ~200 KiB       | 7.5× bigger   | C++      | Header-only              |
-| g3log       | ~500 KiB       | 18.8× bigger  | C++      | Async, crash-safe        |
-| NanoLog     | ~800 KiB       | 30× bigger    | C++      | Ultra-fast               |
-| quill       | ~1.2 MiB       | 45× bigger    | C++      | Low-latency              |
-| zlog        | ~2 MiB         | 75× bigger    | C        | Config files             |
-| log4cplus   | ~3 MiB         | 113× bigger   | C++      | Java log4j port          |
-| log4cpp     | ~4 MiB         | 150× bigger   | C++      | Apache project           |
-| glog        | ~5 MiB         | 188× bigger   | C++      | Google logging           |
-| spdlog      | 41 MiB (src)   | 1,541× bigger | C++      | Fast, fmt-based          |
-| Boost.Log   | 60+ MiB        | 2,256× bigger | C++      | Full-featured            |
+| Library       | Size          | vs FrameLog   | Language | Notes                    |
+| ------------- | ------------- | ------------- | -------- | ------------------------ |
+| FrameLog      | 34.7 KiB (SO) | 1×            | C++      | Buffered, colors, stream |
+| log.c         | ~50 KiB       | 1.4× bigger   | C        | Minimal                  |
+| easylogging++ | ~150 KiB      | 4.3× bigger   | C++      | Header-only              |
+| plog          | ~200 KiB      | 5.8× bigger   | C++      | Header-only              |
+| g3log         | ~500 KiB      | 14.4× bigger  | C++      | Async, crash-safe        |
+| NanoLog       | ~800 KiB      | 23× bigger    | C++      | Ultra-fast               |
+| quill         | ~1.2 MiB      | 34.6× bigger  | C++      | Low-latency              |
+| zlog          | ~2 MiB        | 57.6× bigger  | C        | Config files             |
+| log4cplus     | ~3 MiB        | 86.5× bigger  | C++      | Java log4j port          |
+| log4cpp       | ~4 MiB        | 115× bigger   | C++      | Apache project           |
+| glog          | ~5 MiB        | 144× bigger   | C++      | Google logging           |
+| spdlog        | 41 MiB (src)  | 1,183× bigger | C++      | Fast, fmt-based          |
+| Boost.Log     | 60+ MiB       | 1,729× bigger | C++      | Full-featured            |
+
 
 *Measured: Release builds, x64, premake5, gcc15, make*
 *Source sizes shown for header-only libraries (marked "src")*
@@ -153,17 +154,21 @@ cd Release/
 1. Include FrameLog in your code and use it:
 ``` cpp
 #include <FrameLog.hpp>
-using namespace FrameLog;
 #include <iostream>
+
+using namespace FrameLog;
 
 int main()
 {
-    Logger logger = NewLogger();
+    Logger logger = NewLogger("Main");
     logger.Tracel("Hello, World!");
     logger.Custom << "Hello World! " << 7534 << "\n";
     std::string rgb = Colors::RGB(100, 100, 100);
     logger.Custom << rgb << "Custom Color! " << "\n";
     logger.Flush();
+
+    FileWriter Writer("Test");
+    Writer.Write("Test\n");
 }
 ```
 More examples can be found in the examples folder.
@@ -186,10 +191,9 @@ See the "Building" section above.
 - Additional log levels
 - Base Custom format patterns
 - Base Output pattern scanner
-- Minimal File Log
+- File Log
 
 ### Release (Target: Q2-Q3 2026) 
 - full-fledged Custom format patterns
 - full-fledged Output pattern scanner
 - Additional buffer capabilities
-- File Log

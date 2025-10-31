@@ -1,6 +1,7 @@
 #include <FrameLog.hpp>
-using namespace FrameLog;
 #include <iostream>
+
+using namespace FrameLog;
 
 int main()
 {
@@ -10,4 +11,7 @@ int main()
     std::string rgb = Colors::RGB(100, 100, 100);
     logger.Custom << rgb << "Custom Color! " << "\n";
     logger.Flush();
+
+    FileWriter Writer("Test");
+    Writer.Write("Test\n");
 }
