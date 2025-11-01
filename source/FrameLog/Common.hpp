@@ -4,9 +4,6 @@
 
 #pragma once
 
-// OLD
-#include <stdlib.h>
-
 // C++ Library
 #include <iostream>
 #include <string>

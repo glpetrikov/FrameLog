@@ -14,13 +14,15 @@ FrameLog is a lightweight library for outputting logs to the console in **C++**.
 
 ## Features 
 
-- **Lightweight** - Only 34.7 KiB when compiled in Release mode (smallest C++ logger with colors!)
-- **Buffered output** - Efficient string accumulation before flush
+- **Lightweight** - Only 34.7 KiB when compiled in Release mode
+- **Buffered console output** - Efficient string accumulation before flush
+- **File logging** - Simple file writer with append/overwrite modes
 - **Stream API** - `logger.Custom << "Message " << value << "\n";`
 - **Color support** - ANSI colors + RGB (24-bit true color)
 - **Simple API** - Trace, Print, Info, Warn, Error, Fatal levels
 - **Cross-platform** - Linux, Windows, macOS
 - **Minimal dependencies** - Only standard C++ library
+
 
 ## Dependencies
 - Standard C++ library (`std`)  
@@ -56,7 +58,8 @@ Binary Size Comparison:
 | Boost.Log     | 60+ MiB       | 1,729× bigger | C++      | Full-featured            |
 
 
-*Measured: Release builds, x64, premake5, gcc15, make*
+*Measured FrameLog: Release builds, x64, premake5, gcc15, make*
+
 *Source sizes shown for header-only libraries (marked "src")*
 
 

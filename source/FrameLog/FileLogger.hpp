@@ -15,17 +15,29 @@ namespace FrameLog
     {
 
         std::ofstream *File;
+        std::string LastFileName;
 
     public:
+        // --- Constructors -----
         FileWriter(std::string Name, TypeWrite Type = TypeWrite::Write);
         FileWriter(const char *Name, TypeWrite Type = TypeWrite::Write);
         ~FileWriter();
 
+        // --- Writes -----
         int Write(std::string Text);
         int WriteLine(std::string Text);
 
-        // int OpenFIle(std::string Name);
+        // --- Tools -----
+        bool IsOpen();
+        int OpenFile(std::string Name, TypeWrite Type);
         int CloseFile();
+        int DeleteFile(std::string Name);
+        int DeleteFile(bool DeleteLastFileName = false);
+        int Flush();
+
+        // --- Sizes -----
+        std::string LastFile();
+        std::streamsize SizeFile(const std::string& filename);
     };
     enum class TypeRead
     {
@@ -34,11 +46,10 @@ namespace FrameLog
     // class FileReader
     // {
     // public:
-    //     FileReader(std::string Name);
-    //     FileReader(const char *Name);
+    //     FileReader(std::string Name, TypeRead = TypeRead::Read);
+    //     FileReader(const char *Name, TypeRead = TypeRead::Read);
     //     ~FileReader();
-
-    //     int Read(int Line);
+    //
     //     int ReadLine(int Line);
     // };
 }

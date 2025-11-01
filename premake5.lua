@@ -139,7 +139,7 @@ project "SimpleExample"
 --==========================================
 
     filter "configurations:Debug"
-        defines { "DEBUG", "FRAMELOG_BUILD" }
+        defines { "DEBUG" }
         symbols "On"
         buildoptions {
             "-O0",
@@ -147,7 +147,7 @@ project "SimpleExample"
         }
 
     filter "configurations:Release"
-        defines { "NDEBUG", "FRAMELOG_BUILD" }
+        defines { "NDEBUG" }
         optimize "Speed"
         symbols "Off"
         buildoptions {
@@ -189,7 +189,7 @@ project "FileExample"
 --==========================================
 
     filter "configurations:Debug"
-        defines { "DEBUG", "FRAMELOG_BUILD" }
+        defines { "DEBUG" }
         symbols "On"
         buildoptions {
             "-O0",
@@ -197,7 +197,7 @@ project "FileExample"
         }
 
     filter "configurations:Release"
-        defines { "NDEBUG", "FRAMELOG_BUILD" }
+        defines { "NDEBUG" }
         optimize "Speed"
         symbols "Off"
         buildoptions {
