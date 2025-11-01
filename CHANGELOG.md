@@ -5,13 +5,16 @@ All notable changes to FrameLog will be documented in this file.
 ## [1.1.0-beta] - 2025-10-25
 
 ### Added
-- class Writer
-
-- function WriteLine
-- function Write
-
-- 2 struct TypeRead, TypeWrite
+- Function IsOpen();
+- Function OpenFile(std::string Name, TypeWrite Type);
+- Function CloseFile();
+- Function DeleteFile(std::string Name);
+- Function DeleteFile(bool DeleteLastFileName = false);
+- Function Flush();
+- Function LastFile();
+- Function SizeFile(const std::string& filename);
 ### Fixed
+DelteFile Logic
 
 ### Delete
 
