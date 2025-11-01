@@ -2,13 +2,13 @@ name: "Feature Request"
 about: Suggest a new feature or improvement for FrameLog
 title: "[Feature]: "
 labels: ["enhancement"]
-assignees: ""
+assignees: []
 
 body:
-  - type: textarea
+  - type: input
     attributes:
       label: Summary
-      description: Brief description
+      description: Short description of the feature
       placeholder: Add file logging
     validations:
       required: true
@@ -16,7 +16,7 @@ body:
   - type: textarea
     attributes:
       label: Motivation
-      description: Why is this needed?
+      description: Why is this feature needed?
 
   - type: textarea
     attributes:

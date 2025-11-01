@@ -2,39 +2,41 @@ name: "Bug Report"
 about: Report a bug in FrameLog
 title: "[Bug]: "
 labels: ["bug"]
-assignees: ""
+assignees: []
 
 body:
-  - type: markdown
+  - type: input
     attributes:
-      value: |
-        Thanks for reporting a bug!
+      label: Summary
+      description: Short description of the bug
+      placeholder: Crash when logging
+    validations:
+      required: true
 
   - type: input
     attributes:
       label: Version
-      placeholder: 1.0.0-beta
-
-  - type: textarea
-    attributes:
-      label: Description
-      description: What happened?
-    validations:
-      required: true
+      placeholder: 1.0.0
 
   - type: textarea
     attributes:
       label: Steps to Reproduce
+      description: Describe the steps to reproduce the bug
       placeholder: |
-        1. `Logger log;`
-        2. `log.Add("")`
+        1. Include FrameLog
+        2. Call Logger::Add("")
         3. See error
     validations:
       required: true
 
+  - type: textarea
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen
+
   - type: checkboxes
     attributes:
-      label: Affected platforms
+      label: Affected Platforms
       options:
         - label: Windows
         - label: Linux
