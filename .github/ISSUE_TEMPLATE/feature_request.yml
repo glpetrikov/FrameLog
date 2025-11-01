@@ -28,7 +28,7 @@ body:
       label: Useful for
       options:
         - label: Embedded
-        - label: Games (Fykor)
+        - label: Games
         - label: Desktop apps
         - label: Servers
 
