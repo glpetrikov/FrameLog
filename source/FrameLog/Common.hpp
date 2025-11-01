@@ -14,7 +14,7 @@
 
 namespace FrameLog
 {
-#define FL_VERSION "1.0.0"
+#define FL_VERSION "1.2.0"
 #define FL_STATUS "beta"
 
     namespace Patterns
