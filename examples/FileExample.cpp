@@ -3,8 +3,7 @@
 
 using namespace FrameLog;
 
-int main()
-{
+int main() {
     FileWriter Writer1("Test.txt");
     Writer1.Write("Test");
     Writer1.WriteLine("???");
@@ -18,4 +17,22 @@ int main()
     FileWriter Writer3("Test2.txt", TypeWrite::ReWrite);
     Writer3.Write("Rewrited!");
     Writer3.CloseFile();
+
+    Writer3.OpenFile("Test.txt", TypeWrite::ReWrite);
+
+    for (int i = 0; i < 12; i++) {
+        Writer3.WriteLine("NewLine");
+    }
+
+    Writer3.WriteLine("Request Data");
+
+    for (int i = 0; i < 12; i++) {
+        Writer3.WriteLine("NewLine");
+    }
+    Writer3.CloseFile();
+
+    FileReader Reader("Test.txt");
+    std::string dataFile = Reader.FindLine(13);
+    Logger logger("Main");
+    logger.Custom << dataFile << "\n";
 }

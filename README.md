@@ -2,7 +2,7 @@
 
 FrameLog is a lightweight library for outputting logs to the console in **C++**.
 
-## Version 1.2.0-beta
+## Version 1.3.0-beta
 
 ![Platforms](https://img.shields.io/badge/platforms-cross--platform-lightgrey.svg)
 ![Language](https://img.shields.io/badge/language-C%2B%2B-blue.svg)
@@ -14,7 +14,7 @@ FrameLog is a lightweight library for outputting logs to the console in **C++**.
 
 ## Features 
 
-- **Lightweight** - Only 34.7 KiB when compiled in Release mode
+- **Lightweight** - Only 45.8 KiB when compiled in Release mode
 - **Buffered console output** - Efficient string accumulation before flush
 - **File logging** - Simple file writer with append/overwrite modes
 - **Stream API** - `logger.Custom << "Message " << value << "\n";`
@@ -41,21 +41,21 @@ Any platform with the **standard C++ library**
 FrameLog is **lightweight**:
 Binary Size Comparison:
 
-| Library       | Size          | vs FrameLog   | Language | Notes                    |
-| ------------- | ------------- | ------------- | -------- | ------------------------ |
-| FrameLog      | 34.7 KiB (SO) | 1×            | C++      | Buffered, colors, stream |
-| log.c         | ~50 KiB       | 1.4× bigger   | C        | Minimal                  |
-| easylogging++ | ~150 KiB      | 4.3× bigger   | C++      | Header-only              |
-| plog          | ~200 KiB      | 5.8× bigger   | C++      | Header-only              |
-| g3log         | ~500 KiB      | 14.4× bigger  | C++      | Async, crash-safe        |
-| NanoLog       | ~800 KiB      | 23× bigger    | C++      | Ultra-fast               |
-| quill         | ~1.2 MiB      | 34.6× bigger  | C++      | Low-latency              |
-| zlog          | ~2 MiB        | 57.6× bigger  | C        | Config files             |
-| log4cplus     | ~3 MiB        | 86.5× bigger  | C++      | Java log4j port          |
-| log4cpp       | ~4 MiB        | 115× bigger   | C++      | Apache project           |
-| glog          | ~5 MiB        | 144× bigger   | C++      | Google logging           |
-| spdlog        | 41 MiB (src)  | 1,183× bigger | C++      | Fast, fmt-based          |
-| Boost.Log     | 60+ MiB       | 1,729× bigger | C++      | Full-featured            |
+| Library       | Size          | vs FrameLog | Language | Notes                    |
+| ------------- | ------------- | ----------- | -------- | ------------------------ |
+| FrameLog      | 45.8 KiB (SO) | 1×          | C++      | Buffered, colors, stream |
+| log.c         | ~50 KiB       | 1.1×        | C        | Minimal                  |
+| easylogging++ | ~150 KiB      | 3.3×        | C++      | Header-only              |
+| plog          | ~200 KiB      | 4.4×        | C++      | Header-only              |
+| g3log         | ~500 KiB      | 10.9×       | C++      | Async, crash-safe        |
+| NanoLog       | ~800 KiB      | 17.5×       | C++      | Ultra-fast               |
+| quill         | ~1.2 MiB      | 26.2×       | C++      | Low-latency              |
+| zlog          | ~2 MiB        | 43.7×       | C        | Config files             |
+| log4cplus     | ~3 MiB        | 65.5×       | C++      | Java log4j port          |
+| log4cpp       | ~4 MiB        | 87.3×       | C++      | Apache project           |
+| glog          | ~5 MiB        | 109×        | C++      | Google logging           |
+| spdlog        | 41 MiB (src)  | 895×        | C++      | Fast, fmt-based          |
+| Boost.Log     | 60+ MiB       | 1,310×      | C++      | Full-featured            |
 
 
 *Measured FrameLog: Release builds, x64, premake5, gcc15, make*

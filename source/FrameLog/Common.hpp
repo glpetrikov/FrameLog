@@ -9,19 +9,16 @@
 #include <string>
 
 // Project Files
-#include "Platform.hpp"
 #include "Colors.hpp"
+#include "Platform.hpp"
 
-namespace FrameLog
-{
-#define FL_VERSION "1.2.0"
+namespace FrameLog {
+#define FL_VERSION "1.3.0"
 #define FL_STATUS "beta"
 
-    namespace Patterns
-    {
+    namespace Patterns {
 
-        enum class FLToken
-        {
+        enum class FLToken {
             FLTime,
             FLYear4,
             FLYear2,

@@ -4,14 +4,12 @@
 
 #pragma once
 
+#include "Buffer.hpp"
 #include "Colors.hpp"
 #include "Common.hpp"
-#include "Buffer.hpp"
 
-namespace FrameLog
-{
-    enum class LogLevel
-    {
+namespace FrameLog {
+    enum class LogLevel {
         Print,
         Trace,
         Info,
@@ -19,11 +17,16 @@ namespace FrameLog
         Error,
         Fatal
     };
-    class Logger
-    {
+
+    class Logger {
         std::string LoggerName;
 
     public:
+        Logger(std::string LoggerName);
+        ~Logger();
+
+        FL_API char EndL();
+
         FL_API int Print(std::string Message);
         FL_API int Trace(std::string Message);
         FL_API int Info(std::string Message);
@@ -38,12 +41,13 @@ namespace FrameLog
         FL_API int Errorl(std::string Message);
         FL_API int Fatall(std::string Message);
 
-        struct CustomMessage
-        {
+        struct CustomMessage {
             Logger &logger;
+
             CustomMessage(Logger &l) : logger(l) {}
 
             CustomMessage &operator<<(const std::string &Message);
+            CustomMessage &operator<<(const char &Message);
             CustomMessage &operator<<(const char *Message);
             CustomMessage &operator<<(int Value);
             CustomMessage &operator<<(double Value);
@@ -53,39 +57,32 @@ namespace FrameLog
             CustomMessage &operator<<(Colors::BGColor bgcolor);
         };
 
-        Logger(std::string LoggerName) : Custom(*this)
-        {
-            this->LoggerName = std::move(LoggerName);
-        }
-        ~Logger()
-        {
-        }
-
         CustomMessage Custom; // <<
         FL_API std::string Read();
-        FL_API inline int Flush()
-        {
+
+        FL_API inline int Flush() {
             buffer.Flush();
             return 0;
         }
-        FL_API inline int Free()
-        {
+
+        FL_API inline int Free() {
             buffer.Free();
             return 0;
         }
 
-        FL_API inline int Add(std::string Message)
-        {
+        FL_API int Add(const char Message);
+
+        FL_API inline int Add(std::string Message) {
             buffer.Add(Message);
             return 0;
         }
-        FL_API inline int Add(std::string_view Message)
-        {
+
+        FL_API inline int Add(std::string_view Message) {
             buffer.Add(Message);
             return 0;
         }
-        FL_API inline int Add(const char *Message)
-        {
+
+        FL_API inline int Add(const char *Message) {
             buffer.Add(Message);
             return 0;
         }
@@ -94,8 +91,8 @@ namespace FrameLog
         Buffer buffer;
         int ColorPrint(std::string Message, FrameLog::Colors::Color color, FrameLog::Colors::BGColor backgroundColor, bool NewLine);
     };
-    FL_API inline Logger NewLogger(std::string LoggerName)
-    {
+
+    FL_API inline Logger NewLogger(std::string LoggerName) {
         FrameLog::Logger logger = Logger(LoggerName);
         return logger;
     }

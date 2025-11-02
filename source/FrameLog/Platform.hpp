@@ -9,11 +9,11 @@
     #define FL_WINDOWS
 #elif defined(__APPLE__) && defined(__MACH__)
     #include <TargetConditionals.h>
-#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-    #define FL_IOS
-#else
-    #define FL_MACOS
-#endif
+    #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+        #define FL_IOS
+    #else
+        #define FL_MACOS
+    #endif
 #elif defined(__linux__)
     #define FL_LINUX
 #elif defined(__ANDROID__)
@@ -29,14 +29,14 @@
     #if defined(FRAMELOG_BUILD)
         #define FL_API __declspec(dllexport)
     #else
-#define FL_API __declspec(dllimport)
-#endif
+        #define FL_API __declspec(dllimport)
+    #endif
 #elif defined(FL_MACOS) || defined(FL_LINUX) || defined(FL_UNIX) || defined(FL_ANDROID)
     #if defined(FRAMELOG_BUILD)
         #define FL_API __attribute__((visibility("default")))
-#else
-    #define FL_API
-#endif
+    #else
+        #define FL_API
+    #endif
 #else
     #error "Unsupported or unknown platform detected by FrameLog."
 #endif

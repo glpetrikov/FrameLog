@@ -5,43 +5,53 @@
 #include "Logger.hpp"
 #include "Common.hpp"
 
-namespace FrameLog
-{
+namespace FrameLog {
+
+    Logger::Logger(std::string LoggerName) : Custom(*this) {
+        this->LoggerName = std::move(LoggerName);
+    }
+
+    Logger::~Logger() {
+    }
+
+    char Logger::EndL() {
+        return '\n';
+    }
+
     //============================================================
     // Prints
     //============================================================
-    int Logger::Trace(std::string Message)
-    {
+    int Logger::Trace(std::string Message) {
         ColorPrint(Message, Colors::Color::Graphite, Colors::BGColor::Reset, false);
         return 0;
     }
+
     // --- Print -----
-    int Logger::Print(std::string Message)
-    {
+    int Logger::Print(std::string Message) {
         ColorPrint(Message, Colors::Color::BrightBlue, Colors::BGColor::Reset, false);
         return 0;
     }
+
     // --- Info -----
-    int Logger::Info(std::string Message)
-    {
+    int Logger::Info(std::string Message) {
         ColorPrint(Message, Colors::Color::Green, Colors::BGColor::Reset, false);
         return 0;
     }
+
     // --- Warn -----
-    int Logger::Warn(std::string Message)
-    {
+    int Logger::Warn(std::string Message) {
         ColorPrint(Message, Colors::Color::Yellow, Colors::BGColor::Reset, false);
         return 0;
     }
+
     // --- Error -----
-    int Logger::Error(std::string Message)
-    {
+    int Logger::Error(std::string Message) {
         ColorPrint(Message, Colors::Color::Red, Colors::BGColor::Reset, false);
         return 0;
     }
+
     // --- Fatal -----
-    int Logger::Fatal(std::string Message)
-    {
+    int Logger::Fatal(std::string Message) {
         ColorPrint(Message, Colors::Color::Reset, Colors::BGColor::RedB, false);
         return 0;
     }
@@ -49,103 +59,102 @@ namespace FrameLog
     //============================================================
     // Line Prints
     //============================================================
-    int Logger::Tracel(std::string Message)
-    {
+    int Logger::Tracel(std::string Message) {
         ColorPrint(Message, Colors::Color::Graphite, Colors::BGColor::Reset, true);
         return 0;
     }
+
     // --- Print -----
-    int Logger::Printl(std::string Message)
-    {
+    int Logger::Printl(std::string Message) {
         ColorPrint(Message, Colors::Color::BrightBlue, Colors::BGColor::Reset, true);
         return 0;
     }
+
     // --- Info -----
-    int Logger::Infol(std::string Message)
-    {
+    int Logger::Infol(std::string Message) {
         ColorPrint(Message, Colors::Color::Green, Colors::BGColor::Reset, true);
         return 0;
     }
+
     // --- Warn -----
-    int Logger::Warnl(std::string Message)
-    {
+    int Logger::Warnl(std::string Message) {
         ColorPrint(Message, Colors::Color::Yellow, Colors::BGColor::Reset, true);
         return 0;
     }
+
     // --- Error -----
-    int Logger::Errorl(std::string Message)
-    {
+    int Logger::Errorl(std::string Message) {
         ColorPrint(Message, Colors::Color::Red, Colors::BGColor::Reset, true);
         return 0;
     }
+
     // --- Fatal -----
-    int Logger::Fatall(std::string Message)
-    {
+    int Logger::Fatall(std::string Message) {
         ColorPrint(Message, Colors::Color::Reset, Colors::BGColor::RedB, true);
         return 0;
     }
 
-    Logger::CustomMessage &Logger::CustomMessage::operator<<(const std::string &Message)
-    {
+    Logger::CustomMessage &Logger::CustomMessage::operator<<(const std::string &Message) {
         logger.Add(Message);
         return *this;
     }
 
-    Logger::CustomMessage &Logger::CustomMessage::operator<<(const char *Message)
-    {
+    Logger::CustomMessage &Logger::CustomMessage::operator<<(const char &Message) {
         logger.Add(Message);
         return *this;
     }
 
-    Logger::CustomMessage &Logger::CustomMessage::operator<<(int Value)
-    {
+    Logger::CustomMessage &Logger::CustomMessage::operator<<(const char *Message) {
+        logger.Add(Message);
+        return *this;
+    }
+
+    Logger::CustomMessage &Logger::CustomMessage::operator<<(int Value) {
         logger.Add(std::to_string(Value));
         return *this;
     }
 
-    Logger::CustomMessage &Logger::CustomMessage::operator<<(double Value)
-    {
+    Logger::CustomMessage &Logger::CustomMessage::operator<<(double Value) {
         logger.Add(std::to_string(Value));
         return *this;
     }
 
-    Logger::CustomMessage &Logger::CustomMessage::operator<<(bool Value)
-    {
+    Logger::CustomMessage &Logger::CustomMessage::operator<<(bool Value) {
         logger.Add(Value ? "true" : "false");
         return *this;
     }
 
-    Logger::CustomMessage &Logger::CustomMessage::operator<<(Colors::Style style)
-    {
+    Logger::CustomMessage &Logger::CustomMessage::operator<<(Colors::Style style) {
         logger.Add(Colors::IsColor(style));
         return *this;
     }
 
-    Logger::CustomMessage &Logger::CustomMessage::operator<<(Colors::Color color)
-    {
+    Logger::CustomMessage &Logger::CustomMessage::operator<<(Colors::Color color) {
         logger.Add(Colors::IsColor(color));
         return *this;
     }
 
-    Logger::CustomMessage &Logger::CustomMessage::operator<<(Colors::BGColor bgcolor)
-    {
+    Logger::CustomMessage &Logger::CustomMessage::operator<<(Colors::BGColor bgcolor) {
         logger.Add(Colors::IsColor(bgcolor));
         return *this;
     }
 
-    FL_API std::string Read()
-    {
+    std::string Logger::Read() {
         std::string Result = "";
         std::cin >> Result;
         return Result;
     }
+
+    int Logger::Add(const char Message) {
+        buffer.Add(Message);
+        return 0;
+    }
+
     //============================================================
     // ColorPrint
     //============================================================
-    int Logger::ColorPrint(std::string Message, FrameLog::Colors::Color color, FrameLog::Colors::BGColor backgroundColor, bool NewLine)
-    {
-        if (Message.empty())
-        {
+    int Logger::ColorPrint(std::string Message, FrameLog::Colors::Color color, FrameLog::Colors::BGColor backgroundColor, bool NewLine) {
+        if (Message.empty()) {
             std::cerr << "Logger Error: Message is empty" << std::endl;
             return -1;
         }

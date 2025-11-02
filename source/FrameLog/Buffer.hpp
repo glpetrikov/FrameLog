@@ -4,13 +4,11 @@
 
 #pragma once
 
-#include "Platform.hpp"
 #include "Common.hpp"
+#include "Platform.hpp"
 
-namespace FrameLog
-{
-    class Buffer
-    {
+namespace FrameLog {
+    class Buffer {
     public:
         Buffer();
         ~Buffer();
@@ -18,6 +16,7 @@ namespace FrameLog
         FL_API int Add(std::string Message);
         FL_API int Add(std::string_view Message);
         FL_API int Add(const char *Message);
+        FL_API int Add(const char);
         FL_API int Flush();
         FL_API int Free();
 

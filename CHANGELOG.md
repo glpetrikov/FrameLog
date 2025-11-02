@@ -2,21 +2,22 @@
 
 All notable changes to FrameLog will be documented in this file.
 
-## [1.2.0-beta] - 2025-10-25
+## [1.3.0-beta] - 2025-10-25
 
 ### Added
-- Function IsOpen();
-- Function OpenFile(std::string Name, TypeWrite Type);
-- Function CloseFile();
-- Function DeleteFile(std::string Name);
-- Function DeleteFile(bool DeleteLastFileName = false);
-- Function Flush();
-- Function LastFile();
-- Function SizeFile(const std::string& filename);
+- class FileReader
+-function LastFile();
+-function OpenFile(std::string Name);
+-function CloseFile();
+-function FindLine(int TargetLine);
+-function ReadFile();
+-function ReadFile(std::string Name);
 ### Fixed
 DelteFile Logic
 
+
 ### Delete
+- struct ReadType
 
 ## [Unreleased]
 ### Planned for Beta

@@ -1,0 +1,42 @@
+# .clang-format
+---
+# Base style
+BasedOnStyle: LLVM        # Start from LLVM style
+
+# Indentation settings
+IndentWidth: 4            # Number of spaces per indent level
+TabWidth: 4               # Number of spaces per tab
+UseTab: Never             # Use spaces, not tabs
+
+# Brace style (K&R)
+BreakBeforeBraces: Attach                 # K&R style: brace stays on the same line
+AllowShortIfStatementsOnASingleLine: false  # Short if statements are always expanded
+
+# Switch / case formatting
+IndentCaseLabels: true     # Indent 'case' labels inside switch
+
+# Line length
+ColumnLimit: 0             # No limit for line length
+
+# Namespace formatting
+NamespaceIndentation: All  # Indent contents of namespaces
+
+# Classes and structures
+AccessModifierOffset: -4   # Indent for public/private/protected inside class/struct
+AlignAfterOpenBracket: Align      # Align contents after opening bracket
+TemplateArgumentIndentWidth: 4    # Indentation for template arguments
+
+# Functions
+EmptyLineBeforeAccessModifier: Always   # Always put an empty line before access modifiers
+SeparateDefinitionBlocks: Always        # Put empty lines between function/method definitions
+
+# Preprocessor directives
+IndentPPDirectives: BeforeHash          # Indent preprocessor directives (#if, #define) according to current block
+
+# Spaces
+SpacesInParentheses: false    # No spaces inside parentheses
+SpacesInAngles: false         # No spaces inside angle brackets
+
+# Comments
+FixNamespaceComments: false    # Do not fix namespace comments automatically
+...
