@@ -2,14 +2,15 @@
 
 FrameLog is a lightweight library for outputting logs to the console in **C++**.
 
-## Version 1.3.0-beta
+## Version 1.3.1-beta
 
 ![Platforms](https://img.shields.io/badge/platforms-cross--platform-lightgrey.svg)
 ![Language](https://img.shields.io/badge/language-C%2B%2B-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Status](https://img.shields.io/badge/status-beta-orange.svg)
 
-
+![GitHub Repo stars](https://img.shields.io/github/stars/glpetrikov/FrameLog?style=social)
+![GitHub forks](https://img.shields.io/github/forks/glpetrikov/FrameLog?style=social)
 ![GitHub issues](https://img.shields.io/github/issues/glpetrikov/FrameLog)
 
 ## Features 
@@ -156,22 +157,14 @@ cd Release/
 
 1. Include FrameLog in your code and use it:
 ``` cpp
-#include <FrameLog.hpp>
-#include <iostream>
+#include "FrameLog.hpp"
 
 using namespace FrameLog;
 
-int main()
-{
-    Logger logger = NewLogger("Main");
-    logger.Tracel("Hello, World!");
-    logger.Custom << "Hello World! " << 7534 << "\n";
-    std::string rgb = Colors::RGB(100, 100, 100);
-    logger.Custom << rgb << "Custom Color! " << "\n";
-    logger.Flush();
+int main() {
+    Logger logger("Main");
 
-    FileWriter Writer("Test");
-    Writer.Write("Test\n");
+    logger.Custom << "Hello, FrameLog" << FL_VERSION << "-" << FL_STATUS << logger.EndL();
 }
 ```
 More examples can be found in the examples folder.

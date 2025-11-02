@@ -13,9 +13,6 @@
 #include "Platform.hpp"
 
 namespace FrameLog {
-#define FL_VERSION "1.3.0"
-#define FL_STATUS "beta"
-
     namespace Patterns {
 
         enum class FLToken {
@@ -34,8 +31,10 @@ namespace FrameLog {
             FLMessageType
         };
     }
-}
 
 //============================================================
 // Defines
 //============================================================
+#define FL_VERSION "1.3.1"
+#define FL_STATUS "beta"
+}

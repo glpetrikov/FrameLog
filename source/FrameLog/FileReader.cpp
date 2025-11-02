@@ -26,19 +26,16 @@ namespace FrameLog {
     }
 
     void FileReader::OpenFile(std::string Name) {
-        if (File->is_open()) {
+        if (File && File->is_open()) {
             File->close();
         }
+        delete File;
+        File = nullptr;
+
+        this->File = new std::ifstream(Name);
         this->LastFileName = Name;
-        if (File == nullptr) {
-            File = new std::ifstream(Name);
-            return;
-        } else {
-            if (File) {
-                delete File;
-            }
-            File = new std::ifstream(Name);
-        }
+
+        return;
     }
 
     void FileReader::CloseFile() {

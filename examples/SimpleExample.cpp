@@ -3,9 +3,8 @@
 
 using namespace FrameLog;
 
-int main()
-{
-    Logger logger = NewLogger("Main");
+int main() {
+    Logger logger("Main");
     logger.Tracel("Hello, World!");
     logger.Custom << "Hello World! " << 7534 << "\n";
     std::string rgb = Colors::RGB(100, 100, 100);

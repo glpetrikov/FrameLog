@@ -15,7 +15,7 @@ namespace FrameLog {
         Info,
         Warn,
         Error,
-        Fatal
+        Fatalм
     };
 
     class Logger {
@@ -91,9 +91,4 @@ namespace FrameLog {
         Buffer buffer;
         int ColorPrint(std::string Message, FrameLog::Colors::Color color, FrameLog::Colors::BGColor backgroundColor, bool NewLine);
     };
-
-    FL_API inline Logger NewLogger(std::string LoggerName) {
-        FrameLog::Logger logger = Logger(LoggerName);
-        return logger;
-    }
 }

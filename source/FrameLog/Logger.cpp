@@ -94,6 +94,9 @@ namespace FrameLog {
         return 0;
     }
 
+    //============================================================
+    // Operators
+    //============================================================
     Logger::CustomMessage &Logger::CustomMessage::operator<<(const std::string &Message) {
         logger.Add(Message);
         return *this;
