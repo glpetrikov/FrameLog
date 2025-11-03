@@ -70,26 +70,23 @@ namespace FrameLog {
     }
 
     std::string FileReader::ReadFile() {
-        if (!File || !File->is_open()) {
+        if (!File->is_open()) {
             return "";
         }
 
         std::stringstream temp;
         temp << File->rdbuf();
-        std::string data = temp.str();
-
-        return data;
+        return temp.str();
     }
 
     std::string FileReader::ReadFile(std::string Name) {
         std::ifstream TempFile(Name);
-        if (!TempFile || !TempFile.is_open()) {
+        if (!TempFile.is_open()) {
             return "";
         }
 
         std::stringstream temp;
         temp << TempFile.rdbuf();
-        std::string data = temp.str();
-        return data;
+        return temp.str();
     }
 }

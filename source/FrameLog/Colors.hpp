@@ -33,8 +33,9 @@ namespace FrameLog {
             return std::string(code);
         }
 
-        FL_API enum class Style {
+        enum class Style {
             Reset,
+            Empty,
             Bold,
             Dim,
             Italic,
@@ -43,8 +44,9 @@ namespace FrameLog {
             Reverse
         };
 
-        FL_API enum class Color {
+        enum class Color {
             Reset,
+            Empty,
             Black,
             Graphite,
             White,
@@ -55,9 +57,10 @@ namespace FrameLog {
             BrightBlue,
             Yellow,
         };
-        FL_API enum class BGColor {
+        enum class BGColor {
 
             Reset,
+            Empty,
             BlackB,
             GraphiteB,
             RedB,
@@ -70,28 +73,79 @@ namespace FrameLog {
         FL_API constexpr std::string_view IsColor(Color C) noexcept {
             switch (C) {
                 case Color::Reset:
-                    return "\033[0m";
+                    return "\033[39m";
+                    break;
+
+                case Color::Empty:
+                    return "";
+                    break;
                 // Gray-scale Colors
                 case Color::Black:
                     return "\033[30m";
+                    break;
                 case Color::Graphite:
                     return "\033[90m";
+                    break;
                 case Color::White:
                     return "\033[37m";
+                    break;
 
                 // Standard Colors
                 case Color::Red:
                     return "\033[31m";
+                    break;
                 case Color::Green:
                     return "\033[32m";
+                    break;
                 case Color::Blue:
                     return "\033[34m";
+                    break;
                 case Color::BrightBlue:
                     return "\033[94m";
+                    break;
                 case Color::Yellow:
                     return "\033[33m";
+                    break;
                 default:
                     return "\033[0m";
+                    break;
+            }
+        }
+
+        FL_API constexpr std::string_view IsColor(BGColor BC) noexcept {
+            switch (BC) {
+                case BGColor::Reset:
+                    return "\033[49m";
+                    break;
+
+                case BGColor::Empty:
+                    return "";
+                    break;
+                // Background Colors
+                case BGColor::RedB:
+                    return "\033[41m";
+                    break;
+                case BGColor::BlueB:
+                    return "\033[44m";
+                    break;
+                case BGColor::YellowB:
+                    return "\033[43m";
+                    break;
+                case BGColor::GreenB:
+                    return "\033[42m";
+                    break;
+                case BGColor::WhiteB:
+                    return "\033[47m";
+                    break;
+                case BGColor::GraphiteB:
+                    return "\033[100m";
+                    break;
+                case BGColor::BlackB:
+                    return "\033[40m";
+                    break;
+                default:
+                    return "\033[0m";
+                    break;
             }
         }
 
@@ -100,47 +154,34 @@ namespace FrameLog {
                 // Reset
                 case Style::Reset:
                     return "\033[0m";
+                    break;
+                case Style::Empty:
+                    return "";
+                    break;
 
                 case Style::Blink:
                     return "\033[5m";
+                    break;
                 case Style::Reverse:
                     return "\033[7m";
+                    break;
 
                 // Text Style
                 case Style::Bold:
                     return "\033[1m";
+                    break;
                 case Style::Dim:
                     return "\033[2m";
+                    break;
                 case Style::Italic:
                     return "\033[3m";
+                    break;
                 case Style::Underline:
                     return "\033[4m";
+                    break;
                 default:
                     return "\033[0m";
-            }
-        }
-
-        FL_API constexpr std::string_view IsColor(BGColor BC) noexcept {
-            switch (BC) {
-                case BGColor::Reset:
-                    return "\033[0m";
-                // Background Colors
-                case BGColor::RedB:
-                    return "\033[41m";
-                case BGColor::BlueB:
-                    return "\033[44m";
-                case BGColor::YellowB:
-                    return "\033[43m";
-                case BGColor::GreenB:
-                    return "\033[42m";
-                case BGColor::WhiteB:
-                    return "\033[47m";
-                case BGColor::GraphiteB:
-                    return "\033[100m";
-                case BGColor::BlackB:
-                    return "\033[40m";
-                default:
-                    return "\033[0m";
+                    break;
             }
         }
     }

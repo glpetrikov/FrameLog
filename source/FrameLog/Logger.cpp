@@ -7,7 +7,7 @@
 
 namespace FrameLog {
 
-    Logger::Logger(std::string LoggerName) : Custom(*this) {
+    Logger::Logger(std::string_view LoggerName) : Custom(*this) {
         this->LoggerName = std::move(LoggerName);
     }
 
@@ -22,37 +22,37 @@ namespace FrameLog {
     // Prints
     //============================================================
     int Logger::Trace(std::string Message) {
-        ColorPrint(Message, Colors::Color::Graphite, Colors::BGColor::Reset, false);
+        ColorPrint(Message, Colors::Color::Graphite, Colors::BGColor::Empty, false);
         return 0;
     }
 
     // --- Print -----
     int Logger::Print(std::string Message) {
-        ColorPrint(Message, Colors::Color::BrightBlue, Colors::BGColor::Reset, false);
+        ColorPrint(Message, Colors::Color::BrightBlue, Colors::BGColor::Empty, false);
         return 0;
     }
 
     // --- Info -----
     int Logger::Info(std::string Message) {
-        ColorPrint(Message, Colors::Color::Green, Colors::BGColor::Reset, false);
+        ColorPrint(Message, Colors::Color::Green, Colors::BGColor::Empty, false);
         return 0;
     }
 
     // --- Warn -----
     int Logger::Warn(std::string Message) {
-        ColorPrint(Message, Colors::Color::Yellow, Colors::BGColor::Reset, false);
+        ColorPrint(Message, Colors::Color::Yellow, Colors::BGColor::Empty, false);
         return 0;
     }
 
     // --- Error -----
     int Logger::Error(std::string Message) {
-        ColorPrint(Message, Colors::Color::Red, Colors::BGColor::Reset, false);
+        ColorPrint(Message, Colors::Color::Red, Colors::BGColor::Empty, false);
         return 0;
     }
 
     // --- Fatal -----
     int Logger::Fatal(std::string Message) {
-        ColorPrint(Message, Colors::Color::Reset, Colors::BGColor::RedB, false);
+        ColorPrint(Message, Colors::Color::Empty, Colors::BGColor::RedB, false);
         return 0;
     }
 
@@ -60,37 +60,37 @@ namespace FrameLog {
     // Line Prints
     //============================================================
     int Logger::Tracel(std::string Message) {
-        ColorPrint(Message, Colors::Color::Graphite, Colors::BGColor::Reset, true);
+        ColorPrint(Message, Colors::Color::Graphite, Colors::BGColor::Empty, true);
         return 0;
     }
 
     // --- Print -----
     int Logger::Printl(std::string Message) {
-        ColorPrint(Message, Colors::Color::BrightBlue, Colors::BGColor::Reset, true);
+        ColorPrint(Message, Colors::Color::BrightBlue, Colors::BGColor::Empty, true);
         return 0;
     }
 
     // --- Info -----
     int Logger::Infol(std::string Message) {
-        ColorPrint(Message, Colors::Color::Green, Colors::BGColor::Reset, true);
+        ColorPrint(Message, Colors::Color::Green, Colors::BGColor::Empty, true);
         return 0;
     }
 
     // --- Warn -----
     int Logger::Warnl(std::string Message) {
-        ColorPrint(Message, Colors::Color::Yellow, Colors::BGColor::Reset, true);
+        ColorPrint(Message, Colors::Color::Yellow, Colors::BGColor::Empty, true);
         return 0;
     }
 
     // --- Error -----
     int Logger::Errorl(std::string Message) {
-        ColorPrint(Message, Colors::Color::Red, Colors::BGColor::Reset, true);
+        ColorPrint(Message, Colors::Color::Red, Colors::BGColor::Empty, true);
         return 0;
     }
 
     // --- Fatal -----
     int Logger::Fatall(std::string Message) {
-        ColorPrint(Message, Colors::Color::Reset, Colors::BGColor::RedB, true);
+        ColorPrint(Message, Colors::Color::Empty, Colors::BGColor::RedB, true);
         return 0;
     }
 
@@ -143,13 +143,31 @@ namespace FrameLog {
     }
 
     std::string Logger::Read() {
-        std::string Result = "";
-        std::cin >> Result;
+        std::string Result;
+        std::getline(std::cin, Result);
         return Result;
     }
 
+    //============================================================
+    // Buffer Functions
+    //============================================================
     int Logger::Add(const char Message) {
         buffer.Add(Message);
+        return 0;
+    }
+
+    int Logger::Add(std::string_view Message) {
+        buffer.Add(Message);
+        return 0;
+    }
+
+    int Logger::Flush() {
+        buffer.Flush();
+        return 0;
+    }
+
+    int Logger::Free() {
+        buffer.Free();
         return 0;
     }
 
@@ -161,13 +179,11 @@ namespace FrameLog {
             std::cerr << "Logger Error: Message is empty" << std::endl;
             return -1;
         }
-        std::string_view Color = Colors::IsColor(color);
-        std::string_view BGColor = Colors::IsColor(backgroundColor);
 
-        buffer.Add(Color);
-        buffer.Add(BGColor);
+        buffer.Add(Colors::IsColor(color));
+        buffer.Add(Colors::IsColor(backgroundColor));
         buffer.Add(Message);
-        buffer.Add(IsColor(Colors::Style::Reset));
+        buffer.Add(Colors::IsColor(Colors::Style::Reset));
         buffer.Add(NewLine ? std::string_view("\n") : std::string_view(""));
         return 0;
     }

@@ -34,6 +34,9 @@ Makefile
 
 # Build directories
 build/
+source/build/
+Tests/build/
+examples/build/
 bin/
 obj/
 out/

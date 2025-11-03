@@ -22,7 +22,7 @@ namespace FrameLog {
         std::string LoggerName;
 
     public:
-        Logger(std::string LoggerName);
+        Logger(std::string_view LoggerName);
         ~Logger();
 
         FL_API char EndL();
@@ -57,35 +57,17 @@ namespace FrameLog {
             CustomMessage &operator<<(Colors::BGColor bgcolor);
         };
 
-        CustomMessage Custom; // <<
-        FL_API std::string Read();
-
-        FL_API inline int Flush() {
-            buffer.Flush();
-            return 0;
-        }
-
-        FL_API inline int Free() {
-            buffer.Free();
-            return 0;
-        }
+        CustomMessage Custom; // logger.Custom
 
         FL_API int Add(const char Message);
 
-        FL_API inline int Add(std::string Message) {
-            buffer.Add(Message);
-            return 0;
-        }
+        FL_API int Add(std::string_view Message);
 
-        FL_API inline int Add(std::string_view Message) {
-            buffer.Add(Message);
-            return 0;
-        }
+        FL_API std::string Read();
 
-        FL_API inline int Add(const char *Message) {
-            buffer.Add(Message);
-            return 0;
-        }
+        FL_API int Flush();
+
+        FL_API int Free();
 
     private:
         Buffer buffer;
