@@ -42,8 +42,8 @@ These levels represent different message severities.
 | `Error()` | Error message              | Red            |
 | `Fatal()` | Critical error             | Red background |
 
-Each of the above functions also has a variant ending with `l` (for *Line*), which automatically appends a newline (`'\n'`):
-`Printl()`, `Tracel()`, `Infol()`, `Warnl()`, `Errorl()`, `Fatall()`.
+Each of the above functions also has a variant ending with `Line`, which automatically appends a newline (`'\n'`):
+`PrintLine()`, `TraceLine()`, `InfoLine()`, `WarnLine()`, `ErrorLine()`, `FatalLine()`.
 
 ---
 

@@ -59,37 +59,37 @@ namespace FrameLog {
     //============================================================
     // Line Prints
     //============================================================
-    int Logger::Tracel(std::string Message) {
+    int Logger::TraceLine(std::string Message) {
         ColorPrint(Message, Colors::Color::Graphite, Colors::BGColor::Empty, true);
         return 0;
     }
 
     // --- Print -----
-    int Logger::Printl(std::string Message) {
+    int Logger::PrintLine(std::string Message) {
         ColorPrint(Message, Colors::Color::BrightBlue, Colors::BGColor::Empty, true);
         return 0;
     }
 
     // --- Info -----
-    int Logger::Infol(std::string Message) {
+    int Logger::InfoLine(std::string Message) {
         ColorPrint(Message, Colors::Color::Green, Colors::BGColor::Empty, true);
         return 0;
     }
 
     // --- Warn -----
-    int Logger::Warnl(std::string Message) {
+    int Logger::WarnLine(std::string Message) {
         ColorPrint(Message, Colors::Color::Yellow, Colors::BGColor::Empty, true);
         return 0;
     }
 
     // --- Error -----
-    int Logger::Errorl(std::string Message) {
+    int Logger::ErrorLine(std::string Message) {
         ColorPrint(Message, Colors::Color::Red, Colors::BGColor::Empty, true);
         return 0;
     }
 
     // --- Fatal -----
-    int Logger::Fatall(std::string Message) {
+    int Logger::FatalLine(std::string Message) {
         ColorPrint(Message, Colors::Color::Empty, Colors::BGColor::RedB, true);
         return 0;
     }

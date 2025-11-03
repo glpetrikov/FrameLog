@@ -33,17 +33,6 @@ namespace FrameLog {
             return std::string(code);
         }
 
-        enum class Style {
-            Reset,
-            Empty,
-            Bold,
-            Dim,
-            Italic,
-            Underline,
-            Blink,
-            Reverse
-        };
-
         enum class Color {
             Reset,
             Empty,
@@ -68,6 +57,17 @@ namespace FrameLog {
             YellowB,
             BlueB,
             WhiteB,
+        };
+
+        enum class Style {
+            Reset,
+            Empty,
+            Bold,
+            Dim,
+            Italic,
+            Underline,
+            Blink,
+            Reverse
         };
 
         FL_API constexpr std::string_view IsColor(Color C) noexcept {

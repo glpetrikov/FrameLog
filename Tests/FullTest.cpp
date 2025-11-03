@@ -18,12 +18,12 @@ int main() {
     logger.Fatal("Test");
     logger.Custom << "Test" << logger.EndL();
 
-    logger.Printl("Test");
-    logger.Tracel("Test");
-    logger.Infol("Test");
-    logger.Warnl("Test");
-    logger.Errorl("Test");
-    logger.Fatall("Test");
+    logger.PrintLine("Test");
+    logger.TraceLine("Test");
+    logger.InfoLine("Test");
+    logger.WarnLine("Test");
+    logger.ErrorLine("Test");
+    logger.FatalLine("Test");
 
     logger.Add("Test");
     logger.Add('?');

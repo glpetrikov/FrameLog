@@ -34,12 +34,12 @@ namespace FrameLog {
         FL_API int Error(std::string Message);
         FL_API int Fatal(std::string Message);
 
-        FL_API int Printl(std::string Message);
-        FL_API int Tracel(std::string Message);
-        FL_API int Infol(std::string Message);
-        FL_API int Warnl(std::string Message);
-        FL_API int Errorl(std::string Message);
-        FL_API int Fatall(std::string Message);
+        FL_API int PrintLine(std::string Message);
+        FL_API int TraceLine(std::string Message);
+        FL_API int InfoLine(std::string Message);
+        FL_API int WarnLine(std::string Message);
+        FL_API int ErrorLine(std::string Message);
+        FL_API int FatalLine(std::string Message);
 
         struct CustomMessage {
             Logger &logger;

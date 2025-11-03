@@ -107,8 +107,10 @@ namespace FrameLog {
         if (File && File->is_open()) {
             File->close();
         }
-        delete File;
-        File = nullptr;
+        if (File) {
+            delete File;
+            File = nullptr;
+        }
 
         if (Type == TypeWrite::ReWrite) {
             this->File = new std::ofstream(Name, std::ios_base::out);

@@ -29,8 +29,10 @@ namespace FrameLog {
         if (File && File->is_open()) {
             File->close();
         }
-        delete File;
-        File = nullptr;
+        if (File) {
+            delete File;
+            File = nullptr;
+        }
 
         this->File = new std::ifstream(Name);
         this->LastFileName = Name;

@@ -2,15 +2,13 @@
 
 All notable changes to FrameLog will be documented in this file.
 
-## [1.3.2-beta] - 2025-10-25
+## [1.4.0-beta] - 2025-10-25
 
 ### Added
-- Full Test
+- More Docs
 
 ### Fixed
-- deleted inline functions for readability
-- Color output
-- most Warnings
+- OpenFile Logic
 
 ### Delete
 

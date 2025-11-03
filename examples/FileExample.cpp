@@ -34,5 +34,5 @@ int main() {
     FileReader Reader("Test.txt");
     std::string dataFile = Reader.FindLine(13);
     Logger logger("Main");
-    logger.Custom << dataFile << "\n";
+    logger.Custom << dataFile << logger.EndL();
 }

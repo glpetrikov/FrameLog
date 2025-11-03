@@ -35,6 +35,6 @@ namespace FrameLog {
 //============================================================
 // Defines
 //============================================================
-#define FL_VERSION "1.3.2"
+#define FL_VERSION "1.4.0"
 #define FL_STATUS "beta"
 }
