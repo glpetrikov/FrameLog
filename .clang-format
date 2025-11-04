@@ -40,3 +40,4 @@ SpacesInAngles: false         # No spaces inside angle brackets
 # Comments
 FixNamespaceComments: false    # Do not fix namespace comments automatically
 ...
+

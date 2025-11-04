@@ -2,15 +2,16 @@
 
 All notable changes to FrameLog will be documented in this file.
 
-## [1.4.0-beta] - 2025-10-25
+## [1.5.0-beta] - 2025-10-25
 
 ### Added
-- More Docs
+- FileHandler - (FIleReader/Writer in one Class)
 
 ### Fixed
-- OpenFile Logic
 
 ### Delete
+- FileWriter
+- FileReader
 
 ## [Unreleased]
 ### Planned for Beta

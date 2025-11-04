@@ -15,7 +15,7 @@
 namespace FrameLog {
     namespace Patterns {
 
-        enum class FLToken {
+        enum class Tokens {
             FLTime,
             FLYear4,
             FLYear2,
@@ -35,6 +35,12 @@ namespace FrameLog {
 //============================================================
 // Defines
 //============================================================
-#define FL_VERSION "1.4.0"
+#define FL_VERSION "1.5.0"
 #define FL_STATUS "beta"
+
+#define FL_SIZE 42.9 // KB
+
+#define FL_VERSION_MAJOR 1
+#define FL_VERSION_MINOR 5
+#define FL_VERSION_PATCH 0
 }

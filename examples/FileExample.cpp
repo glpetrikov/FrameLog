@@ -4,35 +4,34 @@
 using namespace FrameLog;
 
 int main() {
-    FileWriter Writer1("Test.txt");
-    Writer1.Write("Test");
-    Writer1.WriteLine("???");
-    Writer1.CloseFile();
+    FileHandler File1("Test.txt");
+    File1.Write("Test");
+    File1.WriteLine("???");
+    File1.CloseFile();
 
-    FileWriter Writer2("Test2.txt", TypeWrite::Write);
-    Writer2.Write("Test");
-    Writer2.WriteLine("???");
-    Writer2.CloseFile();
+    FileHandler File2("Test2.txt", FileHandler::WriteType::Write);
+    File2.Write("Test");
+    File2.WriteLine("???");
+    File2.CloseFile();
 
-    FileWriter Writer3("Test2.txt", TypeWrite::ReWrite);
-    Writer3.Write("Rewrited!");
-    Writer3.CloseFile();
+    FileHandler File3("Test2.txt", FileHandler::WriteType::ReWrite);
+    File3.Write("Rewrited!");
+    File3.CloseFile();
 
-    Writer3.OpenFile("Test.txt", TypeWrite::ReWrite);
-
-    for (int i = 0; i < 12; i++) {
-        Writer3.WriteLine("NewLine");
-    }
-
-    Writer3.WriteLine("Request Data");
+    File3.OpenFile("Test.txt", FileHandler::WriteType::ReWrite);
 
     for (int i = 0; i < 12; i++) {
-        Writer3.WriteLine("NewLine");
+        File3.WriteLine("NewLine");
     }
-    Writer3.CloseFile();
 
-    FileReader Reader("Test.txt");
-    std::string dataFile = Reader.FindLine(13);
+    File3.WriteLine("Request Data");
+
+    for (int i = 0; i < 12; i++) {
+        File3.WriteLine("NewLine");
+    }
+    File3.CloseFile();
+
+    std::string dataFile = File3.FindLine(13);
     Logger logger("Main");
     logger.Custom << dataFile << logger.EndL();
 }

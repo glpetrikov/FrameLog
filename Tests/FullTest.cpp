@@ -1,4 +1,5 @@
 #include <FrameLog.hpp>
+#include <iostream>
 
 int main() {
 
@@ -31,6 +32,53 @@ int main() {
     logger.Flush();
     std::string testInput = logger.Read();
     logger.Custom << "Input: " << testInput << logger.EndL();
+    logger.Flush();
 
-    // --- FileWriter -----
+    // --- FileHandler -----
+    FrameLog::FileHandler File("log.txt", FrameLog::FileHandler::WriteType::ReWrite, FrameLog::FileHandler::ReadType::Read);
+
+    // --- Writes -----
+    File.Write("Test");
+
+    File.WriteLine("TestLine");
+    File.WriteLine("TestLine");
+
+    // --- Opens -----
+    File.CloseFile();
+    File.OpenFile("loopTest.txt", FrameLog::FileHandler::WriteType::ReWrite);
+
+    for (int i = 0; i <= 99; i++) {
+        File.WriteLine(std::string("Test in loop is 100 Messages"));
+    }
+    File.WriteLine("End");
+
+    // --- Read -----
+    std::string line100 = File.FindLine(100);
+    std::cout << line100 << '\n';
+
+    // ---Delete -----
+    File.CloseFile();
+    File.OpenFile("deletedFile.txt");
+    File.DeleteFile();
+
+    File.OpenFile("deletedFile2.txt");
+    File.CloseFile();
+    File.OpenFile("log.txt");
+    File.DeleteFile("deletedFile2.txt");
+
+    // ---Tools -----
+    std::cout << File.IsOpen() << '\n';
+
+    std::cout << "LastFile: " << File.LastFile() << '\n';
+
+    File.Flush();
+    //--- Crash Tests -----
+    File.OpenFile("CrashTest.txt");
+    File.DeleteFile("CrashTest.txt");
+    File.DeleteFile("CrashTest.txt");
+    File.DeleteFile("CrashTest.txt");
+
+    File.OpenFile("CrashTest.txt");
+    File.CloseFile();
+    File.CloseFile();
 }

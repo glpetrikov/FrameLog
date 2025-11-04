@@ -64,31 +64,31 @@ namespace FrameLog {
         return 0;
     }
 
-    // --- Print -----
+    // --- Print Line -----
     int Logger::PrintLine(std::string Message) {
         ColorPrint(Message, Colors::Color::BrightBlue, Colors::BGColor::Empty, true);
         return 0;
     }
 
-    // --- Info -----
+    // --- Info Line -----
     int Logger::InfoLine(std::string Message) {
         ColorPrint(Message, Colors::Color::Green, Colors::BGColor::Empty, true);
         return 0;
     }
 
-    // --- Warn -----
+    // --- Warn Line -----
     int Logger::WarnLine(std::string Message) {
         ColorPrint(Message, Colors::Color::Yellow, Colors::BGColor::Empty, true);
         return 0;
     }
 
-    // --- Error -----
+    // --- Error Line -----
     int Logger::ErrorLine(std::string Message) {
         ColorPrint(Message, Colors::Color::Red, Colors::BGColor::Empty, true);
         return 0;
     }
 
-    // --- Fatal -----
+    // --- Fatal Line -----
     int Logger::FatalLine(std::string Message) {
         ColorPrint(Message, Colors::Color::Empty, Colors::BGColor::RedB, true);
         return 0;

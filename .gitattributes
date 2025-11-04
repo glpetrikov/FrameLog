@@ -2,5 +2,4 @@
 # FrameLog - MIT License (c) 2025 Gleb Petrikov
 #============================================================
 
-
 premake5.lua linguist-language=Lua

@@ -1,7 +1,3 @@
---============================================================
--- FrameLog - MIT License (c) 2025 Gleb Petrikov
---============================================================
-
 workspace "FrameLog"
    architecture "x64"
    configurations { "Debug", "Release" }
@@ -16,9 +12,9 @@ project "FrameLog"
     targetdir "build/%{cfg.buildcfg}"
     objdir "build/obj/%{cfg.buildcfg}"
 
-    files { "source/**.cpp", "source/**.h", "source/**.hpp" }
+    files { "../source/**.cpp", "../source/**.h", "../source/**.hpp" }
 
-    includedirs { "source/", "source/FrameLog/" }
+    includedirs { "../source/", "../source/FrameLog/" }
 
     
     warnings "Extra"
@@ -108,14 +104,10 @@ project "FrameLog"
     filter {}
 
 --==========================================
--- Examples
+-- FileHandler
 --==========================================
 
---==========================================
--- SimpleExample
---==========================================
-
-project "SimpleExample"
+project "FileHandler"
     kind "ConsoleApp"
     language "C++"
     cppdialect "C++20"
@@ -123,11 +115,11 @@ project "SimpleExample"
     targetdir "build/%{cfg.buildcfg}"
     objdir "build/obj/%{cfg.buildcfg}"
 
-    files { "examples/SimpleExample.cpp" }
+    files { "FileHandler.cpp" }
 
     links { "FrameLog" }
     libdirs { "build/%{cfg.buildcfg}" }
-    includedirs { "source", "source/FrameLog" }
+    includedirs { "../source", "../source/FrameLog" }
 
     warnings "Extra"
     symbols "On"
@@ -163,9 +155,10 @@ project "SimpleExample"
     filter {}
 
 --==========================================
--- File Example
+-- FileHandler2
 --==========================================
-project "FileExample"
+
+project "FileHandler2"
     kind "ConsoleApp"
     language "C++"
     cppdialect "C++20"
@@ -173,61 +166,11 @@ project "FileExample"
     targetdir "build/%{cfg.buildcfg}"
     objdir "build/obj/%{cfg.buildcfg}"
 
-    files { "examples/FileExample.cpp" }
+    files { "FileHandler2.cpp" }
 
     links { "FrameLog" }
     libdirs { "build/%{cfg.buildcfg}" }
-    includedirs { "source", "source/FrameLog" }
-
-    warnings "Extra"
-    symbols "On"
-    floatingpoint "Strict"
-    conformancemode "On"
-
---==========================================
--- Configs
---==========================================
-
-    filter "configurations:Debug"
-        defines { "DEBUG" }
-        symbols "On"
-        buildoptions {
-            "-O0",
-            "-g3",
-        }
-
-    filter "configurations:Release"
-        defines { "NDEBUG" }
-        optimize "Speed"
-        symbols "Off"
-        buildoptions {
-            "-march=native",
-            "-O3",
-            "-fno-rtti",
-            "-fno-exceptions",
-            "-fvisibility=hidden",
-            "-flto",               
-            "-s",
-        }
-
-    filter {}
-
---==========================================
--- Hello, FrameLog!
---==========================================
-project "HelloFrameLog"
-    kind "ConsoleApp"
-    language "C++"
-    cppdialect "C++20"
-
-    targetdir "build/%{cfg.buildcfg}"
-    objdir "build/obj/%{cfg.buildcfg}"
-
-    files { "examples/HelloFrameLog.cpp" }
-
-    links { "FrameLog" }
-    libdirs { "build/%{cfg.buildcfg}" }
-    includedirs { "source", "source/FrameLog" }
+    includedirs { "../source", "../source/FrameLog" }
 
     warnings "Extra"
     symbols "On"

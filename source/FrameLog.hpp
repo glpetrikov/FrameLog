@@ -2,6 +2,8 @@
 // FrameLog - MIT License (c) 2025 Gleb Petrikov
 //============================================================
 
+#pragma once
+
 // Common
 #include "FrameLog/Common.hpp"
 
@@ -14,8 +16,7 @@
 #include "FrameLog/Colors.hpp"
 
 // Files
-#include "FrameLog/FileReader.hpp"
-#include "FrameLog/FileWriter.hpp"
+#include "FrameLog/Files/FileHandler.hpp"
 
 // Logger
 #include "FrameLog/Logger.hpp"

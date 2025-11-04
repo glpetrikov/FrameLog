@@ -2,6 +2,8 @@
 // FrameLog - MIT License (c) 2025 Gleb Petrikov
 //============================================================
 
+#include <mutex>
+
 #include "Buffer.hpp"
 #include "Common.hpp"
 
@@ -15,26 +17,8 @@ namespace FrameLog {
         Flush();
     }
 
-    int Buffer::Add(std::string Message) {
-        if (!Message.empty()) {
-            data += Message;
-            return 0;
-        } else {
-            return -1;
-        }
-    }
-
     int Buffer::Add(std::string_view Message) {
         if (!Message.empty()) {
-            data += Message;
-            return 0;
-        } else {
-            return -1;
-        }
-    }
-
-    int Buffer::Add(const char *Message) {
-        if (Message) {
             data += Message;
             return 0;
         } else {
@@ -52,8 +36,10 @@ namespace FrameLog {
     }
 
     int Buffer::Flush() {
+        std::lock_guard<std::mutex> lock(mtx);
         std::cout << Buffer::data;
-        Buffer::data = "";
+        data.clear();
+        data = "";
         return 0;
     }
 

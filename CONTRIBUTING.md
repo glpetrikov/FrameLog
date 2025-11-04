@@ -64,7 +64,6 @@ If you fork FrameLog, here's the style used:
 
 - K&R brace style
 - 4 spaces for indentation
-- Prefix functions with `FL`
 - Add NULL checks for pointers
 - Use PascalCase for names
 

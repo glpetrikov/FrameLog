@@ -2,6 +2,8 @@
 # FrameLog - MIT License (c) 2025 Gleb Petrikov
 #============================================================
 
+.directory
+
 # Binaries
 *.exe
 *.dll

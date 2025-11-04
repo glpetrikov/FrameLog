@@ -11,6 +11,6 @@ int main() {
     logger.Custom << rgb << "Custom Color! " << "\n";
     logger.Flush();
 
-    FileWriter Writer("Test");
-    Writer.Write("Test\n");
+    FileHandler File("Test");
+    File.Write("Test\n");
 }

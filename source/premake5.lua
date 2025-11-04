@@ -18,7 +18,7 @@ project "FrameLog"
 
     files { "**.cpp", "**.h", "**.hpp" }
 
-    includedirs { ".", "FrameLog/" }
+    includedirs { ".", "FrameLog/", "FrameLog/Files/" }
 
     
     warnings "Extra"
