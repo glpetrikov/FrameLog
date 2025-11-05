@@ -2,7 +2,7 @@
 
 All notable changes to FrameLog will be documented in this file.
 
-## [1.5.0-beta] - 2025-10-25
+## [1.5.1-beta] - 2025-10-25
 
 ### Added
 Buffer:
