@@ -12,7 +12,7 @@ namespace FrameLog {
     Buffer::Buffer() {
         std::lock_guard<std::mutex> lock(mtx);
 
-        data.reserve(1024);
+        data.reserve(4096);
     }
 
     Buffer::~Buffer() {
@@ -25,7 +25,7 @@ namespace FrameLog {
         std::lock_guard<std::mutex> lock(mtx);
 
         if (!Text.empty()) {
-            data += Text;
+            data.append(Text.data(), Text.size());
             return true;
         } else {
             return false;
