@@ -162,12 +162,14 @@ namespace FrameLog {
     }
 
     int Logger::Flush() {
-        buffer.Flush();
+        std::string data = buffer.GetData();
+        std::cout << data;
+        buffer.Clear();
         return 0;
     }
 
     int Logger::Free() {
-        buffer.Free();
+        buffer.Clear();
         return 0;
     }
 

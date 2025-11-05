@@ -4,8 +4,9 @@
 
 #pragma once
 
-#include "Common.hpp"
 #include "Platform.hpp"
+
+#include "Common.hpp"
 
 namespace FrameLog {
     class Logger; // forward declaration

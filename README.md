@@ -19,7 +19,7 @@ FrameLog is a lightweight library for outputting logs to the console in **C++**.
 
 ## Features 
 
-- **Lightweight** - Only 42.9 KiB when compiled in Release mode
+- **Lightweight** - Only 42.8 KiB when compiled in Release mode
 - **Buffered console output** - Efficient string accumulation before flush
 - **File logging** - Simple file writer with append/overwrite modes
 - **Stream API** - `logger.Custom << "Message " << value << "\n";`
@@ -52,7 +52,7 @@ Binary Size Comparison:
 
 | Library       | Size (KiB) | vs FrameLog (×) | Language | Notes                          |
 | ------------- | ---------- | --------------- | -------- | ------------------------------ |
-| FrameLog      | 42.9       | 1.0×            | C++      | Buffered, colors, stream       |
+| FrameLog      | 42.8       | 1.0×            | C++      | Buffered, colors, stream       |
 | log.c         | 50.0       | 1.2×            | C        | Minimal                        |
 | easylogging++ | 150.0      | 3.5×            | C++      | Header-only                    |
 | plog          | 200.0      | 4.7×            | C++      | Header-only                    |

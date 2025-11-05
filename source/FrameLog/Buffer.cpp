@@ -10,41 +10,50 @@
 namespace FrameLog {
 
     Buffer::Buffer() {
+        std::lock_guard<std::mutex> lock(mtx);
+
         data.reserve(1024);
     }
 
     Buffer::~Buffer() {
-        Flush();
-    }
-
-    int Buffer::Add(std::string_view Message) {
-        if (!Message.empty()) {
-            data += Message;
-            return 0;
-        } else {
-            return -1;
-        }
-    }
-
-    int Buffer::Add(const char Message) {
-        if (Message) {
-            data += Message;
-            return 0;
-        } else {
-            return -1;
-        }
-    }
-
-    int Buffer::Flush() {
         std::lock_guard<std::mutex> lock(mtx);
-        std::cout << Buffer::data;
+
+        data.clear();
+    }
+
+    bool Buffer::Add(std::string_view Text) {
+        std::lock_guard<std::mutex> lock(mtx);
+
+        if (!Text.empty()) {
+            data += Text;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    bool Buffer::Add(const char Text) {
+        std::lock_guard<std::mutex> lock(mtx);
+
+        if (Text) {
+            data += Text;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    std::string Buffer::GetData() {
+        std::lock_guard<std::mutex> lock(mtx);
+
+        return data;
+    }
+
+    bool Buffer::Clear() {
+        std::lock_guard<std::mutex> lock(mtx);
+
         data.clear();
         data = "";
-        return 0;
-    }
-
-    int Buffer::Free() {
-        Buffer::data = "";
-        return 0;
+        return true;
     }
 }
