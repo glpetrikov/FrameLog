@@ -117,7 +117,4 @@ int main() {
         std::cout << "File size:  " << (file_size / (1024.0 * 1024.0)) << " MB\n";
         std::cout << "Write speed: " << (file_size / (1024.0 * 1024.0)) / (duration / 1000.0) << " MB/s\n\n";
     }
-
-    std::cout << "=== Summary ===\n";
-    std::cout << "Bottleneck identified: GetTimestamp() is ~10-40x slower than pure write\n";
 }

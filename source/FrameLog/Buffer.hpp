@@ -19,7 +19,7 @@ namespace FrameLog {
 
         FRAMELOG_API bool Add(std::string_view Message);
         FRAMELOG_API bool Add(const char);
-        FRAMELOG_API std::string GetData();
+        FRAMELOG_API std::string_view GetData();
         FRAMELOG_API bool Clear();
 
     private:

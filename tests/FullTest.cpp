@@ -45,7 +45,7 @@ int main() {
 
     // --- Opens -----
     File.CloseFile();
-    File.OpenFile("loopTest.txt", FrameLog::FileHandler::WriteType::ReWrite);
+    File.SetFile("loopTest.txt", FrameLog::FileHandler::WriteType::ReWrite);
 
     for (int i = 0; i <= 99; i++) {
         File.WriteLine(std::string("Test in loop is 100 Messages"));
@@ -58,12 +58,12 @@ int main() {
 
     // ---Delete -----
     File.CloseFile();
-    File.OpenFile("deletedFile.txt");
+    File.SetFile("deletedFile.txt");
     File.DeleteFile();
 
-    File.OpenFile("deletedFile2.txt");
+    File.SetFile("deletedFile2.txt");
     File.CloseFile();
-    File.OpenFile("log.txt");
+    File.SetFile("log.txt");
     File.DeleteFile("deletedFile2.txt");
 
     // ---Tools -----
@@ -73,12 +73,12 @@ int main() {
 
     File.Flush();
     //--- Crash Tests -----
-    File.OpenFile("CrashTest.txt");
+    File.SetFile("CrashTest.txt");
     File.DeleteFile("CrashTest.txt");
     File.DeleteFile("CrashTest.txt");
     File.DeleteFile("CrashTest.txt");
 
-    File.OpenFile("CrashTest.txt");
+    File.SetFile("CrashTest.txt");
     File.CloseFile();
     File.CloseFile();
 }

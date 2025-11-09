@@ -16,9 +16,8 @@ namespace FrameLog {
     }
 
     Buffer::~Buffer() {
-        std::lock_guard<std::mutex> lock(mtx);
-
         data.clear();
+        data.shrink_to_fit();
     }
 
     bool Buffer::Add(std::string_view Text) {
@@ -43,17 +42,17 @@ namespace FrameLog {
         }
     }
 
-    std::string Buffer::GetData() {
+    std::string_view Buffer::GetData() {
         std::lock_guard<std::mutex> lock(mtx);
 
-        return data;
+        return std::string_view(data);
     }
 
     bool Buffer::Clear() {
         std::lock_guard<std::mutex> lock(mtx);
 
         data.clear();
-        data = "";
+        data.shrink_to_fit();
         return true;
     }
 }

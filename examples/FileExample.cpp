@@ -18,7 +18,7 @@ int main() {
     File3.Write("Rewrited!");
     File3.CloseFile();
 
-    File3.OpenFile("Test.txt", FileHandler::WriteType::ReWrite);
+    File3.SetFile("Test.txt", FileHandler::WriteType::ReWrite);
 
     for (int i = 0; i < 12; i++) {
         File3.WriteLine("NewLine");
