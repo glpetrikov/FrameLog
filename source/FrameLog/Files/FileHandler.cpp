@@ -24,6 +24,10 @@ namespace FrameLog {
         }
     }
 
+    // ==============================
+    // FileWriter
+    // ==============================
+
     bool FileHandler::Write(std::string_view Message) {
         if (File && File.is_open()) {
             File << Message;
@@ -41,6 +45,10 @@ namespace FrameLog {
             return false;
         }
     }
+
+    // ==============================
+    // FileReader
+    // ==============================
 
     std::string FileHandler::FindLine(int TargetLine) {
 
@@ -65,7 +73,75 @@ namespace FrameLog {
         return "Not find target String";
     }
 
-    bool FileHandler::OpenFile(std::string_view Name, FileHandler::WriteType Writetype, FileHandler::ReadType Readtype) {
+    std::string FileHandler::FindLine(int TargetLine, std::string FileName) {
+        std::fstream file(FileName);
+        TargetLine++;
+
+        if (!file || !file.is_open()) {
+            return "File Not Opened";
+        }
+
+        file.clear();
+        file.seekg(0);
+
+        std::string Line;
+        int CurrentLine = 1;
+
+        while (std::getline(file, Line)) {
+            if (CurrentLine == TargetLine) {
+                return Line;
+            }
+            CurrentLine++;
+        }
+        return "Not find target String";
+    }
+
+    std::string FileHandler::FindLine(int TargetLine, std::fstream &file) {
+        TargetLine++;
+
+        if (!file || !file.is_open()) {
+            return "File Not Opened";
+        }
+
+        file.clear();
+        file.seekg(0);
+
+        std::string Line;
+        int CurrentLine = 1;
+
+        while (std::getline(file, Line)) {
+            if (CurrentLine == TargetLine) {
+                return Line;
+            }
+            CurrentLine++;
+        }
+        return "Not find target String";
+    }
+
+    std::string FileHandler::ReadFile() {
+        std::ostringstream buffer;
+        buffer << this->File.rdbuf();
+        buffer.str();
+    }
+
+    std::string FileHandler::ReadFile(std::fstream &file) {
+        std::ostringstream buffer;
+        buffer << file.rdbuf();
+        return buffer.str();
+    }
+
+    std::string FileHandler::ReadFile(std::string fileName) {
+        std::fstream file(fileName);
+        std::ostringstream buffer;
+        buffer << file.rdbuf();
+        return buffer.str();
+    }
+
+    // ==============================
+    // Tools
+    // ==============================
+
+    bool FileHandler::SetFile(std::string_view Name, FileHandler::WriteType Writetype, FileHandler::ReadType Readtype) {
         if (File && File.is_open()) {
             File.close();
         }
