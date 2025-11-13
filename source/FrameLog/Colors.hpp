@@ -47,6 +47,7 @@ namespace FrameLog {
             BrightBlue,
             Yellow,
         };
+        
         enum class BGColor {
 
             Reset,

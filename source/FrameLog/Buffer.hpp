@@ -14,6 +14,7 @@ namespace FrameLog {
         std::mutex mtx;
 
     public:
+    
         FRAMELOG_API Buffer();
         FRAMELOG_API ~Buffer();
 

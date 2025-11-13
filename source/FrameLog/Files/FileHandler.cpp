@@ -121,7 +121,7 @@ namespace FrameLog {
     std::string FileHandler::ReadFile() {
         std::ostringstream buffer;
         buffer << this->File.rdbuf();
-        buffer.str();
+        return buffer.str();
     }
 
     std::string FileHandler::ReadFile(std::fstream &file) {

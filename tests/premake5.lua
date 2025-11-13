@@ -134,8 +134,8 @@ project "FullTest"
         defines { "DEBUG" }
         symbols "On"
         buildoptions {
-            "-O0",
-            "-g3",
+            "-march=native",
+            "-O3"
         }
 
     filter "configurations:Release"
