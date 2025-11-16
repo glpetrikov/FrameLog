@@ -73,9 +73,8 @@ Binary Size Comparison:
 
 
 **Why so small?**
-- one C++ format
+- one C++ Template in Logger
 - Minimal dependencies (only std)
-- Efficient buffer management
 
 **Perfect for:**
 - Docker containers (minimal images)
