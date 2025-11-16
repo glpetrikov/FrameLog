@@ -2,7 +2,7 @@
 
 FrameLog is a lightweight library for outputting logs to the console in **C++**.
 
-## Version 1.5.1-beta
+## Version 1.6.1-beta
 
 ![Platforms](https://img.shields.io/badge/platforms-cross--platform-lightgrey.svg)
 ![Language](https://img.shields.io/badge/language-C%2B%2B-blue.svg)
@@ -73,7 +73,7 @@ Binary Size Comparison:
 
 
 **Why so small?**
-- no C++ templates
+- one C++ format
 - Minimal dependencies (only std)
 - Efficient buffer management
 
@@ -196,6 +196,7 @@ See the "Building" section above.
 - Base Custom format patterns
 - Base Output pattern scanner
 - File Log
+- Minimal Log Level
 
 ### Release (Target: Q2-Q3 2026) 
 - full-fledged Custom format patterns

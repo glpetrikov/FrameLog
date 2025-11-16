@@ -2,6 +2,8 @@
 // FrameLog - MIT License (c) 2025 Gleb Petrikov
 //============================================================
 
+#include <format>
+
 #include "Logger.hpp"
 #include "Common.hpp"
 
@@ -18,41 +20,57 @@ namespace FrameLog {
         return '\n';
     }
 
+    void Logger::SetMinimalLogLevel(LogLevel MinimalLogLevel){
+        MinimalLevel = MinimalLogLevel;
+    }
+
     //============================================================
     // Prints
     //============================================================
     int Logger::Trace(std::string Message) {
-        ColorPrint(Message, Colors::Color::Graphite, Colors::BGColor::Empty, false);
+        if(IsPrinting(LogLevel::Trace, MinimalLevel)){
+            ColorPrint(Message, Colors::Color::Graphite, Colors::BGColor::Empty, false);
+        }
         return 0;
     }
 
     // --- Print -----
     int Logger::Print(std::string Message) {
-        ColorPrint(Message, Colors::Color::BrightBlue, Colors::BGColor::Empty, false);
+        if(IsPrinting(LogLevel::Print, MinimalLevel)){
+            ColorPrint(Message, Colors::Color::BrightBlue, Colors::BGColor::Empty, false);
+        }
         return 0;
     }
 
     // --- Info -----
     int Logger::Info(std::string Message) {
-        ColorPrint(Message, Colors::Color::Green, Colors::BGColor::Empty, false);
+        if(IsPrinting(LogLevel::Info, MinimalLevel)){
+            ColorPrint(Message, Colors::Color::Green, Colors::BGColor::Empty, false);
+        }
         return 0;
     }
 
     // --- Warn -----
     int Logger::Warn(std::string Message) {
-        ColorPrint(Message, Colors::Color::Yellow, Colors::BGColor::Empty, false);
+        if(IsPrinting(LogLevel::Warn, MinimalLevel)){
+            ColorPrint(Message, Colors::Color::Yellow, Colors::BGColor::Empty, false);
+        }
         return 0;
     }
 
     // --- Error -----
     int Logger::Error(std::string Message) {
-        ColorPrint(Message, Colors::Color::Red, Colors::BGColor::Empty, false);
+        if(IsPrinting(LogLevel::Error, MinimalLevel)){
+            ColorPrint(Message, Colors::Color::Red, Colors::BGColor::Empty, false);
+        }
         return 0;
     }
 
     // --- Fatal -----
     int Logger::Fatal(std::string Message) {
-        ColorPrint(Message, Colors::Color::Empty, Colors::BGColor::RedB, false);
+        if(IsPrinting(LogLevel::Fatal, MinimalLevel)){
+            ColorPrint(Message, Colors::Color::Empty, Colors::BGColor::RedB, false);
+        }
         return 0;
     }
 
@@ -60,37 +78,49 @@ namespace FrameLog {
     // Line Prints
     //============================================================
     int Logger::TraceLine(std::string Message) {
-        ColorPrint(Message, Colors::Color::Graphite, Colors::BGColor::Empty, true);
+        if(IsPrinting(LogLevel::Trace, MinimalLevel)){
+            ColorPrint(Message, Colors::Color::Graphite, Colors::BGColor::Empty, true);
+        }
         return 0;
     }
 
     // --- Print Line -----
     int Logger::PrintLine(std::string Message) {
-        ColorPrint(Message, Colors::Color::BrightBlue, Colors::BGColor::Empty, true);
+        if(IsPrinting(LogLevel::Print, MinimalLevel)){
+            ColorPrint(Message, Colors::Color::BrightBlue, Colors::BGColor::Empty, true);
+        }
         return 0;
     }
 
     // --- Info Line -----
     int Logger::InfoLine(std::string Message) {
-        ColorPrint(Message, Colors::Color::Green, Colors::BGColor::Empty, true);
+        if(IsPrinting(LogLevel::Info, MinimalLevel)){
+            ColorPrint(Message, Colors::Color::Green, Colors::BGColor::Empty, true);
+        }
         return 0;
     }
 
     // --- Warn Line -----
     int Logger::WarnLine(std::string Message) {
-        ColorPrint(Message, Colors::Color::Yellow, Colors::BGColor::Empty, true);
+        if(IsPrinting(LogLevel::Warn, MinimalLevel)){
+            ColorPrint(Message, Colors::Color::Yellow, Colors::BGColor::Empty, true);
+        }
         return 0;
     }
 
     // --- Error Line -----
     int Logger::ErrorLine(std::string Message) {
-        ColorPrint(Message, Colors::Color::Red, Colors::BGColor::Empty, true);
+        if(IsPrinting(LogLevel::Error, MinimalLevel)){
+            ColorPrint(Message, Colors::Color::Red, Colors::BGColor::Empty, true);
+        }
         return 0;
     }
 
     // --- Fatal Line -----
     int Logger::FatalLine(std::string Message) {
+        if(IsPrinting(LogLevel::Fatal, MinimalLevel)){
         ColorPrint(Message, Colors::Color::Empty, Colors::BGColor::RedB, true);
+        }
         return 0;
     }
 
@@ -188,5 +218,10 @@ namespace FrameLog {
         buffer.Add(Colors::IsColor(Colors::Style::Reset));
         buffer.Add(NewLine ? std::string_view("\n") : std::string_view(""));
         return 0;
+    }
+
+// IsPrinting
+    bool IsPrinting(LogLevel Level, LogLevel MinimalLogLevel){
+        return static_cast<int>(Level) >= static_cast<int>(MinimalLogLevel);
     }
 }

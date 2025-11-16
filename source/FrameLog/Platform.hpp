@@ -28,14 +28,18 @@
 #if defined(FL_WINDOWS)
     #if defined(FRAMELOG_BUILD)
         #define FL_API __declspec(dllexport)
+        #define FRAMELOG_API __declspec(dllexport)
     #else
         #define FL_API __declspec(dllimport)
+        #define FRAMELOG_API __declspec(dllimport)
     #endif
 #elif defined(FL_MACOS) || defined(FL_LINUX) || defined(FL_UNIX) || defined(FL_ANDROID)
     #if defined(FRAMELOG_BUILD)
         #define FL_API __attribute__((visibility("default")))
+        #define FRAMELOG_API __attribute__((visibility("default")))
     #else
         #define FL_API
+        #define FRAMELOG_API
     #endif
 #else
     #error "Unsupported or unknown platform detected by FrameLog."

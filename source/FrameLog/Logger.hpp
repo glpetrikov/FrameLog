@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <format>
+
 #include "Buffer.hpp"
 #include "Colors.hpp"
 #include "Common.hpp"
@@ -15,15 +17,18 @@ namespace FrameLog {
         Info,
         Warn,
         Error,
-        Fatalм
+        Fatal
     };
 
     class Logger {
         std::string LoggerName;
+        LogLevel MinimalLevel = LogLevel::Print;
 
     public:
         Logger(std::string_view LoggerName);
         ~Logger();
+
+        FL_API void SetMinimalLogLevel(LogLevel MinimalLogLevel);
 
         FL_API char EndL();
 
@@ -69,8 +74,15 @@ namespace FrameLog {
 
         FL_API int Free();
 
+        template<typename... Args>
+        inline static std::string Format(std::format_string<Args...> fmt, Args&&... args) {
+            return std::format(fmt, std::forward<Args>(args)...);
+        }
+
     private:
         Buffer buffer;
         int ColorPrint(std::string Message, FrameLog::Colors::Color color, FrameLog::Colors::BGColor backgroundColor, bool NewLine);
     };
+
+    FL_API bool IsPrinting(LogLevel Level, LogLevel MinimalLogLevel);
 }

@@ -9,6 +9,9 @@ int main() {
     for (int i = 0; i < 15; i++) {
         test += "Test Test";
     }
+    int formattest = 42;
+
+    logger.TraceLine(logger.Format("Test Format, Int = {}", formattest));
 
     // --- Logger -----
     logger.Print("Test");
