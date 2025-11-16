@@ -23,12 +23,22 @@ namespace FrameLog {
     class Logger {
         std::string LoggerName;
         LogLevel MinimalLevel = LogLevel::Print;
+        bool IsPrintingLoggerName = true;
 
     public:
         Logger(std::string_view LoggerName);
         ~Logger();
 
         FL_API void SetMinimalLogLevel(LogLevel MinimalLogLevel);
+
+        inline void SetIsPrintingLoggerName(bool Is){
+            if(Is){
+                IsPrintingLoggerName = true;
+            }
+            else{
+                IsPrintingLoggerName = false;
+            }
+        }
 
         FL_API char EndL();
 

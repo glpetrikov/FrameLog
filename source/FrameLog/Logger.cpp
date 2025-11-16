@@ -214,6 +214,7 @@ namespace FrameLog {
 
         buffer.Add(Colors::IsColor(color));
         buffer.Add(Colors::IsColor(backgroundColor));
+        buffer.Add("["+ LoggerName + "]" + ": ");
         buffer.Add(Message);
         buffer.Add(Colors::IsColor(Colors::Style::Reset));
         buffer.Add(NewLine ? std::string_view("\n") : std::string_view(""));
