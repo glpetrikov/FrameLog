@@ -104,10 +104,10 @@ cd Release && ./sandbox
 cd examples
 
 # Debug (replace C/path/to/FrameLog with your installation path)
-g++ -o example SimpleExample.cpp -IC/path/to/FrameLog/source/ -DFL_ENABLE_LOGS=1
+g++ -o example SimpleExample.cpp -IC/path/to/FrameLog/source/
 
 # Release (replace C/path/to/FrameLog with your installation path)
-g++ -o example SimpleExample.cpp -IC/path/to/FrameLog/source/ -DFL_ENABLE_LOGS=0
+g++ -o example SimpleExample.cpp -IC/path/to/FrameLog/source/
 
 ./example.exe
 ```
@@ -132,10 +132,10 @@ cd Release/
 cd examples
 
 # Debug (replace /path/to/FrameLog with your installation path)
-g++ -o example SimpleExample.cpp -I/path/to/FrameLog/source/ -DFL_ENABLE_LOGS=1
+g++ -o example SimpleExample.cpp -I/path/to/FrameLog/source/
 
 # Release (replace /path/to/FrameLog with your installation path)
-g++ -o example SimpleExample.cpp -I/path/to/FrameLog/source/ -DFL_ENABLE_LOGS=0
+g++ -o example SimpleExample.cpp -I/path/to/FrameLog/source/
 
 ./example
 ```
