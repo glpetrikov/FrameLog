@@ -38,7 +38,7 @@ namespace FrameLog {
 #define FL_VERSION "1.6.1"
 #define FL_STATUS "beta"
 
-#define FL_SIZE 42.8 // KB
+#define FL_SIZE 50.9 // KB
 
 #define FL_VERSION_MAJOR 1
 #define FL_VERSION_MINOR 6
