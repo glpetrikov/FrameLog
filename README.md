@@ -1,6 +1,6 @@
 # FrameLog
 
-FrameLog is a lightweight library for outputting logs to the console in **C++**.
+FrameLog is a lightweight library for outputting logs to the console and file in **C++**.
 
 ## Version 1.6.1-beta
 

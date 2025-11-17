@@ -32,12 +32,7 @@ namespace FrameLog {
         FL_API void SetMinimalLogLevel(LogLevel MinimalLogLevel);
 
         inline void SetIsPrintingLoggerName(bool Is){
-            if(Is){
-                IsPrintingLoggerName = true;
-            }
-            else{
-                IsPrintingLoggerName = false;
-            }
+                IsPrintingLoggerName = Is;
         }
 
         FL_API char EndL();
