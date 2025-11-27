@@ -13,6 +13,9 @@
 *.obj
 *.o
 
+*.tar.tz
+*.zip
+
 # Visual Studio
 .vs/
 *.vcxproj
