@@ -9,7 +9,7 @@ FrameLog is a lightweight library for outputting logs to the console and file in
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Status](https://img.shields.io/badge/status-beta-orange.svg)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Size](https://img.shields.io/badge/Size-50.8_KiB-green.svg)]()
+[![Size](https://img.shields.io/badge/Size-75.0_KiB-green.svg)]()
 [![C++](https://img.shields.io/badge/C%2B%2B-17%2B-blue.svg)]()
 
 
