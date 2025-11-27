@@ -4,15 +4,15 @@ FrameLog is a lightweight library for outputting logs to the console and file in
 
 ## Version 1.7.0-release
 
-![Platforms](https://img.shields.io/badge/platforms-cross--platform-lightgrey.svg)
+
 ![Language](https://img.shields.io/badge/language-C%2B%2B-blue.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Status](https://img.shields.io/badge/status-beta-orange.svg)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Size](https://img.shields.io/badge/Size-75.0_KiB-green.svg)]()
+![License](https://img.shields.io/badge/license-MIT-greeen.svg)
+
+![Status](https://img.shields.io/badge/status-Release-lightgrey.svg)
+[![Size](https://img.shields.io/badge/Size-75.0_KiB-blue.svg)]()
 [![C++](https://img.shields.io/badge/C%2B%2B-17%2B-blue.svg)]()
 
-
+\
 ![GitHub Repo stars](https://img.shields.io/github/stars/glpetrikov/FrameLog?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/glpetrikov/FrameLog?style=social)
 ![GitHub issues](https://img.shields.io/github/issues/glpetrikov/FrameLog)
