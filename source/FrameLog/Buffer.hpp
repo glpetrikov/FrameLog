@@ -22,6 +22,8 @@ namespace FrameLog {
         FRAMELOG_API bool Add(const char);
         FRAMELOG_API std::string_view GetData();
         FRAMELOG_API bool Clear();
+        FRAMELOG_API bool Clean();
+        FRAMELOG_API size_t GetSize();
 
     private:
         std::string data;

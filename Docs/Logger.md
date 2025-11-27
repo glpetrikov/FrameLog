@@ -90,3 +90,43 @@ Used at the end of a custom log chain to mark a line break or trigger output.
 | `Free()`                | Clears and releases all buffer memory         |
 
 ---
+#### Patterns
+
+SetPattern accepts a std::string with the output format. 
+After calling it, all messages will have the new format. 
+If you call it again, the format will be replaced with 
+the new one.
+
+| Specifier | Description                   | Example Output  |
+| --------- | ----------------------------- | --------------- |
+| `%v`      | Message (the log text itself) | `"Hello world"` |
+| `%n`      | Logger name                   | `"Renderer"`    |
+| `%l`      | Log level (full name)         | `"INFO"`        |
+| `%L`      | Log level (first letter only) | `"I"`           |
+
+| Specifier | Description       | Example Output |
+| --------- | ----------------- | -------------- |
+| `%T`      | Time (HH:MM:SS)   | `"09:30:45"`   |
+| `%H`      | Hour (24h format) | `"09"`         |
+| `%M`      | Minutes           | `"30"`         |
+| `%S`      | Seconds           | `"45"`         |
+| `%e`      | Milliseconds      | `"123"`        |
+
+| Specifier | Description       | Example Output          |
+| --------- | ----------------- | ----------------------- |
+| `%D`      | Date (YYYY.MM.DD) | `"2025.11.27"`          |
+| `%F`      | Full datetime     | `"2025.11.27 09:30:45"` |
+| `%Y`      | Year (4 digits)   | `"2025"`                |
+| `%m`      | Month (2 digits)  | `"11"`                  |
+| `%d`      | Day (2 digits)    | `"27"`                  |
+
+| Specifier | Description | Action                               |
+| --------- | ----------- | ------------------------------------ |
+| `%^`      | Color start | Enables color according to log level |
+| `%$`      | Color end   | Resets ANSI color                    |
+
+| Specifier | Description            | Example Output     |
+| --------- | ---------------------- | ------------------ |
+| `%t`      | Thread ID              | `"0x7f8a4c001700"` |
+| `%P`      | Process ID             | `"12345"`          |
+| `%%`      | Literal `%` (escaping) | `"%"`              |

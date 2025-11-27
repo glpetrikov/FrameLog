@@ -1,1 +1,0 @@
-# FrameLog FileWriter API

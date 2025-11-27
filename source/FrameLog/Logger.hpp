@@ -5,6 +5,8 @@
 #pragma once
 
 #include <format>
+#include <chrono>
+#include <ctime>
 
 #include "Buffer.hpp"
 #include "Colors.hpp"
@@ -12,8 +14,8 @@
 
 namespace FrameLog {
     enum class LogLevel {
-        Print,
         Trace,
+        Print,
         Info,
         Warn,
         Error,
@@ -21,18 +23,15 @@ namespace FrameLog {
     };
 
     class Logger {
-        std::string LoggerName;
-        LogLevel MinimalLevel = LogLevel::Print;
-        bool IsPrintingLoggerName = true;
-
     public:
         Logger(std::string_view LoggerName);
         ~Logger();
 
         FL_API void SetMinimalLogLevel(LogLevel MinimalLogLevel);
+        FL_API void SetPattern(const std::string& pattern);
 
         inline void SetIsPrintingLoggerName(bool Is){
-                IsPrintingLoggerName = Is;
+            IsPrintingLoggerName = Is;
         }
 
         FL_API char EndL();
@@ -67,16 +66,12 @@ namespace FrameLog {
             CustomMessage &operator<<(Colors::BGColor bgcolor);
         };
 
-        CustomMessage Custom; // logger.Custom
+        CustomMessage Custom;
 
         FL_API int Add(const char Message);
-
         FL_API int Add(std::string_view Message);
-
         FL_API std::string Read();
-
         FL_API int Flush();
-
         FL_API int Free();
 
         template<typename... Args>
@@ -86,7 +81,22 @@ namespace FrameLog {
 
     private:
         Buffer buffer;
-        int ColorPrint(std::string Message, FrameLog::Colors::Color color, FrameLog::Colors::BGColor backgroundColor, bool NewLine);
+        std::string LoggerName;
+        LogLevel MinimalLevel = LogLevel::Trace;
+        bool IsPrintingLoggerName = true;
+        std::string m_Pattern = "%^[%D] [%T] %n:%$ %v";
+
+        int ColorPrint(std::string Message, LogLevel level,
+                      FrameLog::Colors::Color color,
+                      FrameLog::Colors::BGColor backgroundColor,
+                      bool NewLine);
+
+        std::string FormatPattern(const std::string& message,
+                                 LogLevel level,
+                                 const std::string& colorCode);
+
+        std::string_view GetLevelString(LogLevel level);
+        std::string_view GetLevelColor(LogLevel level);
     };
 
     FL_API bool IsPrinting(LogLevel Level, LogLevel MinimalLogLevel);

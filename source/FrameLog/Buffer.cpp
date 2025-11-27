@@ -55,4 +55,16 @@ namespace FrameLog {
         data.shrink_to_fit();
         return true;
     }
+    FRAMELOG_API bool Buffer::Clean(){
+        std::lock_guard<std::mutex> lock(mtx);
+
+        data.clear();
+        data.shrink_to_fit();
+        return true;
+    }
+
+    FRAMELOG_API size_t Buffer::GetSize(){
+        std::lock_guard<std::mutex> lock(mtx);
+        return data.size();
+    }
 }
