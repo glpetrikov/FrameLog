@@ -14,13 +14,15 @@ int main() {
     logger.TraceLine(logger.Format("Test Format, Int = {}", formattest));
 
     // --- Logger -----
-    logger.Print("Test");
-    logger.Trace("Test");
-    logger.Info("Test");
-    logger.Warn("Test");
-    logger.Error("Test");
-    logger.Fatal("Test");
+    logger.Print("Test\n");
+    logger.Trace("Test\n");
+    logger.Info("Test\n");
+    logger.Warn("Test\n");
+    logger.Error("Test\n");
+    logger.Fatal("Test\n");
     logger.Custom << "Test" << logger.EndL();
+
+    logger.Custom << "==============================" << logger.EndL();
 
     logger.PrintLine("Test");
     logger.TraceLine("Test");
@@ -33,6 +35,9 @@ int main() {
     logger.Add('?');
     logger.Add("\n");
     logger.Flush();
+    logger.FlushFile();
+
+    
     std::string testInput = logger.Read();
     logger.Custom << "Input: " << testInput << logger.EndL();
     logger.Flush();

@@ -13,7 +13,7 @@
 *.obj
 *.o
 
-*.tar.tz
+*.tar.gz
 *.zip
 
 # Visual Studio

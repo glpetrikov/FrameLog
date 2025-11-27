@@ -10,17 +10,22 @@
 
 #include "Logger.hpp"
 #include "Common.hpp"
+#include <string_view>
 #include <unistd.h>
 #include <thread>
 
 
 namespace FrameLog {
 
-    Logger::Logger(std::string_view LoggerName) : Custom(*this) {
+    Logger::Logger(std::string_view LoggerName, bool IsWriteIFile) : Custom(*this) {
         this->LoggerName = std::move(LoggerName);
+        if (IsWriteIFile) {
+            fileHandler.SetFile(LoggerName);
+        }
     }
 
     Logger::~Logger() {
+        fileHandler.CloseFile();
     }
 
     char Logger::EndL() {
@@ -100,6 +105,10 @@ namespace FrameLog {
                         i++;
                         break;
                     case '$':
+                        if(colorCode == ""){
+                            ++i;
+                            break;
+                        }
                         result += Colors::IsColor(Colors::Style::Reset);
                         i++;
                         break;
@@ -385,7 +394,10 @@ namespace FrameLog {
         if (Message.empty()) {
             std::cerr << "Logger Error: Message is empty" << std::endl;
             return -1;
-        }
+        }\
+
+        fileHandler.Write(std::string(FormatPattern(Message, level, "")));
+        fileHandler.Write(NewLine ? std::string_view("\n") : std::string_view(""));
 
         std::string colorCode = std::string(GetLevelColor(level));
         std::string formatted = std::string(FormatPattern(Message, level, colorCode));

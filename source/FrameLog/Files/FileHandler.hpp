@@ -23,6 +23,7 @@ namespace FrameLog {
         FRAMELOG_API FileHandler(std::string_view Name,
                                  FileHandler::WriteType Write = WriteType::Write,
                                  FileHandler::ReadType Read = ReadType::Read);
+        FileHandler() = default;
         FRAMELOG_API ~FileHandler();
 
         // --- FIleWriter -----

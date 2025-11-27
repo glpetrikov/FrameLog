@@ -193,6 +193,9 @@ namespace FrameLog {
     }
 
     bool FileHandler::Flush() {
+        if(!File){
+            return false;
+        }
         if (File.flush()) {
             return true;
         } else {

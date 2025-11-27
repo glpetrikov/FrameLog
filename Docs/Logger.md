@@ -5,10 +5,11 @@ The `Logger` class provides a simple, efficient, and color-aware logging interfa
 #### **Constructor**
 
 ```cpp
-Logger(std::string name);
+Logger(td::string_view LoggerName, bool IsWriteIFile = true);
 ```
 
 Creates a logger with the given name.
+It also specifies whether to copy messages to a file (with the same name as the logger).
 No additional setup is required.
 
 ---
@@ -47,6 +48,16 @@ Each of the above functions also has a variant ending with `Line`, which automat
 
 ---
 
+#### **SetLoggerName**
+
+```cpp
+void SetName(std::string_View newName);
+```
+
+sets the logger and logger file to a new name (in the console and file and creates a new file).
+
+---
+
 #### **Custom Stream Output**
 
 `Custom` enables stream-style logging similar to `std::cout`.
@@ -75,6 +86,16 @@ char EndL();
 
 Returns a newline character (`'\n'`).
 Used at the end of a custom log chain to mark a line break or trigger output.
+
+---
+
+#### **File Operations**
+
+```cpp
+void FlushFile();
+```
+
+Flush the logger file (with the logger name)
 
 ---
 

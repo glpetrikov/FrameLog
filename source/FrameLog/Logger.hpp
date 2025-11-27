@@ -11,6 +11,7 @@
 #include "Buffer.hpp"
 #include "Colors.hpp"
 #include "Common.hpp"
+#include "Files/FileHandler.hpp"
 
 namespace FrameLog {
     enum class LogLevel {
@@ -24,7 +25,7 @@ namespace FrameLog {
 
     class Logger {
     public:
-        Logger(std::string_view LoggerName);
+        Logger(std::string_view LoggerName, bool IsWriteIFile = true);
         ~Logger();
 
         FL_API void SetMinimalLogLevel(LogLevel MinimalLogLevel);
@@ -75,8 +76,18 @@ namespace FrameLog {
         FL_API int Free();
 
         template<typename... Args>
-        inline static std::string Format(std::format_string<Args...> fmt, Args&&... args) {
+        FL_API inline static std::string Format(std::format_string<Args...> fmt, Args&&... args) {
             return std::format(fmt, std::forward<Args>(args)...);
+        }
+
+        FL_API inline void FlushFile(){
+            fileHandler.Flush();
+        }
+        FL_API inline void SetName(std::string_view newName){
+            LoggerName = newName;
+            fileHandler.CloseFile();
+            fileHandler.SetFile(newName);
+            return;
         }
 
     private:
@@ -97,6 +108,8 @@ namespace FrameLog {
 
         std::string_view GetLevelString(LogLevel level);
         std::string_view GetLevelColor(LogLevel level);
+
+        FileHandler fileHandler;
     };
 
     FL_API bool IsPrinting(LogLevel Level, LogLevel MinimalLogLevel);
