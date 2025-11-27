@@ -85,7 +85,7 @@ Binary Size Comparison:
 - for projects where you just need a logger
 
 ## Status
-**FrameLog** is currently in **Beta** stage
+**FrameLog** is currently in **Release** stage
 
 ## Quick Start
 ```bash
