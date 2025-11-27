@@ -2,7 +2,7 @@
 
 FrameLog is a lightweight library for outputting logs to the console and file in **C++**.
 
-## Version 1.6.1-beta
+## Version 1.7.0-release
 
 ![Platforms](https://img.shields.io/badge/platforms-cross--platform-lightgrey.svg)
 ![Language](https://img.shields.io/badge/language-C%2B%2B-blue.svg)
@@ -19,7 +19,7 @@ FrameLog is a lightweight library for outputting logs to the console and file in
 
 ## Features 
 
-- **Lightweight** - Only 50.9 KiB when compiled in Release mode
+- **Lightweight** - Only 75.0 KiB when compiled in Release mode
 - **Buffered console output** - Efficient string accumulation before flush
 - **File logging** - Simple file writer with append/overwrite modes
 - **Stream API** - `logger.Custom << "Message " << value << "\n";`
@@ -27,6 +27,8 @@ FrameLog is a lightweight library for outputting logs to the console and file in
 - **Simple API** - Trace, Print, Info, Warn, Error, Fatal levels
 - **Cross-platform** - Linux, Windows, macOS
 - **Minimal dependencies** - Only standard C++ library
+- **Patterns** - output with the required data 
+(for example, time, date, LogLevel)
 
 
 ## Dependencies
@@ -52,19 +54,19 @@ Binary Size Comparison:
 
 | Library       | Size (KiB) | vs FrameLog (×) | Language | Notes                          |
 | ------------- | ---------- | --------------- | -------- | ------------------------------ |
-| FrameLog      | 50.9       | 1.0×            | C++      | Buffered, colors, stream       |
-| log.c         | 50.0       | 0.98×           | C        | Minimal                        |
-| easylogging++ | 150.0      | 2.95×           | C++      | Header-only                    |
-| plog          | 200.0      | 3.93×           | C++      | Header-only                    |
-| g3log         | 500.0      | 9.82×           | C++      | Async, crash-safe              |
-| NanoLog       | 800.0      | 15.7×           | C++      | Ultra-fast                     |
-| quill         | 1229.0     | 24.1×           | C++      | Low-latency                    |
-| zlog          | 2048.0     | 40.2×           | C        | Config files                   |
-| log4cplus     | 3072.0     | 60.4×           | C++      | Java log4j port                |
-| log4cpp       | 4096.0     | 80.5×           | C++      | Apache project                 |
-| glog          | 5120.0     | 100.6×          | C++      | Google logging                 |
-| spdlog        | 41984.0    | 824.6×          | C++      | Very Fast, fmt-based, patterns |
-| Boost.Log     | 61440.0    | 1207.3×         | C++      | Full-featured                  |
+| FrameLog      | 75.0       | 1.0×            | C++      | Buffered, colors, stream       |
+| log.c         | 50.0       | 0.67×           | C        | Minimal                        |
+| easylogging++ | 150.0      | 2.0×            | C++      | Header-only                    |
+| plog          | 200.0      | 2.67×           | C++      | Header-only                    |
+| g3log         | 500.0      | 6.67×           | C++      | Async, crash-safe              |
+| NanoLog       | 800.0      | 10.7×           | C++      | Ultra-fast                     |
+| quill         | 1229.0     | 16.4×           | C++      | Low-latency                    |
+| zlog          | 2048.0     | 27.3×           | C        | Config files                   |
+| log4cplus     | 3072.0     | 41.0×           | C++      | Java log4j port                |
+| log4cpp       | 4096.0     | 54.6×           | C++      | Apache project                 |
+| glog          | 5120.0     | 68.3×           | C++      | Google logging                 |
+| spdlog        | 41984.0    | 559.8×          | C++      | Very Fast, fmt-based, patterns |
+| Boost.Log     | 61440.0    | 819.2×          | C++      | Full-featured                  |
 
 
 *Measured FrameLog: Release builds, x64, premake5, gcc15, make*
@@ -190,14 +192,14 @@ See the "Building" section above.
 - Color support
 - Basic log levels
 
-### Beta (Current)
+### Beta (Completed)
 - Additional log levels
 - Base Custom format patterns
 - Base Output pattern scanner
 - File Log
 - Minimal Log Level
 
-### Release (Target: Q2-Q3 2026) 
+### Release (Current)(Completed)
 - full-fledged Custom format patterns
 - full-fledged Output pattern scanner
 - Additional buffer capabilities

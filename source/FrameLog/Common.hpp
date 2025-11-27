@@ -35,12 +35,12 @@ namespace FrameLog {
 //============================================================
 // Defines
 //============================================================
-#define FL_VERSION "1.6.1"
-#define FL_STATUS "beta"
+#define FL_VERSION "1.7.0"
+#define FL_STATUS " release"
 
-#define FL_SIZE 50.9 // KB
+#define FL_SIZE 75.0 // KB
 
 #define FL_VERSION_MAJOR 1
-#define FL_VERSION_MINOR 6
-#define FL_VERSION_PATCH 1
+#define FL_VERSION_MINOR 7
+#define FL_VERSION_PATCH 0
 }
