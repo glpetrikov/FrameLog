@@ -13,25 +13,6 @@
 #include "Platform.hpp"
 
 namespace FrameLog {
-    namespace Patterns {
-
-        enum class Tokens {
-            FLTime,
-            FLYear4,
-            FLYear2,
-            FLMonth,
-            FLDay,
-            FLHour24,
-            FLHour12,
-            FLMinute,
-            FLSeconds,
-            FLMilliSeconds,
-            FLMessage,
-            FLEnd,
-            FLMessageType
-        };
-    }
-
 //============================================================
 // Defines
 //============================================================

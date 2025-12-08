@@ -67,7 +67,7 @@ namespace FrameLog {
             CustomMessage &operator<<(Colors::BGColor bgcolor);
         };
 
-        CustomMessage Custom;
+        CustomMessage custom;
 
         FL_API int Add(const char Message);
         FL_API int Add(std::string_view Message);

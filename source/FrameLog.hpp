@@ -20,3 +20,6 @@
 
 // Logger
 #include "FrameLog/Logger.hpp"
+
+// EnvParser
+#include "FrameLog/Files/EnvParser.h"

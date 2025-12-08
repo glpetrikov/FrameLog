@@ -33,13 +33,17 @@ namespace FrameLog {
 
         // --- FileReader -----
 
+        FRAMELOG_API int FindLine(std::string target);
+        FRAMELOG_API int FindLine(std::string target, std::string FileName);
+        FRAMELOG_API int FindLine(std::string target, std::fstream &file);
+
         FRAMELOG_API std::string FindLine(int TargetLine);
         FRAMELOG_API std::string FindLine(int TargetLine, std::string FileName);
         FRAMELOG_API std::string FindLine(int TargetLine, std::fstream &file);
 
-        FRAMELOG_API std::string ReadFile();
-        FRAMELOG_API std::string ReadFile(std::string fIleName);
-        FRAMELOG_API std::string ReadFile(std::fstream &file);
+        FRAMELOG_API std::string ReadAll();
+        FRAMELOG_API std::string ReadAll(std::string fIleName);
+        FRAMELOG_API std::string ReadAll(std::fstream &file);
 
         // --- Tools -----
 

@@ -50,6 +50,37 @@ namespace FrameLog {
     // FileReader
     // ==============================
 
+    int FileHandler::FindLine(std::string target) {
+        std::string fileData = ReadAll();
+
+        if (fileData.find(target) != std::string::npos) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+    int FileHandler::FindLine(std::string target, std::string FileName) {
+        std::string fileData = ReadAll(FileName);
+
+        if (fileData.find(target) != std::string::npos) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+    int FileHandler::FindLine(std::string target, std::fstream &file) {
+        std::string fileData = ReadAll(file);
+
+        if (fileData.find(target) != std::string::npos) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+
     std::string FileHandler::FindLine(int TargetLine) {
 
         TargetLine++;
@@ -118,19 +149,19 @@ namespace FrameLog {
         return "Not find target String";
     }
 
-    std::string FileHandler::ReadFile() {
+    std::string FileHandler::ReadAll() {
         std::ostringstream buffer;
         buffer << this->File.rdbuf();
         return buffer.str();
     }
 
-    std::string FileHandler::ReadFile(std::fstream &file) {
+    std::string FileHandler::ReadAll(std::fstream &file) {
         std::ostringstream buffer;
         buffer << file.rdbuf();
         return buffer.str();
     }
 
-    std::string FileHandler::ReadFile(std::string fileName) {
+    std::string FileHandler::ReadAll(std::string fileName) {
         std::fstream file(fileName);
         std::ostringstream buffer;
         buffer << file.rdbuf();

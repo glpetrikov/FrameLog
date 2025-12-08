@@ -22,7 +22,7 @@ FrameLog is a lightweight library for outputting logs to the console and file in
 - **Lightweight** - Only 75.0 KiB when compiled in Release mode
 - **Buffered console output** - Efficient string accumulation before flush
 - **File logging** - Simple file writer with append/overwrite modes
-- **Stream API** - `logger.Custom << "Message " << value << "\n";`
+- **Stream API** - `logger.custom << "Message " << value << "\n";`
 - **Color support** - ANSI colors + RGB (24-bit true color)
 - **Simple API** - Trace, Print, Info, Warn, Error, Fatal levels
 - **Cross-platform** - Linux, Windows, macOS
@@ -46,6 +46,10 @@ See [LICENSE](LICENSE) for details.
 ## Supported Platforms
 
 Any platform with the **standard C++ library**
+
+## Connect to your premake-file
+add line:
+include "FrameLog/include/FrameLog/premake5.lua"
 
 ## Performance & Size
 
@@ -101,79 +105,39 @@ cd Release && ./sandbox
 
 ### Windows
 
-#### GCC
+#### premake
 ``` bash
-cd examples
-
-# Debug (replace C/path/to/FrameLog with your installation path)
-g++ -o example SimpleExample.cpp -IC/path/to/FrameLog/source/
-
-# Release (replace C/path/to/FrameLog with your installation path)
-g++ -o example SimpleExample.cpp -IC/path/to/FrameLog/source/
-
-./example.exe
+premake5 vs2022
 ```
+open visual studio(2022)
 
-#### premake(recommended)
-``` bash
-premake5 vs2022    # Visual Studio 2022
-premake5 gmake2    # make
-cd build/
-mingw32-make config=debug && mingw32-make config=release
-cd Debug/
-./sandbox.exe
-cd ..
-cd Release/
-./sandbox.exe
-```
+press f5
 
 ### Linux
 
-#### GCC
+#### premake
 ``` bash
-cd examples
-
-# Debug (replace /path/to/FrameLog with your installation path)
-g++ -o example SimpleExample.cpp -I/path/to/FrameLog/source/
-
-# Release (replace /path/to/FrameLog with your installation path)
-g++ -o example SimpleExample.cpp -I/path/to/FrameLog/source/
-
-./example
-```
-
-#### premake(recommended)
-``` bash
-premake5 gmake2
-cd build/
-make config=debug && make config=release
-cd Debug/
-./sandbox
-cd ..
-cd Release/
-./sandbox
+./run.sh
 ```
 
 ## Example
 ### Source files:
-[Colors](source/FrameLog/Colors.hpp)
-
-[Logger.cpp](source/FrameLog/Logger.cpp)
-
+[Colors](source/FrameLog/Colors.hpp)\
+[Logger.cpp](source/FrameLog/Logger.cpp)\
 [Logger.hpp](source/FrameLog/Logger.hpp)
 
 ### example code:
 
 1. Include FrameLog in your code and use it:
 ``` cpp
-#include "FrameLog.hpp"
+#include <FrameLog/FrameLog.h>
 
 using namespace FrameLog;
 
 int main() {
     Logger logger("Main");
 
-    logger.Custom << "Hello, FrameLog" << FL_VERSION << "-" << FL_STATUS << logger.EndL();
+    logger.custom << "Hello, FrameLog" << FL_VERSION << "-" << FL_STATUS << logger.EndL();
 }
 ```
 More examples can be found in the examples folder.

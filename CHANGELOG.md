@@ -2,16 +2,11 @@
 
 All notable changes to FrameLog will be documented in this file.
 
-## [1.6.1-beta] - 2025-10-25
+## [1.8.0-release] - 2025-12-08
 
 ### Added
-- SetIsPrintingLoggerName - sets whether to print the logger name
+EnvParser
 
 ### Fixed
 
 ### Delete
-
-## [Unreleased]
-### Planned for Beta
-- Base Custom format patterns
-- Base Output pattern scanner

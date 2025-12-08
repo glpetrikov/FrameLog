@@ -27,6 +27,7 @@
 
 # Makefiles
 Makefile
+*/Makefile
 *.make
 
 # Premake

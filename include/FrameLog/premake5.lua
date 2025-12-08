@@ -1,13 +1,3 @@
---============================================================
--- FrameLog - MIT License (c) 2025 Gleb Petrikov
---============================================================
-
-workspace "FrameLog"
-   architecture "x64"
-   configurations { "Debug", "Release" }
-
-   location "build"
-
 project "FrameLog"
     kind "SharedLib"
     language "C++"
@@ -16,11 +6,10 @@ project "FrameLog"
     targetdir "build/%{cfg.buildcfg}"
     objdir "build/obj/%{cfg.buildcfg}"
 
-    files { "**.cpp", "**.h", "**.hpp" }
+    files { "source/**.cpp", "source/**.h", "source/**.hpp" }
 
-    includedirs { ".", "FrameLog/", "FrameLog/Files/" }
+    includedirs { "source/", "source/FrameLog/", "source/FrameLog/Files/", "include/FrameLog/" }
 
-    
     warnings "Extra"
     symbols "On"
     floatingpoint "Strict"
@@ -29,7 +18,6 @@ project "FrameLog"
 --==========================================
 -- Operation System
 --==========================================
-
     -- Windows
     filter { "system:windows", "kind:SharedLib" }
         targetextension ".dll"
@@ -40,17 +28,11 @@ project "FrameLog"
 -- Compilers
 --==========================================
 
-
 -- === MSVC ======
-
-
     filter "action:vs*"
         buildoptions { "/W4", "-std=c++23" }
 
-
 -- === Clang / GCC ======
-
-
     filter { "toolset:gcc or toolset:clang" }
         buildoptions {
             "-fstack-protector-strong",
@@ -60,17 +42,11 @@ project "FrameLog"
             "-std=c++23",
         }
 
-
 -- === GCC ======
-
-
     filter "toolset:gcc"
         buildoptions { "-Wall" }
 
-
 -- === CLang ======
-
-
     filter "toolset:clang"
          buildoptions {
             "-Wall",
@@ -87,7 +63,6 @@ project "FrameLog"
 --==========================================
 -- Configs
 --==========================================
-
     filter "configurations:Debug"
         defines { "DEBUG", "FL_ENABLE_LOGS=1", "FRAMELOG_BUILD" }
         symbols "On"
@@ -95,7 +70,6 @@ project "FrameLog"
             "-O0",
             "-g3",
         }
-
     filter "configurations:Release"
         defines { "NDEBUG", "FL_ENABLE_LOGS=0", "FRAMELOG_BUILD" }
         optimize "Speed"
@@ -104,5 +78,4 @@ project "FrameLog"
             "-march=native",
             "-O3",
         }
-
     filter {}

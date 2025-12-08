@@ -33,5 +33,5 @@ int main() {
 
     std::string dataFile = File3.FindLine(13);
     Logger logger("Main");
-    logger.Custom << dataFile << logger.EndL();
+    logger.custom << dataFile << logger.EndL();
 }

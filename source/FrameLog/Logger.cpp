@@ -17,7 +17,7 @@
 
 namespace FrameLog {
 
-    Logger::Logger(std::string_view LoggerName, bool IsWriteIFile) : Custom(*this) {
+    Logger::Logger(std::string_view LoggerName, bool IsWriteIFile) : custom(*this) {
         this->LoggerName = std::move(LoggerName);
         if (IsWriteIFile) {
             fileHandler.SetFile(LoggerName);

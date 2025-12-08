@@ -20,9 +20,9 @@ int main() {
     logger.Warn("Test\n");
     logger.Error("Test\n");
     logger.Fatal("Test\n");
-    logger.Custom << "Test" << logger.EndL();
+    logger.custom << "Test" << logger.EndL();
 
-    logger.Custom << "==============================" << logger.EndL();
+    logger.custom << "==============================" << logger.EndL();
 
     logger.PrintLine("Test");
     logger.TraceLine("Test");
@@ -39,7 +39,7 @@ int main() {
 
     
     std::string testInput = logger.Read();
-    logger.Custom << "Input: " << testInput << logger.EndL();
+    logger.custom << "Input: " << testInput << logger.EndL();
     logger.Flush();
 
     // --- FileHandler -----

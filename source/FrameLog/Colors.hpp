@@ -9,8 +9,6 @@
 #include "Common.hpp"
 
 namespace FrameLog {
-    class Logger; // forward declaration
-
     namespace Colors {
 
         // True Color Support (24-bit)
@@ -18,7 +16,7 @@ namespace FrameLog {
             char code[32];
             if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) {
                 std::cout << "Color Error: Not RGB format" << "\n";
-                return "\033[0m";
+                return "";
             }
             snprintf(code, 32, "\033[38;2;%d;%d;%dm", r, g, b);
             return std::string(code);
@@ -28,7 +26,7 @@ namespace FrameLog {
             char code[32];
             if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) {
                 std::cout << "Color Error: Not RGB format" << "\n";
-                return "\033[0m";
+                return "";
             }
             snprintf(code, 32, "\033[48;2;%d;%d;%dm", r, g, b);
             return std::string(code);
