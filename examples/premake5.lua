@@ -65,8 +65,8 @@ project "FileExample"
     language "C++"
     cppdialect "C++20"
 
-    targetdir "build/%{cfg.buildcfg}"
-    objdir "build/obj/%{cfg.buildcfg}"
+    targetdir "../build/%{cfg.buildcfg}"
+    objdir "../build/obj/%{cfg.buildcfg}"
 
     files { "FileExample.cpp" }
 
@@ -115,8 +115,8 @@ project "HelloFrameLog"
     language "C++"
     cppdialect "C++20"
 
-    targetdir "build/%{cfg.buildcfg}"
-    objdir "build/obj/%{cfg.buildcfg}"
+    targetdir "../build/%{cfg.buildcfg}"
+    objdir "../build/obj/%{cfg.buildcfg}"
 
     files { "HelloFrameLog.cpp" }
 
