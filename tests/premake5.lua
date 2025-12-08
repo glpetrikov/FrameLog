@@ -18,7 +18,12 @@ project "FullTest"
 
     links { "FrameLog" }
     libdirs { "../build/%{cfg.buildcfg}" }
-    includedirs { "../include", }
+    includedirs {
+        "../source/FrameLog",
+        "../source/FrameLog/Files",
+        "../source",
+        "../include",
+    }
 
 --==========================================
 -- Configs
