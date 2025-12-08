@@ -19,14 +19,4 @@ jobs:
 
       - name: Generate and build all projects
         run: |
-          for dir in benchmarks source tests examples; do
-            if [ -f "$dir/premake5.lua" ]; then
-              echo "=== Building $dir ==="
-              cd "$dir"
-              premake5 gmake2
-              cd build
-              make config=release
-              make config=debug
-              cd ../..
-            fi
-          done
+          ./run.sh
