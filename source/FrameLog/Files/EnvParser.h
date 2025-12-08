@@ -18,30 +18,21 @@ namespace FrameLog {
             parse();
         }
 
-        inline void parse() {
-            std::string content = file.ReadAll();
-            std::istringstream stream(content);
-            std::string line;
+        inline std::string trim(const std::string& str) {
+            size_t start = str.find_first_not_of(" \t\r\n");
+            size_t end = str.find_last_not_of(" \t\r\n");
+            return (start == std::string::npos) ? "" : str.substr(start, end - start + 1);
+        }
 
-            while (std::getline(stream, line)) {
+        inline void parse() {
+            std::string line;
+            while (file.ReadLine(line)) {
                 if (line.empty() || line[0] == '#') continue;
 
                 auto pos = line.find('=');
                 if (pos != std::string::npos) {
                     auto key = line.substr(0, pos);
                     auto value = line.substr(pos + 1);
-
-                    // Trim whitespace
-                    key.erase(0, key.find_first_not_of(" \t\r"));
-                    key.erase(key.find_last_not_of(" \t\r") + 1);
-                    value.erase(0, value.find_first_not_of(" \t\r"));
-                    value.erase(value.find_last_not_of(" \t\r") + 1);
-
-                    // Remove quotes if present
-                    if (!value.empty() && value.front() == '"' && value.back() == '"') {
-                        value = value.substr(1, value.size() - 2);
-                    }
-
                     vars[key] = value;
                 }
             }

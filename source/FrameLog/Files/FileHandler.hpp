@@ -33,6 +33,8 @@ namespace FrameLog {
 
         // --- FileReader -----
 
+        FRAMELOG_API bool ReadLine(std::string& line);
+
         FRAMELOG_API int FindLine(std::string target);
         FRAMELOG_API int FindLine(std::string target, std::string FileName);
         FRAMELOG_API int FindLine(std::string target, std::fstream &file);

@@ -50,6 +50,13 @@ namespace FrameLog {
     // FileReader
     // ==============================
 
+    bool FileHandler::ReadLine(std::string& line) {
+        if (!File || !File.is_open()) {
+            return false;
+        }
+        return static_cast<bool>(std::getline(File, line));
+    }
+
     int FileHandler::FindLine(std::string target) {
         std::string fileData = ReadAll();
 
