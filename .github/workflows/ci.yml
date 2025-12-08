@@ -4,7 +4,6 @@ on: [push, pull_request]
 jobs:
   build-ubuntu:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
 
@@ -18,12 +17,27 @@ jobs:
           sudo mv premake5 /usr/local/bin/premake5
 
       - name: Generate and build all projects
+        run: ./run.sh
+
+  build-fedora:
+    runs-on: fedora-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: sudo dnf install -y gcc-c++ make wget tar
+
+      - name: Install premake
         run: |
-          ./run.sh
+          wget https://github.com/premake/premake-core/releases/download/v5.0.0-beta2/premake-5.0.0-beta2-linux.tar.gz
+          tar -xzf premake-5.0.0-beta2-linux.tar.gz
+          sudo mv premake5 /usr/local/bin/premake5
+
+      - name: Generate and build all projects
+        run: ./run.sh
 
   build-windows:
     runs-on: windows-latest
-
     steps:
       - uses: actions/checkout@v3
 
@@ -31,13 +45,13 @@ jobs:
         run: |
           Invoke-WebRequest -Uri https://github.com/premake/premake-core/releases/download/v5.0.0-beta2/premake-5.0.0-beta2-windows.zip -OutFile premake.zip
           Expand-Archive premake.zip -DestinationPath .
-          Move-Item .\premake5.exe C:\Windows\System32\premake5.exe
+          Move-Item .\premake5.exe "$env:ProgramFiles\premake5.exe"
 
       - name: Generate Visual Studio solution
         run: premake5 vs2022
 
       - name: Build solution
-        run: msbuild FrameLog.sln /p:Configuration=Debug /m
+        run: '"C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe" FrameLog.sln /p:Configuration=Debug /m'
 
       - name: Run tests
         run: .\build\Debug\FullTest.exe
