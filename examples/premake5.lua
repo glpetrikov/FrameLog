@@ -121,7 +121,7 @@ project "HelloFrameLog"
     files { "HelloFrameLog.cpp" }
 
     links { "FrameLog" }
-    libdirs { "build/%{cfg.buildcfg}" }
+    libdirs { "../build/%{cfg.buildcfg}" }
     includedirs { "../source", "../source/FrameLog" }
 
     warnings "Extra"
