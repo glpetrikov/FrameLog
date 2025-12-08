@@ -18,20 +18,3 @@ jobs:
 
       - name: Generate and build all projects
         run: ./run.sh
-
-  build-fedora:
-    runs-on: fedora-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Install dependencies
-        run: sudo dnf install -y gcc-c++ make wget tar
-
-      - name: Install premake
-        run: |
-          wget https://github.com/premake/premake-core/releases/download/v5.0.0-beta2/premake-5.0.0-beta2-linux.tar.gz
-          tar -xzf premake-5.0.0-beta2-linux.tar.gz
-          sudo mv premake5 /usr/local/bin/premake5
-
-      - name: Generate and build all projects
-        run: ./run.sh
