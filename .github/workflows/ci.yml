@@ -20,3 +20,24 @@ jobs:
       - name: Generate and build all projects
         run: |
           ./run.sh
+
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install premake
+        run: |
+          Invoke-WebRequest -Uri https://github.com/premake/premake-core/releases/download/v5.0.0-beta2/premake-5.0.0-beta2-windows.zip -OutFile premake.zip
+          Expand-Archive premake.zip -DestinationPath .
+          Move-Item .\premake5.exe C:\Windows\System32\premake5.exe
+
+      - name: Generate Visual Studio solution
+        run: premake5 vs2022
+
+      - name: Build solution
+        run: msbuild FrameLog.sln /p:Configuration=Debug /m
+
+      - name: Run tests
+        run: .\build\Debug\FullTest.exe

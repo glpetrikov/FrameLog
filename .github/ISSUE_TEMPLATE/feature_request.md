@@ -1,6 +1,6 @@
 ---
 name: "Feature Request"
-about: Suggest a new feature or improvement for FrameLog
+about: Suggest a new feature or improvement
 title: "[Feature]: "
 labels: ["enhancement"]
 assignees: []

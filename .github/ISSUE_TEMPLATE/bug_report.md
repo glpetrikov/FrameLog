@@ -1,6 +1,6 @@
 ---
 name: "Bug Report"
-about: Report a bug in FrameLog
+about: Report a bug
 title: "[Bug]: "
 labels: ["bug"]
 assignees: []
@@ -12,7 +12,7 @@ assignees: []
 A short description of the bug.
 
 **Version**
-Which version of FrameLog are you using? Example: 1.2.0
+Which version of FrameLog are you using? Example: 1.8.0
 
 **Steps to Reproduce**
 1. Include FrameLog with `...`
