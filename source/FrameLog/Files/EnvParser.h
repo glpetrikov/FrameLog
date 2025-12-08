@@ -19,14 +19,29 @@ namespace FrameLog {
         }
 
         inline void parse() {
+            std::string content = file.ReadAll();
+            std::istringstream stream(content);
             std::string line;
-            while (file.FindLine(line)) {
+
+            while (std::getline(stream, line)) {
                 if (line.empty() || line[0] == '#') continue;
 
                 auto pos = line.find('=');
                 if (pos != std::string::npos) {
                     auto key = line.substr(0, pos);
                     auto value = line.substr(pos + 1);
+
+                    // Trim whitespace
+                    key.erase(0, key.find_first_not_of(" \t\r"));
+                    key.erase(key.find_last_not_of(" \t\r") + 1);
+                    value.erase(0, value.find_first_not_of(" \t\r"));
+                    value.erase(value.find_last_not_of(" \t\r") + 1);
+
+                    // Remove quotes if present
+                    if (!value.empty() && value.front() == '"' && value.back() == '"') {
+                        value = value.substr(1, value.size() - 2);
+                    }
+
                     vars[key] = value;
                 }
             }

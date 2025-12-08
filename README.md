@@ -4,7 +4,6 @@ FrameLog is a lightweight library for outputting logs to the console and file in
 
 ## Version 1.8.0-release
 
-
 ![Language](https://img.shields.io/badge/language-C%2B%2B-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-greeen.svg)
 
@@ -16,6 +15,10 @@ FrameLog is a lightweight library for outputting logs to the console and file in
 ![GitHub Repo stars](https://img.shields.io/github/stars/glpetrikov/FrameLog?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/glpetrikov/FrameLog?style=social)
 ![GitHub issues](https://img.shields.io/github/issues/glpetrikov/FrameLog)
+
+> [!WARNING]
+> Lua in GitHub statistics is just a build system. Don't pay attention and don't think there's anything wrong with Lua.
+
 
 ## Features 
 
