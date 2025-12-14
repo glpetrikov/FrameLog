@@ -17,7 +17,7 @@
 namespace FrameLog
 {
 
-	Logger::Logger(std::string_view LoggerName, bool IsWriteIFile) : custom(*this)
+	Logger::Logger(std::string_view LoggerName, bool IsWriteIFile)
 	{
 		this->LoggerName = std::move(LoggerName);
 		if (IsWriteIFile)
@@ -372,7 +372,7 @@ namespace FrameLog
 
 	Logger& Logger::operator<<(bool Value)
 	{
-		.Add(Value ? "true" : "false");
+		Add(Value ? "true" : "false");
 		return *this;
 	}
 
