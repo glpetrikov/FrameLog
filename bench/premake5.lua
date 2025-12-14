@@ -14,7 +14,7 @@ project "FileHandler"
 
     links { "FrameLog" }
     libdirs { "build/%{cfg.buildcfg}" }
-    includedirs { "../source", "../source/FrameLog" }
+    includedirs { "../include" }
 
     warnings "Extra"
     symbols "On"
@@ -65,7 +65,7 @@ project "FileHandler2"
 
     links { "FrameLog" }
     libdirs { "build/%{cfg.buildcfg}" }
-    includedirs { "../source", "../source/FrameLog" }
+    includedirs { "../include" }
 
     warnings "Extra"
     symbols "On"

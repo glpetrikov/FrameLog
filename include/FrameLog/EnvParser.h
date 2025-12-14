@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../Common.hpp"
+#include "Common.hpp"
 #include "FileHandler.hpp"
 #include <unordered_map>
 

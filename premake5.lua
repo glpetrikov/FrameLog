@@ -16,9 +16,9 @@ project "FrameLog"
     targetdir "build/%{cfg.buildcfg}"
     objdir "build/obj/%{cfg.buildcfg}"
 
-    files { "source/**.cpp", "source/**.h", "source/**.hpp" }
+    files { "source/**.cpp" }
 
-    includedirs { "source/", "source/FrameLog/", "source/FrameLog/Files/", "include/FrameLog/" }
+    includedirs { "include/FrameLog/", "include/" }
     
     warnings "Extra"
     symbols "On"

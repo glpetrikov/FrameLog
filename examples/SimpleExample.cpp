@@ -1,4 +1,4 @@
-#include <FrameLog.hpp>
+#include <FrameLog/FrameLog.h>
 #include <iostream>
 
 using namespace FrameLog;

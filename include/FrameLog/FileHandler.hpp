@@ -7,7 +7,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "../Common.hpp"
+#include "Common.hpp"
 
 namespace FrameLog {
     class FileHandler {

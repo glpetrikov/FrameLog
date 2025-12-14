@@ -6,59 +6,9 @@ project "FrameLog"
     targetdir "../../../build/%{cfg.buildcfg}"
     objdir "../../../build/obj/%{cfg.buildcfg}"
 
-    files { "../../source/**.cpp", "../../source/**.h", "../../source/**.hpp" }
+    files { "../../source/**.cpp" }
 
-    includedirs { "../../source/", "../../source/FrameLog/", "../../source/FrameLog/Files/", "../../include/FrameLog/" }
-
-    warnings "Extra"
-    symbols "On"
-    floatingpoint "Strict"
-    conformancemode "On"
-
---==========================================
--- Operation System
---==========================================
-    -- Windows
-    filter { "system:windows", "kind:SharedLib" }
-        targetextension ".dll"
-        linkoptions { "-Wl,--out-implib,lib%{prj.name}.a" }
-
-
---==========================================
--- Compilers
---==========================================
-
--- === MSVC ======
-    filter "action:vs*"
-        buildoptions { "/W4", "-std=c++23" }
-
--- === Clang / GCC ======
-    filter { "toolset:gcc or toolset:clang" }
-        buildoptions {
-            "-fstack-protector-strong",
-            "-D_FORTIFY_SOURCE=2",
-            "-fno-strict-aliasing",
-            "-fno-omit-frame-pointer",
-            "-std=c++23",
-        }
-
--- === GCC ======
-    filter "toolset:gcc"
-        buildoptions { "-Wall" }
-
--- === CLang ======
-    filter "toolset:clang"
-         buildoptions {
-            "-Wall",
-            "-Wextra",
-            "-Wpedantic",
-            "-Wshadow",
-            "-Wconversion",
-            "-Wunreachable-code",
-            "-Werror=format-security",
-            "-fcolor-diagnostics",
-        }
-        linkoptions { "-fuse-ld=lld" }
+    includedirs {  "../../include/" }
 
 --==========================================
 -- Configs

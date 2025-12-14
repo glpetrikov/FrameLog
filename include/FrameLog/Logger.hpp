@@ -8,10 +8,10 @@
 #include <chrono>
 #include <ctime>
 
-#include "Buffer.hpp"
 #include "Colors.hpp"
 #include "Common.hpp"
-#include "Files/FileHandler.hpp"
+#include "Buffer.hpp"
+#include "FileHandler.hpp"
 
 namespace FrameLog {
     enum class LogLevel {

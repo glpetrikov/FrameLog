@@ -8,12 +8,11 @@
 #include <sstream>
 #include <iomanip>
 
-#include "Logger.hpp"
-#include "Common.hpp"
 #include <string_view>
-#include <unistd.h>
 #include <thread>
-
+#include <unistd.h>
+#include "Common.hpp"
+#include "Logger.hpp"
 
 namespace FrameLog {
 

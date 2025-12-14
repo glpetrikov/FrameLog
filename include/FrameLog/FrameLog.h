@@ -4,4 +4,22 @@
 
 #pragma once
 
-#include "../../source/FrameLog.hpp"
+// Common
+#include "Common.hpp"
+
+// Platforms
+#include "Platform.hpp"
+
+// Buffer
+#include "Buffer.hpp"
+// Colors
+#include "Colors.hpp"
+
+// Files
+#include "FileHandler.hpp"
+
+// Logger
+#include "Logger.hpp"
+
+// EnvParser
+#include "EnvParser.h"

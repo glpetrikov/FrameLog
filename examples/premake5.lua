@@ -22,7 +22,7 @@ project "SimpleExample"
 
     links { "FrameLog" }
     libdirs { "build/%{cfg.buildcfg}" }
-    includedirs { "../source", "../source/FrameLog" }
+    includedirs { "../include" }
 
     warnings "Extra"
     symbols "On"
@@ -72,7 +72,7 @@ project "FileExample"
 
     links { "FrameLog" }
     libdirs { "build/%{cfg.buildcfg}" }
-    includedirs { "../source", "../source/FrameLog" }
+    includedirs { "../include" }
 
     warnings "Extra"
     symbols "On"
@@ -122,7 +122,7 @@ project "HelloFrameLog"
 
     links { "FrameLog" }
     libdirs { "../build/%{cfg.buildcfg}" }
-    includedirs { "../source", "../source/FrameLog" }
+    includedirs { "../include" }
 
     warnings "Extra"
     symbols "On"

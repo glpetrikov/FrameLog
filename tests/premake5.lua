@@ -19,9 +19,6 @@ project "FullTest"
     links { "FrameLog" }
     libdirs { "../build/%{cfg.buildcfg}" }
     includedirs {
-        "../source/FrameLog",
-        "../source/FrameLog/Files",
-        "../source",
         "../include",
     }
 
@@ -66,10 +63,6 @@ project "multithreadtest"
     links { "FrameLog" }
     libdirs { "../build/%{cfg.buildcfg}" }
     includedirs {
-            "../source",
-            "../source/FrameLog",
-            "../source/FrameLog/Files",
-            "../source/FrameLog/Common.hpp",
             "../include"
         }
 
