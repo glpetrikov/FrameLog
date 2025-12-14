@@ -51,23 +51,16 @@ namespace FrameLog {
         FL_API int ErrorLine(std::string Message);
         FL_API int FatalLine(std::string Message);
 
-        struct CustomMessage {
-            Logger &logger;
 
-            CustomMessage(Logger &l) : logger(l) {}
-
-            CustomMessage &operator<<(const std::string &Message);
-            CustomMessage &operator<<(const char &Message);
-            CustomMessage &operator<<(const char *Message);
-            CustomMessage &operator<<(int Value);
-            CustomMessage &operator<<(double Value);
-            CustomMessage &operator<<(bool Value);
-            CustomMessage &operator<<(Colors::Style style);
-            CustomMessage &operator<<(Colors::Color color);
-            CustomMessage &operator<<(Colors::BGColor bgcolor);
-        };
-
-        CustomMessage custom;
+    	Logger &operator<<(const std::string &Message);
+    	Logger &operator<<(const char &Message);
+    	Logger &operator<<(const char *Message);
+    	Logger &operator<<(int Value);
+    	Logger &operator<<(double Value);
+    	Logger &operator<<(bool Value);
+    	Logger &operator<<(Colors::Style style);
+    	Logger &operator<<(Colors::Color color);
+    	Logger &operator<<(Colors::BGColor bgcolor);
 
         FL_API int Add(const char Message);
         FL_API int Add(std::string_view Message);

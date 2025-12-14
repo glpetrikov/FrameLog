@@ -1,25 +1,31 @@
-### **FrameLog Logger API**
+# **FrameLog — Logger API**
 
-The `Logger` class provides a simple, efficient, and color-aware logging interface.
+The `FrameLog::Logger` class provides a lightweight, efficient, color-aware logging system with support for formatting
+patterns, log levels, file output, and stream-style logging.
 
-#### **Constructor**
+---
+
+## **Constructor**
 
 ```cpp
-Logger(td::string_view LoggerName, bool IsWriteIFile = true);
+Logger(std::string_view loggerName, bool writeToFile = true);
 ```
 
 Creates a logger with the given name.
-It also specifies whether to copy messages to a file (with the same name as the logger).
+
+* `loggerName` — Name of the logger (used in output and file name).
+* `writeToFile` — If `true`, all log messages are also written to a file with the logger name.
+
 No additional setup is required.
 
 ---
 
-#### **Log Levels**
+## **Log Levels**
 
 ```cpp
 enum class LogLevel {
-    Print,
     Trace,
+    Print,
     Info,
     Warn,
     Error,
@@ -27,127 +33,230 @@ enum class LogLevel {
 };
 ```
 
-These levels represent different message severities.
-*(Currently, they are defined but not all are used internally.)*
+Log levels represent message severity.
+They are filtered using the **minimal log level** (see below).
+
+| Level | Purpose                     |
+|-------|-----------------------------|
+| Trace | Debug / tracing information |
+| Print | General output              |
+| Info  | Informational messages      |
+| Warn  | Warnings                    |
+| Error | Errors                      |
+| Fatal | Critical / fatal errors     |
 
 ---
 
-#### **Logging Functions**
-
-| Function  | Description                | Color          |
-| --------- | -------------------------- | -------------- |
-| `Print()` | General text output        | Default        |
-| `Trace()` | Debug or trace information | Gray           |
-| `Info()`  | Informational message      | Green          |
-| `Warn()`  | Warning                    | Yellow         |
-| `Error()` | Error message              | Red            |
-| `Fatal()` | Critical error             | Red background |
-
-Each of the above functions also has a variant ending with `Line`, which automatically appends a newline (`'\n'`):
-`PrintLine()`, `TraceLine()`, `InfoLine()`, `WarnLine()`, `ErrorLine()`, `FatalLine()`.
-
----
-
-#### **SetLoggerName**
+## **Minimal Log Level**
 
 ```cpp
-void SetName(std::string_View newName);
+void SetMinimalLogLevel(LogLevel level);
 ```
 
-sets the logger and logger file to a new name (in the console and file and creates a new file).
+Sets the minimal log level that will be printed.
+Messages with a lower severity are ignored.
 
----
-
-#### **Custom Stream Output**
-
-`Custom` enables stream-style logging similar to `std::cout`.
 Example:
 
 ```cpp
-logger.Custom << "Hello, " << user << "!" << logger.EndL();
-```
-
-You can chain strings, numbers, colors, and styles:
-
-```cpp
-logger.Custom << Colors::Color::Green
-              << "[OK] "
-              << "Connected"
-              << logger.EndL();
+logger.SetMinimalLogLevel(LogLevel::Warn);
 ```
 
 ---
 
-#### **EndL**
+## **Logging Functions**
+
+Each function prints a message with a predefined color and severity.
+
+| Function  | Description           |
+|-----------|-----------------------|
+| `Trace()` | Debug / trace output  |
+| `Print()` | General output        |
+| `Info()`  | Informational message |
+| `Warn()`  | Warning               |
+| `Error()` | Error                 |
+| `Fatal()` | Fatal error           |
+
+### **Line Variants**
+
+Each logging function has a `Line` variant that automatically appends a newline:
+
+```cpp
+PrintLine()
+TraceLine()
+InfoLine()
+WarnLine()
+ErrorLine()
+FatalLine()
+```
+
+Example:
+
+```cpp
+logger.InfoLine("Initialization completed");
+```
+
+---
+
+## **Logger Name**
+
+```cpp
+void SetName(std::string_view newName);
+```
+
+Changes the logger name at runtime.
+
+* Updates the name shown in console output
+* Closes the current log file
+* Creates a new log file using the new name
+
+---
+
+## **Pattern Formatting**
+
+```cpp
+void SetPattern(const std::string& pattern);
+```
+
+Sets a custom output format for all log messages.
+Calling this function again replaces the previous pattern.
+
+### **Default Pattern**
+
+```text
+%^[%D] [%T] %n:%$ %v
+```
+
+---
+
+### **Pattern Specifiers**
+
+#### Message & Logger
+
+| Specifier | Description              |
+|-----------|--------------------------|
+| `%v`      | Log message              |
+| `%n`      | Logger name              |
+| `%l`      | Log level (full name)    |
+| `%L`      | Log level (first letter) |
+
+#### Time & Date
+
+| Specifier | Description       |
+|-----------|-------------------|
+| `%T`      | Time (HH:MM:SS)   |
+| `%H`      | Hour (24h)        |
+| `%M`      | Minutes           |
+| `%S`      | Seconds           |
+| `%e`      | Milliseconds      |
+| `%D`      | Date (YYYY.MM.DD) |
+| `%F`      | Full datetime     |
+| `%Y`      | Year              |
+| `%m`      | Month             |
+| `%d`      | Day               |
+
+#### Process & Thread
+
+| Specifier | Description |
+|-----------|-------------|
+| `%t`      | Thread ID   |
+| `%P`      | Process ID  |
+
+#### Color Control
+
+| Specifier | Description                       |
+|-----------|-----------------------------------|
+| `%^`      | Enable color (based on log level) |
+| `%$`      | Reset color                       |
+
+#### Other
+
+| Specifier | Description |
+|-----------|-------------|
+| `%%`      | Literal `%` |
+
+---
+
+## **Stream-Style Logging**
+
+The logger supports `operator<<` chaining similar to `std::cout`.
+
+```cpp
+logger << "Hello, " << userName << logger.EndL();
+```
+
+### **Supported Types**
+
+* `std::string`
+* `const char*`
+* `char`
+* `int`
+* `double`
+* `bool`
+* `Colors::Color`
+* `Colors::BGColor`
+* `Colors::Style`
+
+Example with colors:
+
+```cpp
+logger << Colors::Color::Green
+       << "[OK] "
+       << "Connected"
+       << logger.EndL();
+```
+
+---
+
+## **EndL**
 
 ```cpp
 char EndL();
 ```
 
 Returns a newline character (`'\n'`).
-Used at the end of a custom log chain to mark a line break or trigger output.
+
+Used to terminate stream-style logging chains.
 
 ---
 
-#### **File Operations**
+## **Buffer Operations**
+
+| Method                  | Description                        |
+|-------------------------|------------------------------------|
+| `Add(char)`             | Append a character to the buffer   |
+| `Add(std::string_view)` | Append text to the buffer          |
+| `Flush()`               | Print buffer contents and clear it |
+| `Free()`                | Clear and release buffer memory    |
+| `Read()`                | Read a line from standard input    |
+
+---
+
+## **File Operations**
 
 ```cpp
 void FlushFile();
 ```
 
-Flush the logger file (with the logger name)
+Flushes the log file associated with the logger.
 
 ---
 
-#### **Buffer Operations**
+## **Utility Formatting**
 
-| Method                  | Description                                   |
-| ----------------------- | --------------------------------------------- |
-| `Add(std::string)`      | Appends a string to the buffer                |
-| `Add(std::string_view)` | Appends a string view                         |
-| `Add(const char*)`      | Appends a C-string                            |
-| `Add(char)`             | Appends a single character                    |
-| `Flush()`               | Prints everything in the buffer and clears it |
-| `Free()`                | Clears and releases all buffer memory         |
+```cpp
+template<typename... Args>
+static std::string Format(std::format_string<Args...> fmt, Args&&... args);
+```
+
+Wrapper around `std::format` for convenience.
+
+Example:
+
+```cpp
+logger.Info(FrameLog::Logger::Format(
+    "Loaded {} resources in {} ms", count, time
+));
+```
 
 ---
-#### Patterns
-
-SetPattern accepts a std::string with the output format. 
-After calling it, all messages will have the new format. 
-If you call it again, the format will be replaced with 
-the new one.
-
-| Specifier | Description                   | Example Output  |
-| --------- | ----------------------------- | --------------- |
-| `%v`      | Message (the log text itself) | `"Hello world"` |
-| `%n`      | Logger name                   | `"Renderer"`    |
-| `%l`      | Log level (full name)         | `"INFO"`        |
-| `%L`      | Log level (first letter only) | `"I"`           |
-
-| Specifier | Description       | Example Output |
-| --------- | ----------------- | -------------- |
-| `%T`      | Time (HH:MM:SS)   | `"09:30:45"`   |
-| `%H`      | Hour (24h format) | `"09"`         |
-| `%M`      | Minutes           | `"30"`         |
-| `%S`      | Seconds           | `"45"`         |
-| `%e`      | Milliseconds      | `"123"`        |
-
-| Specifier | Description       | Example Output          |
-| --------- | ----------------- | ----------------------- |
-| `%D`      | Date (YYYY.MM.DD) | `"2025.11.27"`          |
-| `%F`      | Full datetime     | `"2025.11.27 09:30:45"` |
-| `%Y`      | Year (4 digits)   | `"2025"`                |
-| `%m`      | Month (2 digits)  | `"11"`                  |
-| `%d`      | Day (2 digits)    | `"27"`                  |
-
-| Specifier | Description | Action                               |
-| --------- | ----------- | ------------------------------------ |
-| `%^`      | Color start | Enables color according to log level |
-| `%$`      | Color end   | Resets ANSI color                    |
-
-| Specifier | Description            | Example Output     |
-| --------- | ---------------------- | ------------------ |
-| `%t`      | Thread ID              | `"0x7f8a4c001700"` |
-| `%P`      | Process ID             | `"12345"`          |
-| `%%`      | Literal `%` (escaping) | `"%"`              |
