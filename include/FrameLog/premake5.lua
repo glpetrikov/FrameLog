@@ -3,12 +3,12 @@ project "FrameLog"
     language "C++"
     cppdialect "C++20"
 
-    targetdir "build/%{cfg.buildcfg}"
-    objdir "build/obj/%{cfg.buildcfg}"
+    targetdir "../../../build/%{cfg.buildcfg}"
+    objdir "../../../build/obj/%{cfg.buildcfg}"
 
-    files { "source/**.cpp", "source/**.h", "source/**.hpp" }
+    files { "../../source/**.cpp", "../../source/**.h", "../../source/**.hpp" }
 
-    includedirs { "source/", "source/FrameLog/", "source/FrameLog/Files/", "include/FrameLog/" }
+    includedirs { "../../source/", "../../source/FrameLog/", "../../source/FrameLog/Files/", "../../include/FrameLog/" }
 
     warnings "Extra"
     symbols "On"
