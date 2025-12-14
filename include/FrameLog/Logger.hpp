@@ -53,6 +53,32 @@ namespace FrameLog
 		FL_API int FatalLine(std::string Message);
 
 
+		template <typename... Args>
+		FL_API int Print(std::format_string<Args...> fmt, Args&&... args);
+		template <typename... Args>
+		FL_API int Trace(std::format_string<Args...> fmt, Args&&... args);
+		template <typename... Args>
+		FL_API int Info(std::format_string<Args...> fmt, Args&&... args);
+		template <typename... Args>
+		FL_API int Warn(std::format_string<Args...> fmt, Args&&... args);
+		template <typename... Args>
+		FL_API int Error(std::format_string<Args...> fmt, Args&&... args);
+		template <typename... Args>
+		FL_API int Fatal(std::format_string<Args...> fmt, Args&&... args);
+		template <typename... Args>
+		FL_API int PrintLine(std::format_string<Args...> fmt, Args&&... args);
+		template <typename... Args>
+		FL_API int TraceLine(std::format_string<Args...> fmt, Args&&... args);
+		template <typename... Args>
+		FL_API int InfoLine(std::format_string<Args...> fmt, Args&&... args);
+		template <typename... Args>
+		FL_API int WarnLine(std::format_string<Args...> fmt, Args&&... args);
+		template <typename... Args>
+		FL_API int ErrorLine(std::format_string<Args...> fmt, Args&&... args);
+		template <typename... Args>
+		FL_API int FatalLine(std::format_string<Args...> fmt, Args&&... args);
+
+
 		Logger& operator<<(const std::string& Message);
 		Logger& operator<<(const char& Message);
 		Logger& operator<<(const char* Message);
@@ -106,16 +132,4 @@ namespace FrameLog
 	FL_API bool IsPrinting(LogLevel Level, LogLevel MinimalLogLevel);
 } // namespace FrameLog
 
-#define TRACE(...) Trace(::FrameLog::Logger::Format(__VA_ARGS__));
-#define INFO(...) Info(::FrameLog::Logger::Format(__VA_ARGS__));
-#define WARN(...) Warn(::FrameLog::Logger::Format(__VA_ARGS__));
-#define ERROR(...) Error(::FrameLog::Logger::Format(__VA_ARGS__));
-#define FATAL(...) Fatal(::FrameLog::Logger::Format(__VA_ARGS__));
-
-// logger.TRACE(...)
-
-#define TRACE_LN(...) TraceLine(::FrameLog::Logger::Format(__VA_ARGS__));
-#define INFO_LN(...) InfoLine(::FrameLog::Logger::Format(__VA_ARGS__));
-#define WARN_LN(...) WarnLine(::FrameLog::Logger::Format(__VA_ARGS__));
-#define ERROR_LN(...) ErrorLine(::FrameLog::Logger::Format(__VA_ARGS__));
-#define FATAL_LN(...) FatalLine(::FrameLog::Logger::Format(__VA_ARGS__));
+#include "Logger.inl"

@@ -13,18 +13,36 @@ int main()
 	}
 	int formattest = 42;
 
+	logger << "Format Test" << logger.EndL();
+
 	logger.TraceLine(FrameLog::Logger::Format("Test Format, Int = {}", formattest));
 
-	// --- Logger -----
+	logger.Print("Test Format, Int = {}", formattest);
+	logger.Trace("Test Format, Int = {}", formattest);
+	logger.Info("Test Format, Int = {}", formattest);
+	logger.Warn("Test Format, Int = {}", formattest);
+	logger.Error("Test Format, Int = {}", formattest);
+	logger.Fatal("Test Format, Int = {}", formattest);
+
+	logger << "Format Line Test" << logger.EndL();
+
+	logger.PrintLine("Test Format, Int = {}", formattest);
+	logger.TraceLine("Test Format, Int = {}", formattest);
+	logger.InfoLine("Test Format, Int = {}", formattest);
+	logger.WarnLine("Test Format, Int = {}", formattest);
+	logger.ErrorLine("Test Format, Int = {}", formattest);
+	logger.FatalLine("Test Format, Int = {}", formattest);
+
+	logger << "Test" << logger.EndL();
+
 	logger.Print("Test\n");
 	logger.Trace("Test\n");
 	logger.Info("Test\n");
 	logger.Warn("Test\n");
 	logger.Error("Test\n");
 	logger.Fatal("Test\n");
-	logger << "Test" << logger.EndL();
 
-	logger << "==============================" << logger.EndL();
+	logger << "Line Test" << logger.EndL();
 
 	logger.PrintLine("Test");
 	logger.TraceLine("Test");
@@ -32,6 +50,8 @@ int main()
 	logger.WarnLine("Test");
 	logger.ErrorLine("Test");
 	logger.FatalLine("Test");
+
+	logger << "Logger Buffer Test" << logger.EndL();
 
 	logger.Add("Test");
 	logger.Add('?');
