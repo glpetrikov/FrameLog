@@ -9,11 +9,12 @@
 #include <string>
 
 // Project Files
-#include "Colors.hpp"
-#include "Platform.hpp"
+#include "Colors.h"
+#include "Platform.h"
 
 namespace FrameLog
 {
+
 //============================================================
 // Defines
 //============================================================
@@ -26,3 +27,13 @@ namespace FrameLog
 #define FL_VERSION_MINOR 9
 #define FL_VERSION_PATCH 0
 } // namespace FrameLog
+
+extern "C" {
+
+typedef enum
+{
+	Success,
+	Warning,
+	Error,
+} Result;
+}

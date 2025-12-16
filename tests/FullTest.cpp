@@ -1,4 +1,5 @@
 #include <FrameLog/FrameLog.h>
+#include <FrameLog/framelog_c.h>
 #include <iostream>
 
 int main()

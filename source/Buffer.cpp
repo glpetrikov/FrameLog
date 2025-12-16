@@ -4,67 +4,77 @@
 
 #include <mutex>
 
-#include "Buffer.hpp"
-#include "Common.hpp"
+#include "Buffer.h"
+#include "Common.h"
 
-namespace FrameLog {
+namespace FrameLog
+{
 
-    Buffer::Buffer() {
-        std::lock_guard<std::mutex> lock(mtx);
+	Buffer::Buffer()
+	{
+		std::lock_guard<std::mutex> lock(mtx);
 
-        data.reserve(4096);
-    }
+		data.reserve(4096);
+	}
 
-    Buffer::~Buffer() {
-        data.clear();
-        data.shrink_to_fit();
-    }
+	Buffer::~Buffer() { data.clear(); }
 
-    bool Buffer::Add(std::string_view Text) {
-        std::lock_guard<std::mutex> lock(mtx);
+	Result Buffer::Add(std::string_view Text)
+	{
+		std::lock_guard<std::mutex> lock(mtx);
 
-        if (!Text.empty()) {
-            data.append(Text.data(), Text.size());
-            return true;
-        } else {
-            return false;
-        }
-    }
+		if (!Text.empty())
+		{
+			data.append(Text.data(), Text.size());
+			return Success;
+		}
+		else
+		{
+			return Warning;
+		}
+	}
 
-    bool Buffer::Add(const char Text) {
-        std::lock_guard<std::mutex> lock(mtx);
+	Result Buffer::Add(const char Text)
+	{
+		std::lock_guard<std::mutex> lock(mtx);
 
-        if (Text) {
-            data += Text;
-            return true;
-        } else {
-            return false;
-        }
-    }
+		if (Text)
+		{
+			data += Text;
+			return Success;
+		}
+		else
+		{
+			return Warning;
+		}
+	}
 
-    std::string_view Buffer::GetData() {
-        std::lock_guard<std::mutex> lock(mtx);
+	std::string Buffer::GetData()
+	{
+		std::lock_guard<std::mutex> lock(mtx);
 
-        return std::string_view(data);
-    }
+		return data;
+	}
 
-    bool Buffer::Clear() {
-        std::lock_guard<std::mutex> lock(mtx);
+	Result Buffer::Clear()
+	{
+		std::lock_guard<std::mutex> lock(mtx);
 
-        data.clear();
-        data.shrink_to_fit();
-        return true;
-    }
-    FRAMELOG_API bool Buffer::Clean(){
-        std::lock_guard<std::mutex> lock(mtx);
+		data.clear();
+		return Success;
+	}
 
-        data.clear();
-        data.shrink_to_fit();
-        return true;
-    }
+	Result Buffer::Clean()
+	{
+		std::lock_guard<std::mutex> lock(mtx);
 
-    FRAMELOG_API size_t Buffer::GetSize(){
-        std::lock_guard<std::mutex> lock(mtx);
-        return data.size();
-    }
-}
+		data.clear();
+		return Success;
+	}
+
+	size_t Buffer::GetSize()
+	{
+		std::lock_guard<std::mutex> lock(mtx);
+		return data.size();
+	}
+} // namespace FrameLog

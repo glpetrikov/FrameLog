@@ -11,8 +11,8 @@
 #include <string_view>
 #include <thread>
 #include <unistd.h>
-#include "Common.hpp"
-#include "Logger.hpp"
+#include "Common.h"
+#include "Logger.h"
 
 namespace FrameLog
 {
@@ -30,13 +30,17 @@ namespace FrameLog
 
 	char Logger::EndL() { return '\n'; }
 
-	void Logger::SetMinimalLogLevel(LogLevel MinimalLogLevel) { MinimalLevel = MinimalLogLevel; }
+	Result Logger::SetMinimalLogLevel(LogLevel MinimalLogLevel) { MinimalLevel = MinimalLogLevel; }
 
 	//============================================================
 	// Formats
 	//============================================================
 
-	void Logger::SetPattern(const std::string& pattern) { m_Pattern = pattern; }
+	Result Logger::SetPattern(const std::string& pattern)
+	{
+		m_Pattern = pattern;
+		return Success;
+	}
 
 	std::string_view Logger::GetLevelString(LogLevel level)
 	{
@@ -226,115 +230,115 @@ namespace FrameLog
 	//============================================================
 	// Prints
 	//============================================================
-	int Logger::Trace(std::string Message)
+	Result Logger::Trace(std::string Message)
 	{
 		if (IsPrinting(LogLevel::Trace, MinimalLevel))
 		{
 			ColorPrint(Message, LogLevel::Trace, Colors::Color::Graphite, Colors::BGColor::Empty, false);
 		}
-		return 0;
+		return Success;
 	}
 
-	int Logger::Print(std::string Message)
+	Result Logger::Print(std::string Message)
 	{
 		if (IsPrinting(LogLevel::Print, MinimalLevel))
 		{
 			ColorPrint(Message, LogLevel::Print, Colors::Color::BrightBlue, Colors::BGColor::Empty, false);
 		}
-		return 0;
+		return Success;
 	}
 
-	int Logger::Info(std::string Message)
+	Result Logger::Info(std::string Message)
 	{
 		if (IsPrinting(LogLevel::Info, MinimalLevel))
 		{
 			ColorPrint(Message, LogLevel::Info, Colors::Color::Green, Colors::BGColor::Empty, false);
 		}
-		return 0;
+		return Success;
 	}
 
-	int Logger::Warn(std::string Message)
+	Result Logger::Warn(std::string Message)
 	{
 		if (IsPrinting(LogLevel::Warn, MinimalLevel))
 		{
 			ColorPrint(Message, LogLevel::Warn, Colors::Color::Yellow, Colors::BGColor::Empty, false);
 		}
-		return 0;
+		return Success;
 	}
 
-	int Logger::Error(std::string Message)
+	Result Logger::Error(std::string Message)
 	{
 		if (IsPrinting(LogLevel::Error, MinimalLevel))
 		{
 			ColorPrint(Message, LogLevel::Error, Colors::Color::Red, Colors::BGColor::Empty, false);
 		}
-		return 0;
+		return Success;
 	}
 
-	int Logger::Fatal(std::string Message)
+	Result Logger::Fatal(std::string Message)
 	{
 		if (IsPrinting(LogLevel::Fatal, MinimalLevel))
 		{
 			ColorPrint(Message, LogLevel::Fatal, Colors::Color::Empty, Colors::BGColor::RedB, false);
 		}
-		return 0;
+		return Success;
 	}
 
 	//============================================================
 	// Line Prints
 	//============================================================
-	int Logger::TraceLine(std::string Message)
+	Result Logger::TraceLine(std::string Message)
 	{
 		if (IsPrinting(LogLevel::Trace, MinimalLevel))
 		{
 			ColorPrint(Message, LogLevel::Trace, Colors::Color::Graphite, Colors::BGColor::Empty, true);
 		}
-		return 0;
+		return Success;
 	}
 
-	int Logger::PrintLine(std::string Message)
+	Result Logger::PrintLine(std::string Message)
 	{
 		if (IsPrinting(LogLevel::Print, MinimalLevel))
 		{
 			ColorPrint(Message, LogLevel::Print, Colors::Color::BrightBlue, Colors::BGColor::Empty, true);
 		}
-		return 0;
+		return Success;
 	}
 
-	int Logger::InfoLine(std::string Message)
+	Result Logger::InfoLine(std::string Message)
 	{
 		if (IsPrinting(LogLevel::Info, MinimalLevel))
 		{
 			ColorPrint(Message, LogLevel::Info, Colors::Color::Green, Colors::BGColor::Empty, true);
 		}
-		return 0;
+		return Success;
 	}
 
-	int Logger::WarnLine(std::string Message)
+	Result Logger::WarnLine(std::string Message)
 	{
 		if (IsPrinting(LogLevel::Warn, MinimalLevel))
 		{
 			ColorPrint(Message, LogLevel::Warn, Colors::Color::Yellow, Colors::BGColor::Empty, true);
 		}
-		return 0;
+		return Success;
 	}
 
-	int Logger::ErrorLine(std::string Message)
+	Result Logger::ErrorLine(std::string Message)
 	{
 		if (IsPrinting(LogLevel::Error, MinimalLevel))
 		{
 			ColorPrint(Message, LogLevel::Error, Colors::Color::Red, Colors::BGColor::Empty, true);
 		}
-		return 0;
+		return Success;
 	}
 
-	int Logger::FatalLine(std::string Message)
+	Result Logger::FatalLine(std::string Message)
 	{
 		if (IsPrinting(LogLevel::Fatal, MinimalLevel))
 		{
 			ColorPrint(Message, LogLevel::Fatal, Colors::Color::Empty, Colors::BGColor::RedB, true);
 		}
-		return 0;
+		return Success;
 	}
 
 	//============================================================
@@ -404,30 +408,30 @@ namespace FrameLog
 	//============================================================
 	// Buffer Functions
 	//============================================================
-	int Logger::Add(const char Message)
+	Result Logger::Add(const char Message)
 	{
 		buffer.Add(Message);
-		return 0;
+		return Success;
 	}
 
-	int Logger::Add(std::string_view Message)
+	Result Logger::Add(std::string_view Message)
 	{
 		buffer.Add(Message);
-		return 0;
+		return Success;
 	}
 
-	int Logger::Flush()
+	Result Logger::Flush()
 	{
 		std::string data = std::string(buffer.GetData());
 		std::cout << data;
 		buffer.Clear();
-		return 0;
+		return Success;
 	}
 
-	int Logger::Free()
+	Result Logger::Free()
 	{
 		buffer.Clear();
-		return 0;
+		return Success;
 	}
 
 	//============================================================

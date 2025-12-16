@@ -5,21 +5,21 @@
 #pragma once
 
 // Common
-#include "Common.hpp"
+#include "Common.h"
 
 // Platforms
-#include "Platform.hpp"
+#include "Platform.h"
 
 // Buffer
-#include "Buffer.hpp"
+#include "Buffer.h"
 // Colors
-#include "Colors.hpp"
+#include "Colors.h"
 
 // Files
-#include "FileHandler.hpp"
+#include "FileHandler.h"
 
 // Logger
-#include "Logger.hpp"
+#include "Logger.h"
 
 // EnvParser
 #include "EnvParser.h"

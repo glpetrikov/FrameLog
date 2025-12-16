@@ -132,9 +132,9 @@ press f5
 
 ### Source files:
 
-[Colors](include/FrameLog/Colors.hpp)\
+[Colors](include/FrameLog/Colors.h)\
 [Logger.cpp](source/Logger.cpp)\
-[Logger.hpp](include/FrameLog/Logger.hpp)
+[Logger.hpp](include/FrameLog/Logger.h)
 
 ### example code:
 

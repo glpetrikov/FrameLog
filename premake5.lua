@@ -9,7 +9,7 @@ workspace "FrameLog"
    location "build"
 
 project "FrameLog"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C++"
     cppdialect "C++20"
 
