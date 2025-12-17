@@ -13,6 +13,9 @@ project "FrameLog"
 --==========================================
 -- Configs
 --==========================================
+    filter "kind:StaticLib"
+        pic "On"
+
     filter "configurations:Debug"
         defines { "DEBUG", "FL_ENABLE_LOGS=1", "FRAMELOG_BUILD" }
         symbols "On"

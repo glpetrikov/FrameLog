@@ -25,6 +25,9 @@ project "FrameLog"
     floatingpoint "Strict"
     conformancemode "On"
 
+    filter "kind:StaticLib"
+        pic "On"
+
 --==========================================
 -- Operation System
 --==========================================
