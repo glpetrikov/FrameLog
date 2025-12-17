@@ -8,7 +8,7 @@ project "FrameLog"
 
     files { "../../source/**.cpp" }
 
-    includedirs {  "." }
+    includedirs {  ".", "../" }
 
 --==========================================
 -- Configs
