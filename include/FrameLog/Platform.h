@@ -4,27 +4,27 @@
 
 #pragma once
 
-#ifdef FL_BUILD_DINAMIC
-
 // --- Detect platform ---
-#	if defined(_WIN32) || defined(_WIN64)
-#		define FL_WINDOWS
-#	elif defined(__APPLE__) && defined(__MACH__)
-#		include <TargetConditionals.h>
-#		if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-#			define FL_IOS
-#		else
-#			define FL_MACOS
-#		endif
-#	elif defined(__linux__)
-#		define FL_LINUX
-#	elif defined(__ANDROID__)
-#		define FL_ANDROID
-#	elif defined(__unix__) || defined(__unix)
-#		define FL_UNIX
+#if defined(_WIN32) || defined(_WIN64)
+#	define FL_WINDOWS
+#elif defined(__APPLE__) && defined(__MACH__)
+#	include <TargetConditionals.h>
+#	if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+#		define FL_IOS
 #	else
-#		define FL_UNKNOWN
+#		define FL_MACOS
 #	endif
+#elif defined(__linux__)
+#	define FL_LINUX
+#elif defined(__ANDROID__)
+#	define FL_ANDROID
+#elif defined(__unix__) || defined(__unix)
+#	define FL_UNIX
+#else
+#	define FL_UNKNOWN
+#endif
+
+#ifdef FL_BUILD_DINAMIC
 
 // --- Cross-platform API macro ---
 #	if defined(FL_WINDOWS)

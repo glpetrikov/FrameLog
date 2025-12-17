@@ -13,6 +13,11 @@
 #include <unistd.h>
 #include "Common.h"
 #include "Logger.h"
+#include "Platform.h"
+
+#ifdef FL_WINDOWS
+#include <windows.h>
+#endif
 
 namespace FrameLog
 {
@@ -30,7 +35,10 @@ namespace FrameLog
 
 	char Logger::EndL() { return '\n'; }
 
-	Result Logger::SetMinimalLogLevel(LogLevel MinimalLogLevel) { MinimalLevel = MinimalLogLevel; }
+	Result Logger::SetMinimalLogLevel(LogLevel MinimalLogLevel) { 
+		MinimalLevel = MinimalLogLevel; 
+		return Success; 
+	}
 
 	//============================================================
 	// Formats
