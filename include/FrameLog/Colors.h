@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "Platform.h"
+#include "../../source/Platform.h"
 
 #include "Common.h"
 

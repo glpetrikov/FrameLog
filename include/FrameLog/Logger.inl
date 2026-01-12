@@ -9,7 +9,7 @@ namespace FrameLog
 
 		if (IsPrinting(LogLevel::Print, MinimalLevel))
 		{
-			ColorPrint(Message, LogLevel::Print, Colors::Color::BrightBlue, Colors::BGColor::Empty, false);
+			ColorPrint(Message, LogLevel::Print, false);
 		}
 		return Success;
 	}
@@ -21,7 +21,7 @@ namespace FrameLog
 
 		if (IsPrinting(LogLevel::Trace, MinimalLevel))
 		{
-			ColorPrint(Message, LogLevel::Trace, Colors::Color::Graphite, Colors::BGColor::Empty, false);
+			ColorPrint(Message, LogLevel::Trace, false);
 		}
 		return Success;
 	}
@@ -33,7 +33,7 @@ namespace FrameLog
 
 		if (IsPrinting(LogLevel::Info, MinimalLevel))
 		{
-			ColorPrint(Message, LogLevel::Info, Colors::Color::Green, Colors::BGColor::Empty, false);
+			ColorPrint(Message, LogLevel::Info, false);
 		}
 		return Success;
 	}
@@ -45,7 +45,7 @@ namespace FrameLog
 
 		if (IsPrinting(LogLevel::Warn, MinimalLevel))
 		{
-			ColorPrint(Message, LogLevel::Warn, Colors::Color::Yellow, Colors::BGColor::Empty, false);
+			ColorPrint(Message, LogLevel::Warn, false);
 		}
 		return Success;
 	}
@@ -57,7 +57,7 @@ namespace FrameLog
 
 		if (IsPrinting(LogLevel::Error, MinimalLevel))
 		{
-			ColorPrint(Message, LogLevel::Error, Colors::Color::Red, Colors::BGColor::Empty, false);
+			ColorPrint(Message, LogLevel::Error, false);
 		}
 		return Success;
 	}
@@ -69,7 +69,7 @@ namespace FrameLog
 
 		if (IsPrinting(LogLevel::Fatal, MinimalLevel))
 		{
-			ColorPrint(Message, LogLevel::Fatal, Colors::Color::Empty, Colors::BGColor::RedB, false);
+			ColorPrint(Message, LogLevel::Fatal, false);
 		}
 		return Success;
 	}
@@ -81,7 +81,7 @@ namespace FrameLog
 
 		if (IsPrinting(LogLevel::Print, MinimalLevel))
 		{
-			ColorPrint(Message, LogLevel::Print, Colors::Color::BrightBlue, Colors::BGColor::Empty, true);
+			ColorPrint(Message, LogLevel::Print, true);
 		}
 		return Success;
 	}
@@ -93,7 +93,7 @@ namespace FrameLog
 
 		if (IsPrinting(LogLevel::Trace, MinimalLevel))
 		{
-			ColorPrint(Message, LogLevel::Trace, Colors::Color::Graphite, Colors::BGColor::Empty, true);
+			ColorPrint(Message, LogLevel::Trace, true);
 		}
 		return Success;
 	}
@@ -105,7 +105,7 @@ namespace FrameLog
 
 		if (IsPrinting(LogLevel::Info, MinimalLevel))
 		{
-			ColorPrint(Message, LogLevel::Info, Colors::Color::Green, Colors::BGColor::Empty, true);
+			ColorPrint(Message, LogLevel::Info, true);
 		}
 		return Success;
 	}
@@ -117,7 +117,7 @@ namespace FrameLog
 
 		if (IsPrinting(LogLevel::Warn, MinimalLevel))
 		{
-			ColorPrint(Message, LogLevel::Warn, Colors::Color::Yellow, Colors::BGColor::Empty, true);
+			ColorPrint(Message, LogLevel::Warn, true);
 		}
 		return Success;
 	}
@@ -129,7 +129,7 @@ namespace FrameLog
 
 		if (IsPrinting(LogLevel::Error, MinimalLevel))
 		{
-			ColorPrint(Message, LogLevel::Error, Colors::Color::Red, Colors::BGColor::Empty, true);
+			ColorPrint(Message, LogLevel::Error, true);
 		}
 		return Success;
 	}
@@ -141,7 +141,7 @@ namespace FrameLog
 
 		if (IsPrinting(LogLevel::Fatal, MinimalLevel))
 		{
-			ColorPrint(Message, LogLevel::Fatal, Colors::Color::Empty, Colors::BGColor::RedB, true);
+			ColorPrint(Message, LogLevel::Fatal, true);
 		}
 		return Success;
 	}

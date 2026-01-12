@@ -57,28 +57,8 @@ include "FrameLog/include/FrameLog/premake5.lua"
 
 ## Performance & Size
 
-FrameLog is **lightweight**:
-Binary Size Comparison:
-
-| Library       | Size (KiB) | vs FrameLog (×)         | Language | Notes                          |
-|---------------|------------|-------------------------|----------|--------------------------------|
-| FrameLog      | 79.1       | 1.0×                    | C++      | Buffered, colors, stream       |
-| log.c         | 50.0       | 50.0 / 79.1 ≈ 0.63×     | C        | Minimal                        |
-| easylogging++ | 150.0      | 150.0 / 79.1 ≈ 1.90×    | C++      | Header-only                    |
-| plog          | 200.0      | 200.0 / 79.1 ≈ 2.53×    | C++      | Header-only                    |
-| g3log         | 500.0      | 500.0 / 79.1 ≈ 6.32×    | C++      | Async, crash-safe              |
-| NanoLog       | 800.0      | 800.0 / 79.1 ≈ 10.11×   | C++      | Ultra-fast                     |
-| quill         | 1229.0     | 1229.0 / 79.1 ≈ 15.53×  | C++      | Low-latency                    |
-| zlog          | 2048.0     | 2048.0 / 79.1 ≈ 25.88×  | C        | Config files                   |
-| log4cplus     | 3072.0     | 3072.0 / 79.1 ≈ 38.83×  | C++      | Java log4j port                |
-| log4cpp       | 4096.0     | 4096.0 / 79.1 ≈ 51.77×  | C++      | Apache project                 |
-| glog          | 5120.0     | 5120.0 / 79.1 ≈ 64.73×  | C++      | Google logging                 |
-| spdlog        | 41984.0    | 41984.0 / 79.1 ≈ 530.5× | C++      | Very Fast, fmt-based, patterns |
-| Boost.Log     | 61440.0    | 61440.0 / 79.1 ≈ 776.6× | C++      | Full-featured                  |
-
+FrameLog size is 79.1 KIB
 *Measured FrameLog: Release builds, x64, premake5, gcc15, make*
-
-*Source sizes shown for header-only libraries (marked "src")*
 
 **Why so small?**
 

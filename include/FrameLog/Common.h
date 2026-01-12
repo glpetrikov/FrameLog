@@ -9,8 +9,8 @@
 #include <string>
 
 // Project Files
+#include "../../source/Platform.h"
 #include "Colors.h"
-#include "Platform.h"
 
 namespace FrameLog
 {

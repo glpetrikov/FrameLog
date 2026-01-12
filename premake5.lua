@@ -9,6 +9,7 @@ workspace "FrameLog"
    location "build"
 
 project "FrameLog"
+    location "."
     kind "StaticLib"
     language "C++"
     cppdialect "C++20"
@@ -49,7 +50,6 @@ project "FrameLog"
     filter { "toolset:gcc or toolset:clang" }
         buildoptions {
             "-fstack-protector-strong",
-            "-D_FORTIFY_SOURCE=2",
             "-fno-strict-aliasing",
             "-fno-omit-frame-pointer",
             "-std=c++23",

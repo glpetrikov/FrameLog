@@ -38,7 +38,7 @@ namespace FrameLog
 				{
 					auto key = line.substr(0, pos);
 					auto value = line.substr(pos + 1);
-					vars[key] = value;
+					vars[trim(key)] = trim(value);
 				}
 			}
 		}

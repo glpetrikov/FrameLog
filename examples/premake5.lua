@@ -14,6 +14,7 @@ project "SimpleExample"
     kind "ConsoleApp"
     language "C++"
     cppdialect "C++20"
+    location "."
 
     targetdir "../build/%{cfg.buildcfg}"
     objdir "../build/obj/%{cfg.buildcfg}"

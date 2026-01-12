@@ -8,7 +8,7 @@
 #include "Common.h"
 
 // Platforms
-#include "Platform.h"
+#include "../../source/Platform.h"
 
 // Buffer
 #include "Buffer.h"

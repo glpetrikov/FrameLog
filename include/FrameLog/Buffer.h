@@ -6,8 +6,8 @@
 
 #include <mutex>
 
+#include "../../source/Platform.h"
 #include "Common.h"
-#include "Platform.h"
 
 namespace FrameLog
 {

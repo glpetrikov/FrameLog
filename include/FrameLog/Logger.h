@@ -136,8 +136,7 @@ namespace FrameLog
 		bool IsPrintingLoggerName = true;
 		std::string m_Pattern = "%^[%D] [%T] %n:%$ %v";
 
-		int ColorPrint(std::string Message, LogLevel level, FrameLog::Colors::Color color,
-					   FrameLog::Colors::BGColor backgroundColor, bool NewLine);
+		int ColorPrint(std::string Message, LogLevel level, bool NewLine);
 
 		std::string FormatPattern(const std::string& message, LogLevel level, const std::string& colorCode);
 
