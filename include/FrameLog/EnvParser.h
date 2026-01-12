@@ -18,14 +18,14 @@ namespace FrameLog
 	public:
 		inline EnvParser(const std::string& path) : file(path) { parse(); }
 
-		inline std::string trim(const std::string& str)
+		inline std::string trim(const std::string& str) noexcept
 		{
 			size_t start = str.find_first_not_of(" \t\r\n");
 			size_t end = str.find_last_not_of(" \t\r\n");
 			return (start == std::string::npos) ? "" : str.substr(start, end - start + 1);
 		}
 
-		inline void parse()
+		inline void parse() noexcept
 		{
 			std::string line;
 			while (file.ReadLine(line))
@@ -43,10 +43,18 @@ namespace FrameLog
 			}
 		}
 
-		inline std::string get(const std::string& key, const std::string& defaultValue = "")
+		inline std::string get(const std::string& key, const std::string& defaultValue = "") noexcept
 		{
 			auto it = vars.find(key);
 			return (it != vars.end()) ? it->second : defaultValue;
+		}
+
+		inline std::string operator[](const std::string& key) noexcept
+		{
+			auto it = vars.find(key);
+			if (it != vars.end())
+				return it->second;
+			return "";
 		}
 	};
 } // namespace FrameLog

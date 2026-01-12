@@ -16,15 +16,73 @@ namespace FrameLog
 		std::mutex mtx;
 
 	public:
-		FRAMELOG_API Buffer();
-		FRAMELOG_API ~Buffer();
+		FRAMELOG_API Buffer()
+		{
+			std::lock_guard<std::mutex> lock(mtx);
 
-		FRAMELOG_API Result Add(std::string_view Message);
-		FRAMELOG_API Result Add(const char);
-		FRAMELOG_API std::string GetData();
-		FRAMELOG_API Result Clear();
-		FRAMELOG_API Result Clean();
-		FRAMELOG_API size_t GetSize();
+			data.reserve(4096);
+		}
+
+		FRAMELOG_API ~Buffer() { data.clear(); }
+
+		FRAMELOG_API Result Add(std::string_view Text)
+		{
+			std::lock_guard<std::mutex> lock(mtx);
+
+			if (!Text.empty())
+			{
+				data.append(Text.data(), Text.size());
+				return Success;
+			}
+			else
+			{
+				return Warning;
+			}
+		}
+
+		FRAMELOG_API Result Add(const char Text)
+		{
+			std::lock_guard<std::mutex> lock(mtx);
+
+			if (Text)
+			{
+				data += Text;
+				return Success;
+			}
+			else
+			{
+				return Warning;
+			}
+		}
+
+		FRAMELOG_API std::string GetData()
+		{
+			std::lock_guard<std::mutex> lock(mtx);
+
+			return data;
+		}
+
+		FRAMELOG_API Result Clear()
+		{
+			std::lock_guard<std::mutex> lock(mtx);
+
+			data.clear();
+			return Success;
+		}
+
+		FRAMELOG_API Result Clean()
+		{
+			std::lock_guard<std::mutex> lock(mtx);
+
+			data.clear();
+			return Success;
+		}
+
+		FRAMELOG_API size_t GetSize()
+		{
+			std::lock_guard<std::mutex> lock(mtx);
+			return data.size();
+		}
 
 	private:
 		std::string data;
