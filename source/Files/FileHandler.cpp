@@ -142,7 +142,7 @@ namespace FrameLog
 
 	std::string FileHandler::FindLine(int TargetLine, std::string FileName)
 	{
-		std::fstream file(FileName);
+		std::fstream file(FileName, std::ios::in | std::ios::binary);
 		TargetLine++;
 
 		if (!file || !file.is_open())
@@ -195,6 +195,15 @@ namespace FrameLog
 
 	std::string FileHandler::ReadAll()
 	{
+		if (!File.is_open())
+		{
+			return "";
+		}
+
+		File.clear();
+		File.seekg(0);
+
+
 		std::ostringstream buffer;
 		buffer << this->File.rdbuf();
 		return buffer.str();
@@ -202,6 +211,9 @@ namespace FrameLog
 
 	std::string FileHandler::ReadAll(std::fstream& file)
 	{
+		file.clear();
+		file.seekg(0);
+
 		std::ostringstream buffer;
 		buffer << file.rdbuf();
 		return buffer.str();
@@ -209,7 +221,9 @@ namespace FrameLog
 
 	std::string FileHandler::ReadAll(std::string fileName)
 	{
-		std::fstream file(fileName);
+		std::fstream file(fileName, std::ios::in | std::ios::binary);
+		file.clear();
+		file.seekg(0);
 		std::ostringstream buffer;
 		buffer << file.rdbuf();
 		return buffer.str();
