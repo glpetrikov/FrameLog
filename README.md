@@ -92,13 +92,17 @@ cd Release && ./sandbox
 
 #### premake
 
-``` bash
+```bash
 premake5 vs2022
 ```
-
 open visual studio(2022)
-
 press f5
+
+or
+
+```bash
+./run.sh
+```
 
 ### Linux
 
